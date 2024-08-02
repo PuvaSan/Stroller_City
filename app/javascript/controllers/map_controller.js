@@ -6,9 +6,11 @@ export default class extends Controller {
     coordinates: Array
   }
 
+  static targets = ["mapElement", "markerContainer"]
+
   connect() {
     console.log("Stimulus controller connected"); // Debugging line
-    const coordinatesData = this.data.get("map-coordinates-value");
+    const coordinatesData = this.element.dataset.mapCoordinatesValue;
     console.log("Coordinates data attribute: ", coordinatesData); // Debugging line
 
     try {
@@ -35,7 +37,7 @@ export default class extends Controller {
 
   initMap() {
     console.log("Google Maps API loaded"); // Debugging line
-    const map = new google.maps.Map(this.element, {
+    const map = new google.maps.Map(this.mapElementTarget, {
       zoom: 12,
       center: { lat: 35.665020999999996, lng: 139.7837478 } // Starting position
     });
@@ -62,9 +64,9 @@ export default class extends Controller {
       const routePath = new google.maps.Polyline({
         path: validCoordinates.map(coord => ({ lat: coord.lat, lng: coord.lng })),
         geodesic: true,
-        strokeColor: '#FF0000',
+        strokeColor: '#00FF00', // Change to green
         strokeOpacity: 1.0,
-        strokeWeight: 2
+        strokeWeight: 4
       });
 
       routePath.setMap(map);
@@ -89,9 +91,37 @@ export default class extends Controller {
         marker.addListener('mouseout', () => {
           infoWindow.close();
         });
+
+        // Store marker element for further manipulation if needed
+        const markerElement = document.createElement('div');
+        markerElement.dataset.action = "mouseover->map#showInfoWindow mouseout->map#hideInfoWindow";
+        markerElement.dataset.mapLat = coord.lat;
+        markerElement.dataset.mapLng = coord.lng;
+        markerElement.dataset.mapInfo = coord.info;
+        this.markerContainerTarget.appendChild(markerElement);
       });
     } else {
       console.error("No valid coordinates to display the route.");
+    }
+  }
+
+  showInfoWindow(event) {
+    const lat = parseFloat(event.target.dataset.mapLat);
+    const lng = parseFloat(event.target.dataset.mapLng);
+    const info = event.target.dataset.mapInfo;
+
+    const infoWindow = new google.maps.InfoWindow({
+      content: info,
+      position: { lat: lat, lng: lng }
+    });
+    infoWindow.open(this.mapElementTarget.map);
+    this.currentInfoWindow = infoWindow;
+  }
+
+  hideInfoWindow(event) {
+    if (this.currentInfoWindow) {
+      this.currentInfoWindow.close();
+      this.currentInfoWindow = null;
     }
   }
 }
