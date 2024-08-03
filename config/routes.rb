@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :trips
+  resources :places
+  resources :routes
+  resources :details
+
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
