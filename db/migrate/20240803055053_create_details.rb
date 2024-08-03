@@ -10,7 +10,7 @@ class CreateDetails < ActiveRecord::Migration[7.1]
       t.string :formatted_duration
       t.float :latitude
       t.float :longitude
-
+      
       t.timestamps
     end
   end

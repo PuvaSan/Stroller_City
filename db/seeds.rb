@@ -15,10 +15,21 @@ file = File.read(file_path)
 data = JSON.parse(file)
 
 # Extract data from the JSON file and create records in the database
+
+# Create places
+data['places_info'].each do |place|
+  Place.create!(
+    address: place['address'],
+    latitude: place['gps_coordinates']['latitude'],
+    longitude: place['gps_coordinates']['longitude']
+  )
+end
+
+# Create routes
 data['directions'].each do |direction|
   route = Route.create!(
-    start_address: data['places_info'].first['address'],
-    end_address: data['places_info'].last['address'],
+    start: Place.first,
+    end: Place.last,
     start_time: direction['start_time'],
     end_time: direction['end_time'],
     distance: direction['distance'],
@@ -28,16 +39,6 @@ data['directions'].each do |direction|
     cost: direction['cost'],
     currency: direction['currency']
   )
-
-  # Create places
-  data['places_info'].each do |place|
-    Place.create!(
-      route: route,
-      address: place['address'],
-      latitude: place['gps_coordinates']['latitude'],
-      longitude: place['gps_coordinates']['longitude']
-    )
-  end
 
   # Create trips and details
   direction['trips'].each do |trip_data|

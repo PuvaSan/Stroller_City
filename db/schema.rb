@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_01_152026) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_03_055053) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,21 +30,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_01_152026) do
   end
 
   create_table "places", force: :cascade do |t|
-    t.bigint "route_id", null: false
+    t.string "name"
     t.string "address"
-    t.float "latitude"
-    t.float "longitude"
+    t.decimal "latitude"
+    t.decimal "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["route_id"], name: "index_places_on_route_id"
   end
 
   create_table "routes", force: :cascade do |t|
-    t.string "start_address"
-    t.string "end_address"
+    t.bigint "start_id", null: false
+    t.bigint "end_id", null: false
+    t.integer "distance"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.integer "distance"
     t.integer "duration"
     t.string "formatted_distance"
     t.string "formatted_duration"
@@ -52,6 +51,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_01_152026) do
     t.string "currency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["end_id"], name: "index_routes_on_end_id"
+    t.index ["start_id"], name: "index_routes_on_start_id"
   end
 
   create_table "trips", force: :cascade do |t|
@@ -88,6 +89,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_01_152026) do
   end
 
   add_foreign_key "details", "trips"
-  add_foreign_key "places", "routes"
+  add_foreign_key "routes", "places", column: "end_id"
+  add_foreign_key "routes", "places", column: "start_id"
   add_foreign_key "trips", "routes"
 end
