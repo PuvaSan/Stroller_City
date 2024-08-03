@@ -54,6 +54,8 @@ gem "geocoder"
 gem 'ffi', '1.16.3'
 #taggable
 gem 'acts-as-taggable-on', '~> 10.0'
+#favoritable
+gem 'acts_as_favoritor'
 
 group :development, :test do
   gem "dotenv-rails"
