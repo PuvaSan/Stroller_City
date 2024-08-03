@@ -83,6 +83,8 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
+    acts-as-taggable-on (10.0.0)
+      activerecord (>= 6.1, < 7.2)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     autoprefixer-rails (10.4.16.0)
@@ -296,21 +298,19 @@ GEM
 
 PLATFORMS
   aarch64-linux
-  aarch64-linux-gnu
   aarch64-linux-musl
   arm-linux
-  arm-linux-gnu
   arm-linux-musl
   arm64-darwin-22
+  arm64-darwin-23
   x86-linux
-  x86-linux-gnu
   x86-linux-musl
   x86_64-darwin
   x86_64-linux
-  x86_64-linux-gnu
   x86_64-linux-musl
 
 DEPENDENCIES
+  acts-as-taggable-on (~> 10.0)
   autoprefixer-rails
   bootsnap
   bootstrap (~> 5.2)
