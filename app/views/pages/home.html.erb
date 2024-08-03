@@ -1,3 +1,4 @@
+<!-- input -->
 <div class="container p-3" style="position: absolute; top: 0px; z-index: 1;">
   <div class="input-group">
     <input type="text" class="form-control" id="origin" name="place_input">
@@ -7,4 +8,12 @@
   </div>
 </div>
 
+<!-- input -->
 <div id="map" style="height:100vh;width:100vw; z-index:0;" data-controller="home-map" data-action="load@window->home-map#initMap"></div>
+
+<!-- input -->
+<div id="draggable-platform" class="bg-white rounded">
+  <h1>Hello Ikumi Ojiro!</h1>
+  <p>I know where you live now</p>
+  <%= image_path('Picture1.png') %>
+</div>
