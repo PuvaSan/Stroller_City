@@ -1,1 +1,33 @@
 // Specific CSS for your home-page
+#draggable-panel {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  height: 200px;
+  border-radius: 16px 16px 0 0;
+  padding: 36px 1em 1em;
+}
+
+#resizer {
+  height: 36px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: ns-resize;
+}
+
+#panel-top-line {
+  width: 25%;
+  height: 4px;
+  margin: auto;
+  border: none;
+  color: grey;
+  background-color: grey;
+  border-radius: 2px;
+}
