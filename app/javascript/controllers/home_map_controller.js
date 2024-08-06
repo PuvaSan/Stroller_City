@@ -40,10 +40,14 @@ export default class extends Controller {
           position: place.geometry.location,
           map: map
         });
+        console.log("this is a place", place);
       }
     });
   }
-
+//  def showplace(place) {
+//    console.log(place)
+//    document.querySelector("#place").innerHTML = `show.html.erb`
+//  }
 
   // calculateAndDisplayRoute() {
   //   // initializes direction renderer on map
