@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="another-map"
 export default class extends Controller {
   connect() {
-    console.log("anotha map connected")
+    console.log("home map connected")
   }
 
   constructor() {
@@ -12,7 +12,7 @@ export default class extends Controller {
     this.directionsService;
   }
 
-  initMap() {
+  async initMap() {
     let map = new google.maps.Map(document.getElementById('map'),{
       center:{lat:35.652832,lng:139.839478},
       zoom:13
@@ -24,12 +24,14 @@ export default class extends Controller {
     // adds transit layer over our map
     const transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
-    console.log(transitLayer)
 
     // autocompletes location inputs for origin and destination
     let originAutocomplete = new google.maps.places.Autocomplete(document.getElementById('origin'))
-    originAutocomplete.addListener('place_changed', () => {
-      let place = originAutocomplete.getPlace();
+    let destinationAutocomplete = new google.maps.places.Autocomplete(document.getElementById('destination'))
+
+    // recenters map when input is changed to a google place
+    destinationAutocomplete.addListener('place_changed', () => {
+      let place = destinationAutocomplete.getPlace();
       if (place.geometry && place.geometry.location) {
         map.setCenter(place.geometry.location);
         map.setZoom(15);
@@ -40,7 +42,6 @@ export default class extends Controller {
         });
       }
     });
-    // let destinationAutocomplete = new google.maps.places.Autocomplete(document.getElementById('destination'))
   }
 
 
