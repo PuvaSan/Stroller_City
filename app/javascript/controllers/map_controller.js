@@ -103,6 +103,12 @@ export default class extends Controller {
     } else {
       console.error("No valid coordinates to display the route.");
     }
+
+    // Enable indoor maps
+    map.setOptions({
+      indoorPicker: true
+    });
+
   }
 
   showInfoWindow(event) {
