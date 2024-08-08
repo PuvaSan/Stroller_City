@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   resources :trips
-  resources :places
   resources :routes
   resources :details
+  resources :places do
+    resources :reviews
+  end
 
   devise_for :users
   root to: "pages#home"
