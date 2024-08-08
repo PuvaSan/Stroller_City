@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="another-map"
 export default class extends Controller {
-  static targets = [ "name", "address"]
+  static targets = [ "name", "address", "photo"]
   connect() {
     console.log("home map connected")
     console.log(this.nameTarget, this.addressTarget)
@@ -40,7 +40,11 @@ export default class extends Controller {
         });
         this.nameTarget.innerText = place.name
         this.addressTarget.innerText = place.formatted_address
-        console.log(place)
+        place.photos.slice(0,3).forEach((photo)=>{
+          const placeImage = photo.getUrl()
+          const imgElement = `<img height=100 class="m-3" src="${placeImage}" />`
+          this.photoTarget.insertAdjacentHTML("beforeend", imgElement)
+        })
       }
     });
   }
