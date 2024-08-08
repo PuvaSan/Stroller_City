@@ -2,15 +2,13 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="another-map"
 export default class extends Controller {
+  static targets = [ "name", "address"]
   connect() {
     console.log("home map connected")
+    console.log(this.nameTarget, this.addressTarget)
   }
 
-  constructor() {
-    super();
-    this.directionsRenderer;
-    this.directionsService;
-  }
+
 
   async initMap() {
     let map = new google.maps.Map(document.getElementById('map'),{
@@ -40,38 +38,10 @@ export default class extends Controller {
           position: place.geometry.location,
           map: map
         });
-        console.log("this is a place", place);
+        this.nameTarget.innerText = place.name
+        this.addressTarget.innerText = place.formatted_address
+        console.log(place)
       }
     });
   }
-//  def showplace(place) {
-//    console.log(place)
-//    document.querySelector("#place").innerHTML = `show.html.erb`
-//  }
-
-  // calculateAndDisplayRoute() {
-  //   // initializes direction renderer on map
-  //   this.directionsService = new google.maps.DirectionsService()
-  //   this.directionsRenderer = new google.maps.DirectionsRenderer()
-  //   this.directionsRenderer.setMap(map)
-
-  //   this.directionsService.route({
-  //     origin: document.getElementById('origin').value,
-  //     destination: document.getElementById('destination').value,
-  //     travelMode: 'TRANSIT'
-  //   }, (response, status) => {
-  //     if(status === 'OK') {
-  //       this.directionsRenderer.setDirections(response);
-  //     } else {
-  //       window.alert('Directions request failed due to ' + status);
-  //     }
-  //   });
-
-  //   this.showDirectionsSteps();
-  // }
-
-  // showDirectionsSteps() {
-  //   let panel = document.getElementById('directions-panel');
-  //   this.directionsRenderer.setPanel(panel);
-  // }
 }

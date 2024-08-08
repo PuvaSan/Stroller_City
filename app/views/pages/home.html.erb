@@ -1,5 +1,5 @@
 <!-- frame -->
-<div style="height:100vh;width:100vw;">
+<div style="height:100vh;width:100vw;" data-controller="home-map">
   <!-- location input -->
   <div id="input-fields" class="container p-3" style="position:absolute; top:0px; z-index:1;">
     <div class="input-group mb-3 d-none">
@@ -16,7 +16,7 @@
     </div>
   </div>
   <!-- map -->
-  <div id="map" style="z-index:0; height:100vh;" data-controller="home-map" data-action="load@window->home-map#initMap"></div>
+  <div id="map" style="z-index:0; height:100vh;" data-action="load@window->home-map#initMap"></div>
   <!-- draggable-panel -->
   <div id="draggable-panel" class="bg-white" data-controller="panel-resizer">
     <!-- draggable thingy -->
@@ -24,29 +24,20 @@
       <hr id="panel-top-line">
     </div>
     <!-- EDIT THIS -->
+    <!-- Place description -->
     <div>
       <div id="place-description" class="container mt-3">
         <div class="row">
           <div class="col">
-            <h2>Location name</h2>
-            <p>This will be the address of the location.</p>
+            <h2 data-home-map-target="name"></h2>
+            <p data-home-map-target="address"></p>
             <p>This is a description of the location.</p>
             <p>Additional details can be added here.</p>
           </div>
         </div>
-        <div class="row mt-3">
-          <div class="col">
-            <img src="<%= image_path('image1.jpg') %>" alt="Image 1">
-          </div>
-          <div class="col">
-            <img src="<%= image_path('image2.jpg') %>" alt="Image 2">
-          </div>
-          <div class="col">
-            <img src="<%= image_path('image3.jpg') %>" alt="Image 3">
-          </div>
-        </div>
       </div>
     </div>
+    <!-- Place description -->
     <h1 class="mt-3">Hello!</h1>
     <p>I know where you live now</p>
     <div style="height: 100px; width: 100px; background-image: url(<%= image_path('Picture1.png') %>)"></div>
