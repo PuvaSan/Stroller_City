@@ -1,0 +1,11 @@
+<%# make review cards that populate from place id review %>
+<div class="card p-3">
+  <%# #font-awesome star rating %>
+  <div class="d-inline text-center">
+    <% review.rating.times do %>
+      <i class="fa fa-star" aria-hidden="true"></i>
+    <% end %>
+  </div>
+  <p class="mt-2">"<%= review.comment %>"</p>
+  <p class="text-end">- <%= review.user.email %></p>
+</div>
