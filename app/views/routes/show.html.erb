@@ -7,3 +7,34 @@
 </div>
 <p>Start:<%= @route.start.address %></p>
 <p>End:<%= @route.end.address %></p>
+
+<!-- display instructions -->
+<div>
+  <h3>Route <%= @route.id %></h3>
+  <div class="d-flex">
+    <% @route.trips.each_with_index do |trip, index| %>
+      <div class="ms-4" data-controller="simple-chevron-hide">
+        <div class="d-flex">
+          <div>
+            <i class="fa-solid fa-chevron-right me-3" data-action="click->simple-chevron-hide#toggle" id="chevronDetail<%=index%>"></i>
+          </div>
+          <div>
+            <h3>Trip <%= index %></h3>
+            <p>mode: <%= trip.travel_mode %></p>
+          </div>
+        </div>
+        <div class="trip-details d-none" id="detail<%=index%>">
+          <p>Details (<%= trip.details.count %>)</p>
+          <% if trip.details.any? %>
+            <% trip.details.each_with_index do |detail, index| %>
+              <p><%= index + 1 %>. <%= detail.title %></p>
+            <% end %>
+          <% else %>
+            <p>Start stop: <%= trip.start_stop_name %></p>
+            <p>End stop: <%= trip.end_stop_name %></p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
