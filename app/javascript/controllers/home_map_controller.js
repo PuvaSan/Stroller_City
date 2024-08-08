@@ -40,11 +40,15 @@ export default class extends Controller {
         });
         this.nameTarget.innerText = place.name
         this.addressTarget.innerText = place.formatted_address
+        this.photoTarget.innerHTML = ""
         place.photos.slice(0,3).forEach((photo)=>{
           const placeImage = photo.getUrl()
           const imgElement = `<img height=100 class="m-3" src="${placeImage}" />`
           this.photoTarget.insertAdjacentHTML("beforeend", imgElement)
         })
+        document.querySelector("#draggable-panel").style.height = "90vh"
+        document.querySelector("#draggable-panel").style.borderRadius = "0px"
+        document.querySelector("#initial-content").outerHTML = ""
       }
     });
   }
