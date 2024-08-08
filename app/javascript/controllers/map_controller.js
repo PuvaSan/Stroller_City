@@ -103,6 +103,41 @@ export default class extends Controller {
     } else {
       console.error("No valid coordinates to display the route.");
     }
+
+    // aya practice grounds for image overlays
+
+    // let tsukijiOverlay = new google.maps.GroundOverlay(
+    //   "https://res.cloudinary.com/dzfjdlafz/image/upload/v1723053541/Picture5_hsvgkx.png",
+    //   {
+    //     west: 139.77201446717743,
+    //     east: 139.77238394143433,
+    //     south: 35.66735379917178,
+    //     north: 35.6675624447603
+    //   },
+    // );
+    // tsukijiOverlay.setMap(map);
+
+    // let ebisuB1Overlay = new google.maps.GroundOverlay(
+    //   "https://res.cloudinary.com/dzfjdlafz/image/upload/v1723055269/Picture6_vgdxb0.png",
+    //   {
+    //     west: 139.70872322160716,
+    //     east: 139.70934683522773,
+    //     south: 35.64709841106135,
+    //     north: 35.64750926873806,
+    //   }
+    // );
+    // ebisuB1Overlay.setMap(null);
+
+    // let ebisuB2Overlay = new google.maps.GroundOverlay(
+    //   "https://res.cloudinary.com/dzfjdlafz/image/upload/v1723056186/Picture7_pwi9nk.png",
+    //   {
+    //     west: 139.70848460344394,
+    //     east: 139.70931675874178,
+    //     south: 35.64693693343404,
+    //     north: 35.64742135391773,
+    //   }
+    // );
+    // ebisuB2Overlay.setMap(map);
   }
 
   showInfoWindow(event) {
