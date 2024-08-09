@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
 
+  #this sends the api placename to the controller
   post 'pages/receive_place_name', to: 'pages#receive_place_name'
+
+  #this sends the api placename to the controller
+  get 'pages/render_reviews', to: 'pages#render_reviews'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -2,10 +2,12 @@
 <div class="border-bottom p-3 m-3">
   <%# #font-awesome star rating %>
   <div class="d-inline text-center">
-    <% review.rating.times do %>
-      <i class="fa fa-star" aria-hidden="true"></i>
-    <% end %>
+    <% @place.reviews.each do |review| %>
+      <% review.rating.times do %>
+        <i class="fa fa-star" aria-hidden="true"></i>
+      <% end %>
+    </div>
+    <p class="mt-2">"<%= review.comment %>"</p>
+    <p class="text-end">- <%= review.user.email %></p>
   </div>
-  <p class="mt-2">"<%= review.comment %>"</p>
-  <p class="text-end">- <%= review.user.email %></p>
-</div>
+<% end %>

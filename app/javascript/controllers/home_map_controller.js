@@ -48,7 +48,7 @@ export default class extends Controller {
         console.log(place.name)
         // Send the place name to Rails controller via AJAX
         if (place.name) {
-          fetch('/pages/receive_place_name', {  // Update to new route
+          fetch('/pages/receive_place_name', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -56,13 +56,17 @@ export default class extends Controller {
             },
             body: JSON.stringify({ place_name: place.name })
           })
-          .then(response => response.json()) // Directly parse the response as JSON
+          .then(response => response.json())
           .then(data => {
             console.log("Place name sent successfully", data);
             if (data.status === "success") {
-              // Handle success case
+              // Fetch the reviews partial and insert it into the reviews section
+              fetch(`/pages/render_reviews?id=${data.id}`)
+                .then(response => response.text())
+                .then(html => {
+                  document.getElementById('reviews-container').innerHTML = html;
+                });
             } else {
-              // Handle error case
               console.error("Error:", data.message);
             }
           })
