@@ -30,13 +30,18 @@
         <div class="row">
           <div class="col">
             <h2 data-home-map-target="name"></h2>
-            <p>Address:</p>
+            <%# <p>Address:</p> %>
             <p data-home-map-target="address"></p>
             <p>photos:</p>
             <div data-home-map-target="photo"> </div>
           </div>
         </div>
       </div>
+      <%# populates review if title + address match %>
+      <h3 class="mt-3">Reviews</h3>
+      <% @place.reviews.each do |review| %>
+        <%= render 'shared/review_card', review: review %>
+      <% end %>
     </div>
     <!-- Place description -->
     <div id="initial-content">
