@@ -46,6 +46,7 @@ export default class extends Controller {
           this.photoTarget.insertAdjacentHTML("beforeend", imgElement)
         })
       }
+      console.log(place)
     });
   }
 }
