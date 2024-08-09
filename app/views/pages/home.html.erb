@@ -30,12 +30,17 @@
         <div class="row">
           <div class="col">
             <h2 data-home-map-target="name"></h2>
-            <p>Address:</p>
+            <%# <p>Address:</p> %>
             <p data-home-map-target="address"></p>
-            <p>photos:</p>
+            <%# <p>photos:</p> %>
             <div data-home-map-target="photo"> </div>
           </div>
         </div>
+      </div>
+      <!-- Reviews -->
+      <div id="reviews-container">
+        <%# review partial created in pages_controller in #render_reviews and inserted in home_map_controller fetch %>
+        <%#= "no reviews" unless @places.present? %>
       </div>
     </div>
     <!-- Place description -->

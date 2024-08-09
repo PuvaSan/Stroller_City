@@ -1,2 +1,7 @@
 <h1>Places#show</h1>
 <p>Find me in app/views/places/show.html.erb</p>
+<p>address: <%= @place.address %></p>
+<%# render review cards here %>
+<% @place.reviews.each do |review| %>
+  <%= render 'shared/review_card', review: review %>
+<% end %>
