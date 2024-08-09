@@ -37,16 +37,20 @@
           </div>
         </div>
       </div>
-      <!-- Conditionally render reviews only if @place_name is present -->
-      <% if @place_name.present? && @place %>
-        <h3 class="mt-3">Reviews</h3>
-        <% @place.reviews.each do |review| %>
-          <%= render 'shared/review_card', review: review %>
-        <% end %>
-        <p>Location: <%= @place.name %></p>
-      <% else %>
-        <p>No reviews available.</p>
-      <% end %>
+      <div>
+        <!-- Reviews -->
+        <!--
+        <% if @place_name.present? && @place %>
+          <h3 class="mt-3">Reviews</h3>
+          <% @place.reviews.each do |review| %>
+            <%= render 'shared/review_card', review: review %>
+          <% end %>
+        <% else %>
+          <p>No reviews available.</p>
+        <% end %> -->
+        <p>Place name class: <%= @place_name.class %></p>
+        <p>Place class: <%= @place.class %></p>
+      </div>
     </div>
     <!-- Place description -->
     <div id="initial-content">

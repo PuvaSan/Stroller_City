@@ -45,7 +45,7 @@ export default class extends Controller {
         document.querySelector("#draggable-panel").style.height = "90vh";
         document.querySelector("#draggable-panel").style.borderRadius = "0px";
         document.querySelector("#initial-content").outerHTML = "";
-
+        console.log(place.name)
         // Send the place name to Rails controller via AJAX
         if (place.name) {
           fetch('/pages/receive_place_name', {  // Update to new route
