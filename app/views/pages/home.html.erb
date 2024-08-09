@@ -32,15 +32,20 @@
             <h2 data-home-map-target="name"></h2>
             <%# <p>Address:</p> %>
             <p data-home-map-target="address"></p>
-            <p>photos:</p>
+            <%# <p>photos:</p> %>
             <div data-home-map-target="photo"> </div>
           </div>
         </div>
       </div>
-      <%# populates review if title + address match %>
-      <h3 class="mt-3">Reviews</h3>
-      <% @place.reviews.each do |review| %>
-        <%= render 'shared/review_card', review: review %>
+      <!-- Conditionally render reviews only if @place_name is present -->
+      <% if @place_name.present? && @place %>
+        <h3 class="mt-3">Reviews</h3>
+        <% @place.reviews.each do |review| %>
+          <%= render 'shared/review_card', review: review %>
+        <% end %>
+        <p>Location: <%= @place.name %></p>
+      <% else %>
+        <p>No reviews available.</p>
       <% end %>
     </div>
     <!-- Place description -->

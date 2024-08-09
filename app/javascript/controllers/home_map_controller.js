@@ -33,24 +33,46 @@ export default class extends Controller {
       if (place.geometry && place.geometry.location) {
         map.setCenter(place.geometry.location);
         map.setZoom(15);
-        // Add a marker at the new center
-        new google.maps.Marker({
-          position: place.geometry.location,
-          map: map
+
+        this.nameTarget.innerText = place.name;
+        this.addressTarget.innerText = place.formatted_address;
+        this.photoTarget.innerHTML = "";
+        place.photos.slice(0, 3).forEach((photo) => {
+          const placeImage = photo.getUrl();
+          const imgElement = `<img height=100 class="m-3" src="${placeImage}" />`;
+          this.photoTarget.insertAdjacentHTML("beforeend", imgElement);
         });
-        this.nameTarget.innerText = place.name
-        this.addressTarget.innerText = place.formatted_address
-        this.photoTarget.innerHTML = ""
-        place.photos.slice(0,3).forEach((photo)=>{
-          const placeImage = photo.getUrl()
-          const imgElement = `<img height=100 class="m-3" src="${placeImage}" />`
-          this.photoTarget.insertAdjacentHTML("beforeend", imgElement)
-        })
-        document.querySelector("#draggable-panel").style.height = "90vh"
-        document.querySelector("#draggable-panel").style.borderRadius = "0px"
-        document.querySelector("#initial-content").outerHTML = ""
+        document.querySelector("#draggable-panel").style.height = "90vh";
+        document.querySelector("#draggable-panel").style.borderRadius = "0px";
+        document.querySelector("#initial-content").outerHTML = "";
+
+        // Send the place name to Rails controller via AJAX
+        if (place.name) {
+          fetch('/pages/receive_place_name', {  // Update to new route
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            body: JSON.stringify({ place_name: place.name })
+          })
+          .then(response => response.json()) // Directly parse the response as JSON
+          .then(data => {
+            console.log("Place name sent successfully", data);
+            if (data.status === "success") {
+              // Handle success case
+            } else {
+              // Handle error case
+              console.error("Error:", data.message);
+            }
+          })
+          .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+          });
+
+        }
       }
-      console.log(place)
     });
+
   }
 }
