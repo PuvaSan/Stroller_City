@@ -39,7 +39,7 @@ export default class extends Controller {
     paragraphs.forEach(function(p) {
       p.style.fontSize = '10px';
     });
-    // recenters map when input is changed to a google place
+
     destinationAutocomplete.addListener('place_changed', () => {
       let place = destinationAutocomplete.getPlace();
 
