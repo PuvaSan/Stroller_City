@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="another-map"
 export default class extends Controller {
-  static targets = [ "name", "address", "photo", "phone"]
+  static targets = [ "name", "address", "photo"]
   connect() {
     console.log("home map connected")
     console.log(this.nameTarget, this.addressTarget)
@@ -27,10 +27,6 @@ export default class extends Controller {
     let originAutocomplete = new google.maps.places.Autocomplete(document.getElementById('origin'))
     let destinationAutocomplete = new google.maps.places.Autocomplete(document.getElementById('destination'))
 
-    var paragraphs = document.querySelectorAll('p');
-    paragraphs.forEach(function(p) {
-      p.style.fontSize = '10px';
-    });
     // recenters map when input is changed to a google place
     destinationAutocomplete.addListener('place_changed', () => {
       let place = destinationAutocomplete.getPlace();
@@ -40,9 +36,7 @@ export default class extends Controller {
 
         this.nameTarget.innerText = place.name;
         this.addressTarget.innerText = place.formatted_address;
-        this.phoneTarget.innerText = place.formatted_phone_number
         this.photoTarget.innerHTML = "";
-        console.log(place)
         place.photos.slice(0, 3).forEach((photo) => {
           const placeImage = photo.getUrl();
           const imgElement = `<img height=100 class="m-3" src="${placeImage}" />`;
