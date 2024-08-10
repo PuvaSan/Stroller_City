@@ -1,0 +1,5646 @@
+[
+  {
+    "station": "Naka-meguro",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_naka-meguro_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Shinjuku",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_shinjuku_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Zoshigaya",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_zoshigaya_all.jpg",
+    "lines": [
+      {
+        "name": "Fukutoshin",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Akasaka-mitsuke",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_akasaka-mitsuke_all.jpg",
+    "lines": [
+      {
+        "name": "Ginza",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Asakusa",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_asakusa_all.jpg",
+    "lines": [
+      {
+        "name": "Ginza",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Honancho",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_honancho_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "NakanoSakaue",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Nezu",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_nezu_all.jpg",
+    "lines": [
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Ginza",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_ginza_all.jpg",
+    "lines": [
+      {
+        "name": "Ginza",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Hibiya",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Omote-sando",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_omote-sando_all.jpg",
+    "lines": [
+      {
+        "name": "Ginza",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Hanzomon",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Oshiage",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Shimbashi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_shimbashi_all.jpg",
+    "lines": [
+      {
+        "name": "Ginza",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Tameike-sanno",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_tameike-sanno_all.jpg",
+    "lines": [
+      {
+        "name": "Ginza",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Nijubashimae",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_nijubashimae_all.jpg",
+    "lines": [
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Toranomon",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_toranomon_all.jpg",
+    "lines": [
+      {
+        "name": "Ginza",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Tsukiji",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_tsukiji_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Jimbocho",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_jimbocho_all.jpg",
+    "lines": [
+      {
+        "name": "Hanzomon",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Oshiage",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kinshicho",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kinshicho_all.jpg",
+    "lines": [
+      {
+        "name": "Hanzomon",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Oshiage",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kiyosumi-shirakawa",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kiyosumi-shirakawa_all.jpg",
+    "lines": [
+      {
+        "name": "Hanzomon",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Oshiage",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Yushima",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_yushima_all.jpg",
+    "lines": [
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Nagatacho",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_nagatacho_all.jpg",
+    "lines": [
+      {
+        "name": "Hanzomon",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Oshiage",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Oshiage",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_oshiage_all.jpg",
+    "lines": [
+      {
+        "name": "Hanzomon",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Sumiyoshi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_sumiyoshi_all.jpg",
+    "lines": [
+      {
+        "name": "Hanzomon",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Oshiage",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kanda",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kanda_all.jpg",
+    "lines": [
+      {
+        "name": "Ginza",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Akihabara",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_akihabara_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Ebisu",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_ebisu_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Hatchobori",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_hatchobori_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Minami-senju",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_minami-senju_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Higashi-ginza",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_higashi-ginza_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kasumigaseki",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kasumigaseki_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kayabacho",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kayabacho_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Roppongi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_roppongi_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Toranomon-hills",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_toranomon-hills_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Hongo-sanchome",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_hongo-sanchome_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Oji",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_oji_all.jpg",
+    "lines": [
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kokkai-gijidomae",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kokkai-gijidomae_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Ochanomizu",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_ochanomizu_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Ogikubo",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_ogikubo_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Akabane-iwabuchi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_akabane-iwabuchi_all.jpg",
+    "lines": [
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Azabu-juban",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_azabu-juban_all.jpg",
+    "lines": [
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Komagome",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_komagome_all.jpg",
+    "lines": [
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Meguro",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_meguro_all.jpg",
+    "lines": [
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Shirokane-takanawa",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_shirokane-takanawa_all.jpg",
+    "lines": [
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Shirokanedai",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_shirokanedai_all.jpg",
+    "lines": [
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Minowa",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_minowa_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Monzen-nakacho",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_monzen-nakacho_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Nakano",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_nakano_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Takadanobaba",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_takadanobaba_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Chikatetsu-akatsuka",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_chikatetsu-akatsuka_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Fukutoshin",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Chikatetsu-narimasu",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_chikatetsu-narimasu_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Fukutoshin",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Ginza-itchome",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_ginza-itchome_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Heiwadai",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_heiwadai_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Fukutoshin",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Higashi-ikebukuro",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_higashi-ikebukuro_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Hikawadai",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_hikawadai_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Fukutoshin",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Senkawa",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_senkawa_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Fukutoshin",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Shintomicho",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_shintomicho_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kanamecho",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kanamecho_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Fukutoshin",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Tokyo",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_tokyo_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Tsukishima",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_tsukishima_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Nishigahara",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_nishigahara_all.jpg",
+    "lines": [
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Gyotoku",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_gyotoku_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kita-ayase",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kita-ayase_all.jpg",
+    "lines": [
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Nogizaka",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_nogizaka_all.jpg",
+    "lines": [
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Sendagi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_sendagi_all.jpg",
+    "lines": [
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Yoyogi-koen",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_yoyogi-koen_all.jpg",
+    "lines": [
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kita-sando",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kita-sando_all.jpg",
+    "lines": [
+      {
+        "name": "Fukutoshin",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Nishi-waseda",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_nishi-waseda_all.jpg",
+    "lines": [
+      {
+        "name": "Fukutoshin",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Gaiemmae",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_gaiemmae_all.jpg",
+    "lines": [
+      {
+        "name": "Ginza",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kyobashi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kyobashi_all.jpg",
+    "lines": [
+      {
+        "name": "Ginza",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Suehirocho",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_suehirocho_all.jpg",
+    "lines": [
+      {
+        "name": "Ginza",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Tawaramachi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_tawaramachi_all.jpg",
+    "lines": [
+      {
+        "name": "Ginza",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Hanzomon",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_hanzomon_all.jpg",
+    "lines": [
+      {
+        "name": "Hanzomon",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Oshiage",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Hiro-o",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_hiro-o_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Iriya",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_iriya_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kamiyacho",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kamiyacho_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kodemmacho",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kodemmacho_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Higashi-koenji",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_higashi-koenji_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Minami-asagaya",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_minami-asagaya_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Takebashi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_takebashi_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Myogadani",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_myogadani_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Nishi-shinjuku",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_nishi-shinjuku_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Shin-koenji",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_shin-koenji_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Shin-nakano",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_shin-nakano_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Shin-otsuka",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_shin-otsuka_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Shinjuku-gyoemmae",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_shinjuku-gyoemmae_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Yotsuya-sanchome",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_yotsuya-sanchome_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Nakano-fujimicho",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_nakano-fujimicho_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Honancho",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NakanoSakaue",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Todaimae",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_todaimae_all.jpg",
+    "lines": [
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Nakano-Shimbashi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_nakano-shimbashi_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Honancho",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NakanoSakaue",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Hon-komagome",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_hon-komagome_all.jpg",
+    "lines": [
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Oji-kamiya",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_oji-kamiya_all.jpg",
+    "lines": [
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Roppongi-itchome",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_roppongi-itchome_all.jpg",
+    "lines": [
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Shimo",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_shimo_all.jpg",
+    "lines": [
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Baraki-nakayama",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_baraki-nakayama_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kagurazaka",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kagurazaka_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kasai",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kasai_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Minami-gyotoku",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_minami-gyotoku_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Minami-sunamachi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_minami-sunamachi_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Myoden",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_myoden_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Inaricho",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_inaricho_all.jpg",
+    "lines": [
+      {
+        "name": "Ginza",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Nishi-kasai",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_nishi-kasai_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Ochiai",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_ochiai_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Waseda",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_waseda_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Akasaka",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_akasaka_all.jpg",
+    "lines": [
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Toyocho",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_toyocho_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Urayasu",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_urayasu_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Edogawabashi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_edogawabashi_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Gokokuji",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_gokokuji_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kojimachi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kojimachi_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Sakuradamon",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_sakuradamon_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Shin-kiba",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_shin-kiba_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Tatsumi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_tatsumi_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Ayase",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_ayase_all.jpg",
+    "lines": [
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Machiya",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_machiya_all.jpg",
+    "lines": [
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Yoyogi-uehara",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_yoyogi-uehara_all.jpg",
+    "lines": [
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Nishi-nippori",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_nishi-nippori_all.jpg",
+    "lines": [
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Higashi-shinjuku",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_higashi-shinjuku_all.jpg",
+    "lines": [
+      {
+        "name": "Fukutoshin",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kiba",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kiba_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Toyosu",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_toyosu_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Hibiya",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_hibiya_all.jpg",
+    "lines": [
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Hibiya",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Mitsukoshimae",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_mitsukoshimae_all.jpg",
+    "lines": [
+      {
+        "name": "Hanzomon",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Oshiage",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Ginza",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kita-senju",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kita-senju_all.jpg",
+    "lines": [
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Hibiya",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Meiji-jingumae",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_meiji-jingumae_all.jpg",
+    "lines": [
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Fukutoshin",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Otemachi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_otemachi_all.jpg",
+    "lines": [
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Hanzomon",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Oshiage",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Shin-ochanomizu",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_shin-ochanomizu_all.jpg",
+    "lines": [
+      {
+        "name": "Chiyoda",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "YoyogiUehara",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaAyase",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Ikebukuro",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_ikebukuro_all.jpg",
+    "lines": [
+      {
+        "name": "Fukutoshin",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kotake-mukaihara",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kotake-mukaihara_all.jpg",
+    "lines": [
+      {
+        "name": "Fukutoshin",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Shibuya",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_shibuya_all.jpg",
+    "lines": [
+      {
+        "name": "Fukutoshin",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Ginza",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Hanzomon",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Oshiage",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Shinjuku-sanchome",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_shinjuku-sanchome_all.jpg",
+    "lines": [
+      {
+        "name": "Fukutoshin",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Wakoshi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_wakoshi_all.jpg",
+    "lines": [
+      {
+        "name": "Fukutoshin",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Aoyama-itchome",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_aoyama-itchome_all.jpg",
+    "lines": [
+      {
+        "name": "Ginza",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Hanzomon",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Oshiage",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Nihombashi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_nihombashi_all.jpg",
+    "lines": [
+      {
+        "name": "Ginza",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Ueno-hirokoji",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_ueno-hirokoji_all.jpg",
+    "lines": [
+      {
+        "name": "Ginza",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Ueno",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_ueno_all.jpg",
+    "lines": [
+      {
+        "name": "Ginza",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Asakusa",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Hibiya",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Kudanshita",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_kudanshita_all.jpg",
+    "lines": [
+      {
+        "name": "Hanzomon",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Oshiage",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Suitengumae",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_suitengumae_all.jpg",
+    "lines": [
+      {
+        "name": "Hanzomon",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Shibuya",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Oshiage",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Naka-okachimachi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_naka-okachimachi_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Ningyocho",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_ningyocho_all.jpg",
+    "lines": [
+      {
+        "name": "Hibiya",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "NakaMeguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "KitaSenju",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Awajicho",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_awajicho_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Korakuen",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_korakuen_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Nakano-sakaue",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_nakano-sakaue_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Marunouchi",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Honancho",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Yotsuya",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_yotsuya_all.jpg",
+    "lines": [
+      {
+        "name": "Marunouchi",
+        "oneRoute": false,
+        "direction-elevator": [
+          {
+            "direction": "Ogikubo",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "Ikebukuro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Ichigaya",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_ichigaya_all.jpg",
+    "lines": [
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Iidabashi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_iidabashi_all.jpg",
+    "lines": [
+      {
+        "name": "Namboku",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Meguro",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "AkabaneIwabuchi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "NishiFunabashi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Nishi-funabashi",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_nishi-funabashi_all.jpg",
+    "lines": [
+      {
+        "name": "Tozai",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Nakano",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "station": "Yurakucho",
+    "operator": "TokyoMetro",
+    "photo-url": "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_yurakucho_all.jpg",
+    "lines": [
+      {
+        "name": "Yurakucho",
+        "oneRoute": true,
+        "direction-elevator": [
+          {
+            "direction": "Wakoshi",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          },
+          {
+            "direction": "ShinKiba",
+            "groundElevators": [
+              {
+                "location": "",
+                "latitude": null,
+                "longitude": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
