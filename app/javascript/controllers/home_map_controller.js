@@ -6,9 +6,9 @@ export default class extends Controller {
   connect() {
     console.log("home map connected")
     console.log(this.nameTarget, this.addressTarget)
+    document.querySelector("#draggable-panel").style.height = "92vh";
+
   }
-
-
 
   async initMap() {
     let map = new google.maps.Map(document.getElementById('map'),{
@@ -27,7 +27,7 @@ export default class extends Controller {
     let originAutocomplete = new google.maps.places.Autocomplete(document.getElementById('origin'))
     let destinationAutocomplete = new google.maps.places.Autocomplete(document.getElementById('destination'))
 
-    var paragraphs = document.querySelectorAll('p');
+    var paragraphs = document.querySelectorAll('#description');
     paragraphs.forEach(function(p) {
       p.style.fontSize = '10px';
     });
@@ -51,6 +51,9 @@ export default class extends Controller {
         document.querySelector("#draggable-panel").style.height = "90vh";
         document.querySelector("#draggable-panel").style.borderRadius = "0px";
         document.querySelector("#initial-content").outerHTML = "";
+        document.querySelectorAll("#icon").forEach(element => {
+          element.classList.toggle("d-none");
+        });
         console.log(place.name)
         // Send the place name to Rails controller via AJAX
         if (place.name) {
