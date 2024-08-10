@@ -1,5 +1,5 @@
 <%# make review cards that populate from place id review %>
-<div class="border-bottom p-3 m-3">
+<div class="">
   <%# #font-awesome star rating %>
   <div class="d-inline text-center">
     <% @place.reviews.each do |review| %>
@@ -8,6 +8,6 @@
       <% end %>
     </div>
     <p class="mt-2">"<%= review.comment %>"</p>
-    <p class="text-end">- <%= review.user.email %></p>
+    <p class="text-end border-bottom my-3">- <%= review.user.email %></p>
   </div>
 <% end %>
