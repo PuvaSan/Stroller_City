@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>Please add review for <%= @place.name %></h1>
+  <%= simple_form_for [@place, @review] do |f| %>
+    <%= f.input :comment %>
+    <%= f.input :rating, collection: 1..5 %>
+    <%= f.button :submit %>
+  <% end %>
+</div>
