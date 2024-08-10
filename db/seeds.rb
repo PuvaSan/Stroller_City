@@ -78,3 +78,29 @@ data['directions'].each do |direction|
     end
   end
 end
+
+User.destroy_all
+Review.destroy_all
+
+User.create!(
+  [
+    { email: "brianisloco@hotmail.com", password: "123456" },
+    { email: "Aya0123@gmail.com", password: "secret" },
+    { email: "Javierisdaman@gmail.com", password: "pieking101" },
+    { email: "IkumiOjiro2017@gmail.com", password: "mybirthday01" }
+  ]
+)
+
+user1 = User.all[0]
+user2 = User.all[1]
+user3 = User.all[2]
+user4 = User.all[3]
+
+Review.create(
+  [
+    { user: user1, place: Place.all[1], rating: 4, comment: "Great coffee and cozy atmosphere!" },
+    { user: user2, place: Place.all[1], rating: 5, comment: "Loved the ambiance and my children loved it." },
+    { user: user3, place: Place.all[1], rating: 3, comment: "Stroller friedly but a bit pricey." },
+    { user: user4, place: Place.all[1], rating: 4, comment: "Fresh food and friendly staff." }
+  ]
+)
