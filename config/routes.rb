@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :places do
     resources :reviews
   end
+  get 'favorites', to: 'favorites#index'
 
   devise_for :users
   root to: "pages#home"
