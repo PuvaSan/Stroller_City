@@ -2,10 +2,12 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="another-map"
 export default class extends Controller {
-  static targets = [ "name", "address", "photo", "originInput"]
+  static targets = [ "name", "address", "photo", "originInput", "phone"]
   connect() {
     console.log("home map connected")
     console.log(this.nameTarget, this.addressTarget)
+    document.querySelector("#draggable-panel").style.height = "92vh";
+
   }
 
   directionsService = null
@@ -33,6 +35,11 @@ export default class extends Controller {
     let originAutocomplete = new google.maps.places.Autocomplete(document.getElementById('origin'))
     let destinationAutocomplete = new google.maps.places.Autocomplete(document.getElementById('destination'))
 
+    var paragraphs = document.querySelectorAll('#description');
+    paragraphs.forEach(function(p) {
+      p.style.fontSize = '10px';
+    });
+
     destinationAutocomplete.addListener('place_changed', () => {
       let place = destinationAutocomplete.getPlace();
 
@@ -44,7 +51,9 @@ export default class extends Controller {
         // displays place name, address, and photos
         this.nameTarget.innerText = place.name;
         this.addressTarget.innerText = place.formatted_address;
+        this.phoneTarget.innerText = place.formatted_phone_number
         this.photoTarget.innerHTML = "";
+        console.log(place)
         place.photos.slice(0, 3).forEach((photo) => {
           const placeImage = photo.getUrl();
           const imgElement = `<img height=100 class="m-3" src="${placeImage}" />`;
@@ -53,6 +62,9 @@ export default class extends Controller {
         document.querySelector("#draggable-panel").style.height = "80vh";
         document.querySelector("#draggable-panel").style.borderRadius = "0px";
         document.querySelector("#initial-content").outerHTML = "";
+        document.querySelectorAll("#icon").forEach(element => {
+          element.classList.toggle("d-none");
+        });
         document.querySelector("#directions-button").classList.toggle("d-none");
         console.log(place.name)
 
