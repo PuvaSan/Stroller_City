@@ -98,9 +98,9 @@ user4 = User.all[3]
 
 Review.create(
   [
-    { user: user1, place: Place.all[1], rating: 4, comment: "Great coffee and cozy atmosphere!" },
-    { user: user2, place: Place.all[1], rating: 5, comment: "Loved the ambiance and my children loved it." },
-    { user: user3, place: Place.all[1], rating: 3, comment: "Stroller friedly but a bit pricey." },
-    { user: user4, place: Place.all[1], rating: 4, comment: "Fresh food and friendly staff." }
+    { user: user1, place: Place.all[3], rating: 4, comment: "Great coffee and cozy atmosphere!" },
+    { user: user2, place: Place.all[3], rating: 5, comment: "Loved the ambiance and my children loved it." },
+    { user: user3, place: Place.all[3], rating: 3, comment: "Stroller friedly but a bit pricey." },
+    { user: user4, place: Place.all[3], rating: 4, comment: "Fresh food and friendly staff." }
   ]
 )
