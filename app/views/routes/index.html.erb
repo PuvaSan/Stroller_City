@@ -1,12 +1,11 @@
 <h3>Routes (<%= @routes.count %>)</h3>
 <% @routes.each do |route| %>
-  <div class="card mb-3">
+  <div class="card mb-3 p-3">
     <div class="me-2">
       <% route.trips.each do |trip| %>
         <div class="me-3">
           <h5 class="card-title mt-2 mb-0">> <%= trip.title %></h5>
           <% if trip.title == "Walk" %>
-            <p class="card-text m-0 ps-2"><%= trip.distance %> m</p>
             <p class="card-text m-0 ps-2"><%= (trip.duration / 60).round %> min</p>
           <% end %>
         </div>

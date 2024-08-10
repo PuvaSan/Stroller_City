@@ -11,7 +11,7 @@
 </div>
 
 <!-- display instructions -->
-<button class="btn btn-primary my-3">< Back</button>
+<!-- <button class="btn btn-primary my-3">< Back</button> -->
 <div>
   <!-- <h3>Route <%= @route.id %></h3> -->
   <div class="pt-4">
@@ -60,6 +60,7 @@
     <% end %>
   </div>
 </div>
-<%= link_to new_place_review_path(Place.where(address: "Yebisu Garden Place, 4 Chome-20 Ebisu, Shibuya City, Tokyo 150-0013")) do %>
+<% place = Place.find_by(address: "Yebisu Garden Place, 4 Chome-20 Ebisu, Shibuya City, Tokyo 150-0013") %>
+<%= link_to new_place_review_path(place) do %>
   <button class="btn btn-secondary mt-3">End trip</button>
 <% end %>
