@@ -14,4 +14,8 @@ class RoutesController < ApplicationController
     flash[:alert] = "An error occurred while fetching route details."
     redirect_to routes_path
   end
+
+  def index
+    @routes = Route.all
+  end
 end
