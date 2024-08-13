@@ -56,6 +56,9 @@ gem 'ffi', '1.16.3'
 gem 'acts-as-taggable-on', '~> 10.0'
 #favoritable
 gem 'acts_as_favoritor'
+# Gemfile
+gem 'rest-client'
+
 
 group :development, :test do
   gem "dotenv-rails"
