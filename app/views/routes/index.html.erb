@@ -1,4 +1,9 @@
+<!-- app/views/routes/index.html.erb -->
 <h1>Available Routes</h1>
-<% @navitime_routes['items'].each do |route| %>
-  <%= route %>
+<% if @navitime_routes && @navitime_routes['items'].present? %>
+  <% @navitime_routes['items'].each do |route| %>
+    <%= render partial: 'routes', locals: { route: route } %>
+  <% end %>
+<% else %>
+  <p>No routes available.</p>
 <% end %>

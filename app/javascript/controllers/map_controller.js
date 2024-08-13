@@ -11,6 +11,7 @@ export default class extends Controller {
   connect() {
     console.log("Stimulus controller connected"); // Debugging line
     console.log("Navitime Response Value:", this.navitimeResponseValue); // Debugging line
+    console.log("API Key Value:", this.apiKeyValue); // Debugging line
 
     if (typeof google === "undefined") {
       const script = document.createElement('script');
