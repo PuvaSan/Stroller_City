@@ -2,12 +2,18 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="another-map"
 export default class extends Controller {
-  static targets = [ "name", "address", "photo", "originInput", "phone"]
+  static targets = [ "name", "address", "photo", "originInput", "phone", "recent"]
   connect() {
     console.log("home map connected")
     console.log(this.nameTarget, this.addressTarget)
     document.querySelector("#draggable-panel").style.height = "92vh";
-
+    //get recent search history from local storage
+    const recent = JSON.parse(localStorage.getItem('recent'))
+    recent.forEach(place => {
+    this.recentTarget.insertAdjacentHTML("beforeend", `<li>${place}</li>`)
+    })
+    //iterate over search history
+    //on each iteration, insert an LI element into UL target
   }
 
   directionsService = null
@@ -61,12 +67,25 @@ export default class extends Controller {
         });
         document.querySelector("#draggable-panel").style.height = "80vh";
         document.querySelector("#draggable-panel").style.borderRadius = "0px";
-        document.querySelector("#initial-content").outerHTML = "";
+        document.querySelector("#initial-content").classList.add("d-none");
         document.querySelectorAll("#icon").forEach(element => {
           element.classList.toggle("d-none");
         });
         document.querySelector("#directions-button").classList.toggle("d-none");
-        console.log(place.name)
+
+      //save place to recent array
+      if (place.name) {
+      if (localStorage.getItem('recent') === null) {
+        let recent = [];
+        recent.push(place.name);
+        localStorage.setItem('recent', JSON.stringify(recent));
+      } else {
+        let recent = JSON.parse(localStorage.getItem('recent'));
+        recent.push(place.name);
+        localStorage.setItem('recent', JSON.stringify(recent));
+      }
+      console.log(JSON.parse(localStorage.getItem('recent')));
+    }
 
         // Send the place name to Rails controller via AJAX
         if (place.name) {

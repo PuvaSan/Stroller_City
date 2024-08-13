@@ -48,7 +48,7 @@
           </div>
         </div>
         <!-- Reviews -->
-        <div id="reviews-container" class="p-3 m-3">
+        <div id="reviews-container" class="d-none p-3 m-3 ">
           <%# review partial created in pages_controller in #render_reviews and inserted in home_map_controller fetch %>
           <%#= "no reviews" unless @places.present? %>
         </div>
@@ -56,19 +56,21 @@
       <!-- home -->
       <div id="initial-content">
         <h1 class="mt-0">Welcome to Stoller city!</h1>
-        <hr>
-        <p>Accesible routing, made easy</p>
-        <div>
-          <button class="icon-button rounded-pill">🕒 Recent</button>
-          <button class="icon-button rounded-pill">🔥 Recommended</button>
-          <button class="icon-button rounded-pill">👶 Saved</button>
-        </div>
-        <div class="text-center" style="margin: 50px 0;">
-          <div style="background-color: #000; width: 75px; height: 75px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: auto;">
+        <div class="text-center" style="margin: 0px 0;">
+          <div style="background-color: #000; width: 75px; height: 75px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto;">
             <i class="fa-solid fa-user" style="font-size: 50px; color: #fff;"></i>
+          </div>
+          <hr>
+          <p>Accesible routing, made easy</p>
+          <div>
+            <button class="icon-button rounded-pill">🕒 Recent</button>
+            <button class="icon-button rounded-pill">🔥 Recommended</button>
+            <button class="icon-button rounded-pill">👶 Saved</button>
           </div>
         </div>
         <div class="card">
+          <!-- render recents -->
+          <%= render 'recent' %>
         </div>
       </div>
     </div>
