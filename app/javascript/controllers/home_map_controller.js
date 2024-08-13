@@ -101,6 +101,12 @@ export default class extends Controller {
   }
 
   direct() {
+    //route index
+    // fetch(`/routes`)
+    //   .then(response => response.text())
+    //   .then(html => {
+    //     document.getElementById('panel-content').innerHTML = html;
+    //   });
     const currentDateTime = new Date().toISOString().replace(/:/g, '%3A').split('.')[0];
     const origin = this.originAutocomplete.getPlace()
     const start_lat = origin.geometry.location.lat()
