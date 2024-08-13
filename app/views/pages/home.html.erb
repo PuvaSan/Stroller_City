@@ -16,14 +16,17 @@
     </div>
     <button class="btn btn-secondary d-none" id="go-button" data-action="click->home-map#direct">Go</button>
   </div>
+
   <!-- map -->
   <div id="map" style="z-index:0; height:100vh;" data-action="load@window->home-map#initMap"></div>
+
   <!-- draggable-panel -->
   <div id="draggable-panel" class="bg-white" data-controller="panel-resizer">
     <!-- draggable thingy -->
     <div id="resizer" class="w-100 d-flex align-items-center" data-action="mousedown->panel-resizer#grab touchstart->panel-resizer#grab">
       <hr id="panel-top-line">
     </div>
+
     <div id="panel-content">
       <!-- Place description -->
       <div>
@@ -47,12 +50,14 @@
             </div>
           </div>
         </div>
+
         <!-- Reviews -->
         <div id="reviews-container" class="p-3 m-3">
           <%# review partial created in pages_controller in #render_reviews and inserted in home_map_controller fetch %>
           <%#= "no reviews" unless @places.present? %>
         </div>
       </div>
+      
       <!-- home -->
       <div id="initial-content">
         <h1 class="mt-0">Welcome to Stoller city!</h1>
