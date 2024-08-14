@@ -14,7 +14,6 @@ class ReviewsController < ApplicationController
       redirect_to place_path(@place)
     else
       redirect_to root_path
-
     end
   end
 
