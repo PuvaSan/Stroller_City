@@ -56,10 +56,8 @@ export default class extends Controller {
         document.querySelector("#draggable-panel").style.height = "80vh";
         document.querySelector("#draggable-panel").style.borderRadius = "0px";
         document.querySelector("#initial-content").outerHTML = "";
-        document.querySelectorAll("#icon").forEach(element => {
-          element.classList.toggle("d-none");
-        });
-        document.querySelector("#directions-button").classList.toggle("d-none");
+        document.querySelector("#place-description").classList.toggle("d-none");
+        document.querySelector("#reviews-container").classList.toggle("d-none");
         console.log(place.name)
 
         // Send the place name to Rails controller via AJAX
