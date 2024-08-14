@@ -84,17 +84,20 @@ Review.destroy_all
 
 User.create!(
   [
-    { email: "brianisloco@hotmail.com", password: "123456" },
-    { email: "Aya0123@gmail.com", password: "secret" },
-    { email: "Javierisdaman@gmail.com", password: "pieking101" },
-    { email: "IkumiOjiro2017@gmail.com", password: "mybirthday01" }
+    { email: "brianisloco@hotmail.com", password: "123456", username: "brianUchiha" },
+    { email: "Aya0123@gmail.com", password: "secret", username: "AyyyaSayonara" },
+    { email: "Javierisdaman@gmail.com", password: "pieking101", username: "HabiOppaiKing" },
+    { email: "IkumiOjiro2017@gmail.com", password: "mybirthday01", username: "SuperSaiyanIkumi" }
   ]
 )
-
-user1 = User.all[0]
-user2 = User.all[1]
-user3 = User.all[2]
-user4 = User.all[3]
+user1 = User.find_by(username: "brianUchiha")
+user2 = User.find_by(username: "AyyyaSayonara")
+user3 = User.find_by(username: "HabiOppaiKing")
+user4 = User.find_by(username: "SuperSaiyanIkumi")
+user1.photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600697/brian_zwyeui.jpg"), filename: "brian.jpg")
+user2.photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600697/aya_sqzo1w.jpg"), filename: "aya.jpg")
+user3.photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600697/javi_pps9n6.jpg"), filename: "javi.jpg")
+user4.photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600699/ikumi_lqqsra.png"), filename: "ikumi.jpg")
 
 Review.create(
   [
