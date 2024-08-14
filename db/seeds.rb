@@ -88,13 +88,13 @@ User.create!(
   [
     { email: "brianisloco@hotmail.com", password: "123456", username: "brianUchiha" },
     { email: "Aya0123@gmail.com", password: "secret", username: "AyyyaSayonara" },
-    { email: "Javierisdaman@gmail.com", password: "pieking101", username: "HabiOppaiKing" },
+    { email: "Javierisdaman@gmail.com", password: "pieking101", username: "HabiPieKing" },
     { email: "IkumiOjiro2017@gmail.com", password: "mybirthday01", username: "SuperSaiyanIkumi" }
   ]
 )
 user1 = User.find_by(username: "brianUchiha")
 user2 = User.find_by(username: "AyyyaSayonara")
-user3 = User.find_by(username: "HabiOppaiKing")
+user3 = User.find_by(username: "HabiPieKing")
 user4 = User.find_by(username: "SuperSaiyanIkumi")
 user1.photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600697/brian_zwyeui.jpg"), filename: "brian.jpg")
 user2.photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600697/aya_sqzo1w.jpg"), filename: "aya.jpg")
@@ -110,19 +110,18 @@ Review.create(
   ]
 )
 
-# Clear existing data
-Favorite.destroy_all
+# Favorite.destroy_all
 
-# Create seed data
-favorites = [
-  { user: user1, name: "Sky Tree", description: "An iconic tower in Tokyo.", rating: 5 },
-  { user: user2, name: "Tokyo Tower", description: "Looks like Eiffel Tower but orange", rating: 4 },
-  { name: "Sensoji Temple", description: "A historic temple in Tokyo.", rating: 4 },
-  { name: "Shibuya Crossing", description: "The busiest intersection in the world.", rating: 3 }
-]
+# # Create seed data
+# favorites = [
+#   { user: user1, place_name: "Sky Tree", description: "An iconic tower in Tokyo.", rating: 5 },
+#   { user: user2, place_name: "Tokyo Tower", description: "Looks like Eiffel Tower but orange", rating: 4 },
+#   { user: user3, name: "Sensoji Temple", description: "A historic temple in Tokyo.", rating: 4 },
+#   { user: user4, name: "Shibuya Crossing", description: "The busiest intersection in the world.", rating: 3 }
+# ]
 
-favorites.each do |favorite_data|
-  Favorite.create(favorite_data)
-end
+# favorites.each do |favorite_data|
+#   Favorite.create(favorite_data)
+# end
 
-puts "Seeded #{Favorite.count} favorite places."
+# puts "Seeded #{Favorite.count} favorite places."
