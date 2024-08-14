@@ -1,6 +1,1 @@
-<h1>Route 1 Details</h1>
-<% if @route.present? %>
-  <%= render partial: 'routes/route', locals: { route: @route } %>
-<% else %>
-  <p>No route details available.</p>
-<% end %>
+<h1>Route <%= params['id']%> Details</h1>
