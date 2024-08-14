@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
 
   def new
     @place = Place.find(params[:place_id])
-    @review = Review.new  # needed to instantiate the form_for
+    @review = Review.new # needed to instantiate the form_for
   end
 
   def create

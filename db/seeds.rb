@@ -17,6 +17,7 @@ data = JSON.parse(file)
 # Extract data from the JSON file and create records in the database
 
 # Create places
+
 data['places_info'].each do |place|
   Place.create!(
     address: place['address'],
@@ -82,6 +83,7 @@ end
 User.destroy_all
 Review.destroy_all
 
+
 User.create!(
   [
     { email: "brianisloco@hotmail.com", password: "123456" },
@@ -104,3 +106,20 @@ Review.create(
     { user: user4, place: Place.all[3], rating: 4, comment: "Fresh food and friendly staff." }
   ]
 )
+
+# Clear existing data
+Favorite.destroy_all
+
+# Create seed data
+favorites = [
+  { user: user1, name: "Sky Tree", description: "An iconic tower in Tokyo.", rating: 5 },
+  { user: user2, name: "Tokyo Tower", description: "Looks like Eiffel Tower but orange", rating: 4 },
+  { name: "Sensoji Temple", description: "A historic temple in Tokyo.", rating: 4 },
+  { name: "Shibuya Crossing", description: "The busiest intersection in the world.", rating: 3 }
+]
+
+favorites.each do |favorite_data|
+  Favorite.create(favorite_data)
+end
+
+puts "Seeded #{Favorite.count} favorite places."
