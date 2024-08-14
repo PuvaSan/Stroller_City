@@ -26,7 +26,7 @@ class RoutesController < ApplicationController
     end
   end
 
-  def show
+
     def show
       if @navitime_routes && @navitime_routes['items'].present?
         @route = @navitime_routes['items'].first
@@ -34,7 +34,6 @@ class RoutesController < ApplicationController
         @route = nil
       end
     end
-  end
 
   private
 
