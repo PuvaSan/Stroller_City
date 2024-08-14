@@ -86,7 +86,7 @@ User.create!(
   [
     { email: "brianisloco@hotmail.com", password: "123456", username: "brianUchiha" },
     { email: "Aya0123@gmail.com", password: "secret", username: "AyyyaSayonara" },
-    { email: "Javierisdaman@gmail.com", password: "pieking101", username: "HabiOppaiKing" },
+    { email: "Javierisdaman@gmail.com", password: "pieking101", username: "HabiPieKing" },
     { email: "IkumiOjiro2017@gmail.com", password: "mybirthday01", username: "SuperSaiyanIkumi" }
   ]
 )
