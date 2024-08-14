@@ -16,7 +16,10 @@ data = JSON.parse(file)
 
 # Extract data from the JSON file and create records in the database
 
-# Create places
+User.destroy_all
+Review.destroy_all
+Place.destroy_all
+Create places
 
 data['places_info'].each do |place|
   Place.create!(
@@ -26,7 +29,7 @@ data['places_info'].each do |place|
   )
 end
 
-# Create routes
+# # Create routes
 data['directions'].each do |direction|
   route = Route.create!(
     start: Place.first,
@@ -80,10 +83,6 @@ data['directions'].each do |direction|
   end
 end
 
-User.destroy_all
-Review.destroy_all
-
-
 User.create!(
   [
     { email: "brianisloco@hotmail.com", password: "123456", username: "brianUchiha" },
@@ -101,27 +100,34 @@ user2.photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/uplo
 user3.photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600697/javi_pps9n6.jpg"), filename: "javi.jpg")
 user4.photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600699/ikumi_lqqsra.png"), filename: "ikumi.jpg")
 
-Review.create(
+Review.create!(
   [
-    { user: user1, place: Place.all[3], rating: 4, comment: "Great coffee and cozy atmosphere!" },
-    { user: user2, place: Place.all[3], rating: 5, comment: "Loved the ambiance and my children loved it." },
-    { user: user3, place: Place.all[3], rating: 3, comment: "Stroller friedly but a bit pricey." },
-    { user: user4, place: Place.all[3], rating: 4, comment: "Fresh food and friendly staff." }
+    { user: user1, place: Place.all[1], rating: 4, comment: "Great coffee and cozy atmosphere!" },
+    { user: user2, place: Place.all[1], rating: 5, comment: "Loved the ambiance and my children loved it." },
+    { user: user3, place: Place.all[0], rating: 3, comment: "Stroller friedly but a bit pricey." },
+    { user: user4, place: Place.all[0], rating: 4, comment: "Fresh food and friendly staff." }
   ]
 )
 
-# Favorite.destroy_all
+Place.create!(
+  [
+    { address: "Tokyo Skytree", latitude: 35.71024561621056, longitude: 139.81074331053827 },
+    { address: "Tokyo Tower", latitude: 35.658676362124375, longitude: 139.7453792510146 },
+    { address: "Sensoji Temple", latitude: 35.715056833214376, longitude: 139.79663381563967 },
+    { address: "Shibuya Scramble Crossing", latitude: 35.65969990070708, longitude: 139.70059178169979 }
+  ]
+)
 
-# # Create seed data
-# favorites = [
-#   { user: user1, place_name: "Sky Tree", description: "An iconic tower in Tokyo.", rating: 5 },
-#   { user: user2, place_name: "Tokyo Tower", description: "Looks like Eiffel Tower but orange", rating: 4 },
-#   { user: user3, name: "Sensoji Temple", description: "A historic temple in Tokyo.", rating: 4 },
-#   { user: user4, name: "Shibuya Crossing", description: "The busiest intersection in the world.", rating: 3 }
-# ]
+Review.create(
+  [
+    { user: user1, place: Place.all[2], rating: 5, comment: "An iconic tower in Tokyo." },
+    { user: user2, place: Place.all[3], rating: 4, comment: "Looks like Eiffel Tower but orange" },
+    { user: user3, place: Place.all[4], rating: 4, comment: "A historic temple in Tokyo." },
+    { user: user4, place: Place.all[5], rating: 3, comment: "The busiest intersection in the world." }
+  ]
+)
 
-# favorites.each do |favorite_data|
-#   Favorite.create(favorite_data)
-# end
-
-# puts "Seeded #{Favorite.count} favorite places."
+Review.find(5).photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723625039/skytree-header_lvsoje.jpg"), filename: "skytree.jpg")
+Review.find(6).photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723624942/Tokyo-Tower--800x500_u6fept.jpg"), filename: "tokyo_tower.jpg")
+Review.find(7).photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723625269/Sensoji_2023_uherro.jpg"), filename: "sensoji.jpg")
+Review.find(8).photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723625161/1189690204_f8lek8.webp"), filename: "shibuya.jpg")

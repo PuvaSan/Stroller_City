@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
   def index
-    @favorites = Favorite.all.includes(:reviews)
+    @reviews = Review.all
   end
 end
