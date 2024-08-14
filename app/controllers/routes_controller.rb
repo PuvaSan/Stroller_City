@@ -1,6 +1,5 @@
 class RoutesController < ApplicationController
   def index
-
     @start_lat = params[:start_lat]
     @start_long = params[:start_long]
     @end_lat = params[:end_lat]
@@ -21,19 +20,32 @@ class RoutesController < ApplicationController
 
     @navitime_routes = fetch_navitime_routes(start_lat, start_lon, goal_lat, goal_lon, datum, term, limit, start_time, coord_unit, walk_route, shape)
 
-    if @navitime_routes.nil? || @navitime_routes['items'].blank?
+    if @navitime_routes && @navitime_routes['items'].present?
+      Rails.cache.write("navitime_routes", @navitime_routes) # Store the routes in the cache
+    else
       flash[:alert] = "No routes found or API request failed."
     end
+
+    Rails.logger.info("Cached Routes: #{Rails.cache.read('navitime_routes')}")
+
   end
 
+  def show
+    # Retrieve the routes data from the cache
+    @route = Rails.cache.read("navitime_routes")
 
-    def show
-      if @navitime_routes && @navitime_routes['items'].present?
-        @route = @navitime_routes['items'].first
-      else
-        @route = nil
-      end
-    end
+
+    # if navitime_routes.present?
+    #   route_no = params[:id]
+    #   @route = navitime_routes['items'].find { |route| route['summary']['no'] == route_no }
+
+    #   if @route.nil?
+    #     redirect_to routes_path, alert: "Route not found."
+    #   end
+    # else
+    #   redirect_to routes_path, alert: "No route data available. Please search for routes first."
+    # end
+  end
 
   private
 
@@ -45,7 +57,7 @@ class RoutesController < ApplicationController
       "datum=#{datum}&" +
       "term=#{term}&" +
       "limit=#{limit}&" +
-      "start_time=#{URI.encode_www_form_component(start_time)}&" + # Updated encoding
+      "start_time=#{URI.encode_www_form_component(start_time)}&" +
       "coord_unit=#{coord_unit}&" +
       "walk_route=#{walk_route}&" +
       "shape=#{shape}")
@@ -54,13 +66,10 @@ class RoutesController < ApplicationController
     http.use_ssl = true
 
     request = Net::HTTP::Get.new(url)
-    request["x-rapidapi-key"] = ENV['RAPIDAPI_KEY'] # Use your environment variable
+    request["x-rapidapi-key"] = ENV['RAPIDAPI_KEY']
     request["x-rapidapi-host"] = 'navitime-route-totalnavi.p.rapidapi.com'
 
     response = http.request(request)
-
-    # Rails.logger.info("Navitime API Response Code: #{response.code}")
-    # Rails.logger.info("Navitime API Response Body: #{response.body}")
 
     if response.code == "200"
       JSON.parse(response.body)
