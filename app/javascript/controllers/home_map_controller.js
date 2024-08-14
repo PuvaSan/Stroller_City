@@ -101,23 +101,18 @@ export default class extends Controller {
   }
 
   direct() {
-    //route index
-    // fetch(`/routes`)
-    //   .then(response => response.text())
-    //   .then(html => {
-    //     document.getElementById('panel-content').innerHTML = html;
-    //   });
     const currentDateTime = new Date().toISOString().replace(/:/g, '%3A').split('.')[0];
-    const origin = this.originAutocomplete.getPlace()
-    const start_lat = origin.geometry.location.lat()
-    const start_long = origin.geometry.location.lng()
-    const destination = this.destinationAutocomplete.getPlace()
-    const end_lat = destination.geometry.location.lat()
-    const end_long = destination.geometry.location.lng()
+    const origin = this.originAutocomplete.getPlace();
+    const start_lat = origin.geometry.location.lat();
+    const start_long = origin.geometry.location.lng();
+    const destination = this.destinationAutocomplete.getPlace();
+    const end_lat = destination.geometry.location.lat();
+    const end_long = destination.geometry.location.lng();
 
     // Use the coordinates to construct the URL for the API request
     const url = `https://navitime-route-totalnavi.p.rapidapi.com/route_transit?start=${start_lat}%2C${start_long}&goal=${end_lat}%2C${end_long}&datum=wgs84&term=1440&walk_route=babycar&limit=5&start_time=${currentDateTime}&coord_unit=degree`;
     console.log(url);
+
     // Make the API request
     fetch(url, {
       method: 'GET',
@@ -128,10 +123,20 @@ export default class extends Controller {
         'x-rapidapi-host': 'navitime-route-totalnavi.p.rapidapi.com',
       },
     })
-      .then(response => response.json())
-      .then(data => {
-        // Handle the response data
-        console.log(data);
-      })
+    .then(response => response.json())
+    .then(data => {
+      // Handle the response data
+      console.log(data);
+
+      // Construct the Rails route URL with query parameters
+      const redirectUrl = `/routes?start_lat=${start_lat}&start_long=${start_long}&end_lat=${end_lat}&end_long=${end_long}`;
+
+      // Redirect to the constructed URL
+      window.location.href = redirectUrl;
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
   }
+
 }

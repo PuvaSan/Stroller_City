@@ -1,5 +1,11 @@
 class RoutesController < ApplicationController
   def index
+
+    @start_lat = params[:start_lat]
+    @start_long = params[:start_long]
+    @end_lat = params[:end_lat]
+    @end_long = params[:end_long]
+
     # You can pass these as parameters or get them from the user input
     start_lat = 35.66897912700963
     start_lon = 139.78638732593615
@@ -17,6 +23,16 @@ class RoutesController < ApplicationController
 
     if @navitime_routes.nil? || @navitime_routes['items'].blank?
       flash[:alert] = "No routes found or API request failed."
+    end
+  end
+
+  def show
+    def show
+      if @navitime_routes && @navitime_routes['items'].present?
+        @route = @navitime_routes['items'].first
+      else
+        @route = nil
+      end
     end
   end
 
