@@ -129,7 +129,7 @@ export default class extends Controller {
       console.log(data);
 
       // Construct the Rails route URL with query parameters
-      const redirectUrl = `/routes?start_lat=${start_lat}&start_long=${start_long}&end_lat=${end_lat}&end_long=${end_long}`;
+      const redirectUrl = `/routes?start_lat=${start_lat}&start_long=${start_long}&end_lat=${end_lat}&end_long=${end_long}&start_time=${currentDateTime}`;
 
       // Redirect to the constructed URL
       window.location.href = redirectUrl;
