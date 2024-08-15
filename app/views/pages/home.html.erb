@@ -21,42 +21,15 @@
   <div id="map" style="z-index:0; height:100vh;" data-action="load@window->home-map#initMap"></div>
 
   <!-- draggable-panel -->
-  <div id="draggable-panel" class="bg-white" data-controller="panel-resizer">
+  <div id="draggable-panel" class="bg-white w-100" data-controller="panel-resizer">
     <!-- draggable thingy -->
     <div id="resizer" class="w-100 d-flex align-items-center" data-action="mousedown->panel-resizer#grab touchstart->panel-resizer#grab">
       <hr id="panel-top-line">
     </div>
 
-    <div id="panel-content">
+    <div id="panel-content w-100">
       <!-- Place description -->
-      <div>
-        <div id="place-description" class="container mt-3 d-none">
-          <div class="row">
-            <div class="col">
-              <h2 data-home-map-target="name"></h2>
-              <%# <p>Address:</p> %>
-              <div class="d-flex">
-                <i id= "icon" class="fa-solid fa-location-crosshairs"></i>
-                <p id="description" data-home-map-target="address"	></p>
-              </div>
-              <%# <p>phone-number:</p> %>
-              <div class="d-flex">
-                <i id= "icon" class="fa-solid fa-phone"></i>
-                <p id="description" data-home-map-target="phone"	></p>
-              </div>
-              <%# <p>photos:</p> %>
-              <div data-home-map-target="photo"></div>
-              <button class="btn btn-secondary" data-action="click->home-map#showStuff" id="directions-button">Directions</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Reviews -->
-        <div id="reviews-container" class="p-3 m-3 d-none">
-          <%# review partial created in pages_controller in #render_reviews and inserted in home_map_controller fetch %>
-          <%#= "no reviews" unless @places.present? %>
-        </div>
-      </div>
+      <%= render partial: 'place_description' %>
 
       <!-- home -->
       <div id="initial-content">
@@ -77,8 +50,6 @@
             <h3 class="text-info m-0">Login</h3>
           <% end %>
         <% end %>
-        </div>
-        </div>
         </div>
         <div>
           <button class="icon-button rounded-pill">🕒 Recent</button>
