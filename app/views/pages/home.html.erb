@@ -16,10 +16,8 @@
     </div>
     <button class="btn btn-secondary d-none" id="go-button" data-action="click->home-map#direct">Go</button>
   </div>
-
   <!-- map -->
-  <div id="map" style="z-index:0; height:100vh;" data-action="load@window->home-map#initMap"></div>
-
+  <div id="map" style="z-index: 0; height: 100vh;" data-action="load@window->home-map#initMap"></div>
   <!-- draggable-panel -->
   <div id="draggable-panel" class="bg-white w-100" data-controller="panel-resizer">
     <!-- draggable thingy -->
@@ -33,30 +31,32 @@
 
       <!-- home -->
       <div id="initial-content">
-        <h1 class="mt-3">Welcome to Stoller city!</h1>
-        <p>Accesible routing, made easy</p>
+        <h1 class="mt-3">Welcome to Stroller city!</h1>
+        <p>Accessible routing, made easy</p>
         <hr>
         <div class="d-flex justify-content-between align-items-center mb-3">
-        <% if user_signed_in? %>
-          <%= cl_image_tag current_user.photo.key, class: "avatar-large me-3" %>
-          <h3 class="flex-grow-1 m-0"><strong><%= current_user.username %></strong></h3>
-          <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "text-decoration-none" do %>
-            <h3 class="text-info m-0">Logout</h3>
+          <% if user_signed_in? %>
+            <%= cl_image_tag current_user.photo.key, class: "avatar-large me-3" %>
+            <h3 class="flex-grow-1 m-0"><strong><%= current_user.username %></strong></h3>
+            <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "text-decoration-none" do %>
+              <h3 class="text-info m-0">Logout</h3>
+            <% end %>
+          <% else %>
+            <%= image_tag "guest.png", class: "avatar-large me-3" %>
+            <h3 class="flex-grow-1 m-0"><strong>Guest</strong></h3>
+            <%= link_to new_user_session_path, class: "text-decoration-none" do %>
+              <h3 class="text-info m-0">Login</h3>
+            <% end %>
           <% end %>
-        <% else %>
-          <%= image_tag "guest.png", class: "avatar-large me-3" %>
-          <h3 class="flex-grow-1 m-0"><strong>Guest</strong></h3>
-          <%= link_to new_user_session_path, class: "text-decoration-none" do %>
-            <h3 class="text-info m-0">Login</h3>
-          <% end %>
-        <% end %>
-        </div>
-        <div>
-          <button class="icon-button rounded-pill">🕒 Recent</button>
-          <button class="icon-button rounded-pill">🔥 Recommended</button>
-          <button class="icon-button rounded-pill">👶 Saved</button>
-        </div>
-      </div>
+    </div>
+    <div>
+      <button class="icon-button rounded-pill">🕒 Recent</button>
+      <button class="icon-button rounded-pill">🔥 Recommended</button>
+      <button class="icon-button rounded-pill">👶 Saved</button>
+    </div>
+    <div class="card" style="margin: 10px;">
+      <!-- render recents -->
+      <%= render 'recent' %>
     </div>
   </div>
 </div>

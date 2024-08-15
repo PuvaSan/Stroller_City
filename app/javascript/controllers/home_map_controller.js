@@ -2,11 +2,16 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="another-map"
 export default class extends Controller {
-  static targets = [ "name", "address", "photo", "originInput", "phone", "info"]
+  static targets = [ "name", "address", "photo", "originInput", "phone", "info", "recent"]
   connect() {
     console.log("home map connected")
     console.log(this.nameTarget, this.addressTarget)
     document.querySelector("#draggable-panel").style.height = "80vh";
+        //get recent search history from local storage
+        const recent = JSON.parse(localStorage.getItem('recent'))
+        recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
+        this.recentTarget.insertAdjacentHTML("beforeend", `<li>${place}</li>`)
+        })
   }
 
   originAutocomplete = null;
@@ -61,6 +66,16 @@ export default class extends Controller {
         document.querySelector("#place-description").classList.toggle("d-none");
         document.querySelector("#reviews-container").classList.toggle("d-none");
         console.log(place.name)
+
+        if (localStorage.getItem('recent') === null) {
+          let recent = [];
+          recent.push(place.name);
+          localStorage.setItem('recent', JSON.stringify(recent));
+        } else {
+          let recent = JSON.parse(localStorage.getItem('recent'));
+          recent.push(place.name);
+          localStorage.setItem('recent', JSON.stringify(recent));
+        }
 
         // Send the place name to Rails controller via AJAX
         if (place.name) {
