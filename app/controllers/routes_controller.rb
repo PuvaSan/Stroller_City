@@ -34,6 +34,11 @@ class RoutesController < ApplicationController
     # Retrieve the routes data from the cache
     @route = Rails.cache.read("navitime_routes")
 
+    # navitime_routes = Rails.cache.read("navitime_routes")
+    # route_no = params[:id].to_i # Assuming route number is passed as an ID parameter
+    # @route = navitime_routes['items'].find { |route| route['summary']['no'] == route_no }
+
+
 
     # if navitime_routes.present?
     #   route_no = params[:id]
