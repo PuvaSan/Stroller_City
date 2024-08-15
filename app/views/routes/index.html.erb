@@ -1,16 +1,11 @@
-<h3>Routes (<%= @routes.count %>)</h3>
-<% @routes.each do |route| %>
-  <div class="card mb-3 p-3">
-    <div class="me-2">
-      <% route.trips.each do |trip| %>
-        <div class="me-3">
-          <h5 class="card-title mt-2 mb-0">> <%= trip.title %></h5>
-          <% if trip.title == "Walk" %>
-            <p class="card-text m-0 ps-2"><%= (trip.duration / 60).round %> min</p>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-    <a href="<%= route_path(route) %>" class="btn btn-primary">Show</a>
-  </div>
+<!-- app/views/routes/index.html.erb -->
+<h1>Available Routes</h1>
+<p>start coord: <%= @start_lat %>,<%= @start_long %></p>
+<p>end coord: <%= @end_lat %>,<%= @end_long %></p>
+<% if @navitime_routes && @navitime_routes['items'].present? %>
+  <% @navitime_routes['items'].each do |route| %>
+    <%= render partial: 'routes', locals: { route: route } %>
+  <% end %>
+<% else %>
+  <p>No routes available.</p>
 <% end %>

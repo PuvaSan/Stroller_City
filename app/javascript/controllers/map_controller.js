@@ -3,26 +3,15 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static values = {
     apiKey: String,
-    coordinates: Array
+    navitimeResponse: Object
   }
 
   static targets = ["mapElement", "markerContainer"]
 
   connect() {
     console.log("Stimulus controller connected"); // Debugging line
-    const coordinatesData = this.element.dataset.mapCoordinatesValue;
-    console.log("Coordinates data attribute: ", coordinatesData); // Debugging line
-
-    try {
-      this.coordinatesValue = JSON.parse(coordinatesData);
-      if (!Array.isArray(this.coordinatesValue)) {
-        throw new TypeError("Expected an array but got " + typeof this.coordinatesValue);
-      }
-    } catch (error) {
-      console.error("Error parsing coordinates JSON: ", error);
-      this.coordinatesValue = [];
-    }
-    console.log("Parsed Coordinates: ", this.coordinatesValue); // Debugging line
+    console.log("Navitime Response Value:", this.navitimeResponseValue); // Debugging line
+    console.log("API Key Value:", this.apiKeyValue); // Debugging line
 
     if (typeof google === "undefined") {
       const script = document.createElement('script');
@@ -46,23 +35,21 @@ export default class extends Controller {
     const transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
 
-    // Validate and parse coordinates
-    let validCoordinates = [];
-    try {
-      validCoordinates = this.coordinatesValue.filter(coord => coord.lat !== null && coord.lng !== null).map(coord => ({
-        lat: parseFloat(coord.lat),
-        lng: parseFloat(coord.lng),
-        info: coord.info
-      }));
-    } catch (error) {
-      console.error("Error filtering and parsing coordinates: ", error);
+    // Plot routes from Navitime response
+    this.plotRoutes(map);
+  }
+
+  plotRoutes(map) {
+    if (!this.navitimeResponseValue || !this.navitimeResponseValue.items) {
+      console.error("No valid routes to display.");
+      console.log("Navitime Response:", this.navitimeResponseValue); // Debugging line
+      return;
     }
 
-    console.log("Valid Route Coordinates: ", validCoordinates); // Debugging line
-
-    if (validCoordinates.length > 0) {
+    this.navitimeResponseValue.items.forEach(item => {
+      console.log("Plotting Route Item:", item); // Debugging line
       const routePath = new google.maps.Polyline({
-        path: validCoordinates.map(coord => ({ lat: coord.lat, lng: coord.lng })),
+        path: item.shapes.features.flatMap(feature => feature.geometry.coordinates.map(coord => ({ lat: coord[1], lng: coord[0] }))),
         geodesic: true,
         strokeColor: '#00FF00', // Change to green
         strokeOpacity: 1.0,
@@ -72,56 +59,28 @@ export default class extends Controller {
       routePath.setMap(map);
       console.log("Route path added to the map"); // Debugging line
 
-      // Add markers for each valid place
-      validCoordinates.forEach(coord => {
-        const marker = new google.maps.Marker({
-          position: { lat: coord.lat, lng: coord.lng },
-          map: map
-        });
+      // Add markers for start and end points
+      const start = item.summary.start.coord;
+      const goal = item.summary.goal.coord;
 
-        // Add info window for hover state
-        const infoWindow = new google.maps.InfoWindow({
-          content: coord.info
-        });
-
-        marker.addListener('mouseover', () => {
-          infoWindow.open(map, marker);
-        });
-
-        marker.addListener('mouseout', () => {
-          infoWindow.close();
-        });
-
-        // Store marker element for further manipulation if needed
-        const markerElement = document.createElement('div');
-        markerElement.dataset.action = "mouseover->map#showInfoWindow mouseout->map#hideInfoWindow";
-        markerElement.dataset.mapLat = coord.lat;
-        markerElement.dataset.mapLng = coord.lng;
-        markerElement.dataset.mapInfo = coord.info;
-        this.markerContainerTarget.appendChild(markerElement);
-      });
-    } else {
-      console.error("No valid coordinates to display the route.");
-    }
+      this.addMarker(map, start.lat, start.lon, item.summary.start.name);
+      this.addMarker(map, goal.lat, goal.lon, item.summary.goal.name);
+    });
   }
 
-  showInfoWindow(event) {
-    const lat = parseFloat(event.target.dataset.mapLat);
-    const lng = parseFloat(event.target.dataset.mapLng);
-    const info = event.target.dataset.mapInfo;
+  addMarker(map, lat, lng, title) {
+    const marker = new google.maps.Marker({
+      position: { lat, lng },
+      map: map,
+      title: title
+    });
 
     const infoWindow = new google.maps.InfoWindow({
-      content: info,
-      position: { lat: lat, lng: lng }
+      content: title
     });
-    infoWindow.open(this.mapElementTarget.map);
-    this.currentInfoWindow = infoWindow;
-  }
 
-  hideInfoWindow(event) {
-    if (this.currentInfoWindow) {
-      this.currentInfoWindow.close();
-      this.currentInfoWindow = null;
-    }
+    marker.addListener('click', () => {
+      infoWindow.open(map, marker);
+    });
   }
 }

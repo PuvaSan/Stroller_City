@@ -1,0 +1,16 @@
+<!-- app/views/routes/_route.html.erb -->
+<div class="route">
+  <h2>Route <%= route['summary']['no'] %></h2>
+  <p>Duration: <%= route['summary']['move']['time'] %> min | Distance: <%= route['summary']['move']['distance'] %> m | Walk Distance: <%= route['summary']['move']['walk_distance'] %> m</p>
+  <p></p>
+  <p></p>
+  <% # Extract and list the transit stations %>
+  <% stations = route['sections'].select { |section| section['node_types']&.include?('station') }.map { |station| station['name'] } %>
+  <h5>Transit Stations (<%= stations.size %>):</h5>
+  <ul>
+    <% stations.each do |station| %>
+      <li><%= station %></li>
+    <% end %>
+  </ul>
+  <%= link_to "View Route #{route['summary']['no']} Details", route_path(route['summary']['no']), class: 'btn btn-primary' %>
+</div>
