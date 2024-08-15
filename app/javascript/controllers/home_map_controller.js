@@ -74,7 +74,7 @@ export default class extends Controller {
         document.querySelector("#directions-button").classList.toggle("d-none");
 
       //save place to recent array
-      if (place.name) {
+
       if (localStorage.getItem('recent') === null) {
         let recent = [];
         recent.push(place.name);
@@ -82,8 +82,12 @@ export default class extends Controller {
       } else {
         let recent = JSON.parse(localStorage.getItem('recent'));
         recent.push(place.name);
+        if (recent.length > 5) {
+          recent.shift();
+        }
         localStorage.setItem('recent', JSON.stringify(recent));
       }
+
       console.log(JSON.parse(localStorage.getItem('recent')));
     }
 
