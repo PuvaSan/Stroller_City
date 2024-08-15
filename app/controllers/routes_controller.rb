@@ -5,7 +5,6 @@ class RoutesController < ApplicationController
     @start_long = params[:start_long]
     @end_lat = params[:end_lat]
     @end_long = params[:end_long]
-    @start_time = params[:start_time]
 
     # You can pass these as parameters or get them from the user input
     start_lat = 35.66897912700963
@@ -15,7 +14,7 @@ class RoutesController < ApplicationController
     datum = "wgs84"
     term = 1440
     limit = 5
-    start_time = "2024-08-17T10:00:00"
+    start_time = "2020-08-19T10:00:00"
     coord_unit = "degree"
     walk_route = "babycar"
     shape = true
