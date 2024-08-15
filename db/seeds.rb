@@ -131,3 +131,8 @@ Review.find(5).photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/
 Review.find(6).photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723624942/Tokyo-Tower--800x500_u6fept.jpg"), filename: "tokyo_tower.jpg")
 Review.find(7).photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723625269/Sensoji_2023_uherro.jpg"), filename: "sensoji.jpg")
 Review.find(8).photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723625161/1189690204_f8lek8.webp"), filename: "shibuya.jpg")
+
+Review.find(1).update_column(:created_at, Time.new(2021, 8, 13, 12, 0, 0))
+Review.find(2).update_column(:created_at, Time.new(2021, 8, 13, 12, 0, 0))
+Review.find(3).update_column(:created_at, Time.new(2021, 8, 13, 12, 0, 0))
+Review.find(4).update_column(:created_at, Time.new(2021, 8, 13, 12, 0, 0))
