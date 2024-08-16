@@ -18,18 +18,15 @@
   </div>
   <!-- map -->
   <div id="map" style="z-index: 0; height: 100vh;" data-action="load@window->home-map#initMap"></div>
-
   <!-- draggable-panel -->
   <div id="draggable-panel" class="bg-white w-100" data-controller="panel-resizer">
     <!-- draggable thingy -->
     <div id="resizer" class="w-100 d-flex align-items-center" data-action="mousedown->panel-resizer#grab touchstart->panel-resizer#grab">
       <hr id="panel-top-line">
     </div>
-
     <div id="panel-content w-100">
       <!-- Place description -->
       <%= render partial: 'place_description' %>
-
       <!-- home -->
       <div id="initial-content">
         <h1 class="mt-3">Welcome to Stroller city!</h1>
@@ -51,13 +48,15 @@
           <% end %>
         </div>
         <div>
-          <button class="icon-button rounded-pill">🕒 Recent</button>
-          <button class="icon-button rounded-pill">🔥 Recommended</button>
-          <button class="icon-button rounded-pill">👶 Saved</button>
+          <button id="recent-p"class="icon-button rounded-pill" data-action="click->home-map#ikumibutton">🕒 Recent</button>
+          <button id="recommended-p" class="icon-button rounded-pill" data-action="click->home-map#ikumibutton">🔥 Recommended</button>
+          <button id="saved-p" class="icon-button rounded-pill" data-action="click->home-map#ikumibutton">👶 Saved</button>
         </div>
-        <div class="card" style="margin: 10px;">
+        <div class="card ikumi-container" style="margin: 10px;">
           <!-- render recents -->
           <%= render 'recent' %>
+          <!-- render recommended -->
+          <%= render 'recommended' %>
         </div>
       </div>
     </div>

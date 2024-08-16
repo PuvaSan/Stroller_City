@@ -6,6 +6,12 @@ class PagesController < ApplicationController
     # @place = Place.find_by(name: @place_name) if @place_name.present?
 
     # Handle the initial page load
+    @top_places = Place
+        .select('places.address, COALESCE(AVG(reviews.rating), 0) AS average_rating')
+        .left_joins(:reviews) # This performs a LEFT JOIN with the reviews table
+        .group('places.id, places.name') # Group by place id and name
+        .order('average_rating DESC') # Order by average rating in descending order
+        .limit(5) # Limit the results to 5 places
     render :home
   end
 
