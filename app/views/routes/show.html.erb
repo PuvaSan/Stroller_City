@@ -1,1 +1,41 @@
-<h1>Route <%= params['id']%> Details</h1>
+<h1>Route <%= params['id'] %> Details</h1>
+<% if @route.present? %>
+  <div class="route-summary card">
+    <h2>Route Summary</h2>
+    <p><strong>From:</strong> <%= @route['summary']['start']['coord'] %><strong>To:</strong> <%= @route['summary']['goal']['coord'] %></p>
+    <p><strong>Duration:</strong> <%= @route['summary']['move']['time'] %> minutes | <strong>Distance:</strong> <%= @route['summary']['move']['distance'] %> meters |
+      <p><strong>Walk Distance:</strong> <%= @route['summary']['move']['walk_distance'] %> meters</p>
+      <p><strong>Transits:</strong> <%= @route['summary']['move']['transit_count'] %></p>
+      <p><strong>¥</strong> <%= @route['summary']['move']['fare']['unit_0'] %></p>
+    </div>
+    <h3>Sections</h3>
+    <% @route['sections'].each_with_index do |section, index| %>
+      <div class="section">
+        <h4>Section <%= index + 1 %></h4>
+        <p><strong>Type:</strong> <%= section['type'] %></p>
+        <% if section['from'] %>
+          <p><strong>From:</strong> <%= section['from']['name'] %></p>
+        <% end %>
+        <% if section['to'] %>
+          <p><strong>To:</strong> <%= section['to']['name'] %></p>
+        <% end %>
+        <p><strong>Mode:</strong> <%= section['move'] %></p>
+        <% if section['move'] && section['move']['time'] %>
+          <p><strong>Time:</strong> <%= section['move']['time'] %> minutes</p>
+        <% end %>
+        <p><strong>Distance:</strong> <%= section['distance'] %> meters</p>
+        <p><strong>Line Name:</strong> <%= section['line_name'] %></p>
+        <% if section['transport'] %>
+          <h5>Transport Details:</h5>
+          <p><strong>Company:</strong> <%= section['transport']['company']['name'] if section['transport']['company'] %></p>
+          <p><strong>Line Name:</strong> <%= section['transport']['name'] if section['transport']['name'] %></p>
+          <% if section['transport']['fare'] %>
+            <p><strong>Fare:</strong> <%= section['transport']['fare']['unit_0'] %></p>
+          <% end %>
+          <p><strong>Color:</strong> <%= section['transport']['color'] if section['transport']['color'] %></p>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No route details available.</p>
+  <% end %>
