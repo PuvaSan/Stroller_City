@@ -1,5 +1,6 @@
 class RoutesController < ApplicationController
   before_action :set_route_params, only: [:index]
+  before_action :set_origin_destination, only: [:index, :show]
 
   def index
     @navitime_routes = fetch_navitime_routes(session[:start_lat], session[:start_long], session[:end_lat], session[:end_long])
@@ -22,11 +23,18 @@ class RoutesController < ApplicationController
 
   private
 
+  def set_origin_destination
+    @origin = session[:origin]
+    @destination = session[:destination]
+  end
+
   def set_route_params
     session[:start_lat] = params[:start_lat]
     session[:start_long] = params[:start_long]
     session[:end_lat] = params[:end_lat]
     session[:end_long] = params[:end_long]
+    session[:origin] = params[:origin]
+    session[:destination] = params[:destination]
   end
 
   def fetch_navitime_routes(start_lat, start_long, end_lat, end_long)
