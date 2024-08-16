@@ -1,8 +1,18 @@
+<% first_point_section = @route['sections'].find { |s| s['type'] == 'point' && s['name'] == 'start' } %>
+<% last_point_section = @route['sections'].reverse.find { |s| s['type'] == 'point' && s['name'] == 'goal' } %>
 <div class="section mb-4">
   <% if section['type'] == 'point' %>
     <p>
-      <%= section['name'] %><br>
-      <!--<strong>Coordinates:</strong> (Lat: <%= section['coord']['lat'] %>, Lon: <%= section['coord']['lon'] %>)-->
+      <% if section == first_point_section %>
+        <i class="fa-solid fa-location-dot"></i> <%= @origin %>
+      <% elsif section == last_point_section %>
+        <i class="fa-solid fa-location-pin"></i> <%= @destination %>
+      <% else %>
+        <%= section['name'] %>
+      <% end %>
+      <% if section['gateway'].present? %>
+        (Enter/Exit at <%= section['gateway'] %>)
+      <% end %>
     </p>
   <% elsif section['type'] == 'move' %>
     <% if section['move'] == 'walk' %>
@@ -10,12 +20,18 @@
         <i class="fa-solid fa-person-walking"></i> Walk <%= section['distance'] %> meters. This should take about
         <%= section['time'] %> minutes.
       </p>
+      <% if section['line_name'].present? %>
+        <p>
+          <i class="fa-solid fa-elevator"></i> Take the elevator to reach the <%= section['line_name'] %>.
+        </p>
+      <% end %>
     <% else %>
       <% if section['transport'].present? %>
         <p>
-          <i class="fa-solid fa-train"></i> Take the <%= section['transport']['name'] %> from
-          <strong><%= section['transport']['links'][0]['from']['name'] if section['transport']['links'] && section['transport']['links'][0] %></strong> to
-          <strong><%= section['transport']['links'][0]['to']['name'] if section['transport']['links'] && section['transport']['links'][0] %></strong>.
+          <i class="fa-solid fa-train"></i> Take the
+          <span style="color:<%= section['transport']['color'] %>;"><%= section['transport']['name'] %></span>
+          from <strong><%= section['transport']['links'][0]['from']['name'] if section['transport']['links'] && section['transport']['links'][0] %></strong>
+          to <strong><%= section['transport']['links'][0]['to']['name'] if section['transport']['links'] && section['transport']['links'][0] %></strong>.
         </p>
         <p>
           Duration: <%= section['time'] %> minutes, Distance: <%= section['distance'] %> meters, Fare:
