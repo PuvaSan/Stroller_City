@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="another-map"
 export default class extends Controller {
-  static targets = [ "name", "address", "photo", "originInput", "phone", "recent"]
+  static targets = [ "name", "address", "photo", "originInput", "phone", "recent", "recommended"]
   connect() {
     console.log("home map connected")
     console.log(this.nameTarget, this.addressTarget)
