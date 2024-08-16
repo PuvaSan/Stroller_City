@@ -2,7 +2,8 @@ class ReviewsController < ApplicationController
 
   def new
     @place = Place.find(params[:place_id])
-    @review = Review.new  # needed to instantiate the form_for
+    @reviews = Review.all
+    @review = Review.new # needed to instantiate the form_for
   end
 
   def create
@@ -11,7 +12,7 @@ class ReviewsController < ApplicationController
     @review.place = @place
 
     if @review.save
-      redirect_to place_path(@place)
+      redirect_to place_path(@place), notice: 'Review was successfully created.'
     else
       redirect_to root_path
     end
@@ -20,6 +21,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:comment, :rating)
+    params.require(:review).permit(:image, :comment, :rating)
   end
 end

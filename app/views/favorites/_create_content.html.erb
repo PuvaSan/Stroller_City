@@ -1,23 +1,22 @@
-<div id="create-content" class="content-section d-none">
-  <form id="new-post-form">
+<div id="create-content">
+  <%= simple_form_for @review do |f| %>
+
     <div class="form-group">
-      <label for="post-image">Upload Photo</label>
-      <input type="file" class="form-control-file" id="post-image">
+      <%= f.input :place, label: "Place", label: "Name of Location" %>
     </div>
+
     <div class="form-group">
-      <label for="post-description">Description (50 characters max)</label>
-      <input type="text" class="form-control" id="post-description" maxlength="50">
+      <%= f.input :image, as: :file, label: "Upload Photo" %>
     </div>
+
     <div class="form-group">
-      <label for="post-rating">Rating</label>
-      <select class="form-control" id="post-rating">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </select>
+      <%= f.input :comment, label: "Comment", input_html: { maxlength: 50 } %>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+
+    <div class="form-group">
+      <%= f.input :rating, collection: [1, 2, 3, 4, 5], label: "Rating" %>
+    </div>
+
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
 </div>

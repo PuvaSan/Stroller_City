@@ -1,4 +1,5 @@
 class Review < ApplicationRecord
+  acts_as_favoritable
   belongs_to :place
   belongs_to :user
 

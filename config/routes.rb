@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   resources :routes
   resources :details
   resources :places do
-    resources :reviews
+    resources :reviews, only: [:new, :create]
   end
-  get 'favorites', to: 'favorites#index'
+  post "reviews", to: "favorites#create"
+  resources :favorites do
+    resources :reviews, only: [:index, :new, :create]
+  end
 
   devise_for :users
   root to: "pages#home"
