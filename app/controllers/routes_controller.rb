@@ -1,34 +1,35 @@
 class RoutesController < ApplicationController
-  before_action :set_route_params, only: [:index, :show]
+  before_action :set_route_params, only: [:index]
 
   def index
-    @navitime_routes = fetch_navitime_routes
+    @navitime_routes = fetch_navitime_routes(session[:start_lat], session[:start_long], session[:end_lat], session[:end_long])
   end
 
   def show
     route_no = params[:id]
 
-    # Make a new API call using the same parameters to fetch detailed information about the specific route
-    navitime_routes = fetch_navitime_routes
-    @route = navitime_routes['items'].find { |r| r['summary']['no'] == route_no }
-    @sections = @route['sections']
+    # Make a new API call using the same parameters in saved sessions
+    navitime_routes = fetch_navitime_routes(session[:start_lat], session[:start_long], session[:end_lat], session[:end_long])
 
+    @route = navitime_routes['items'].find { |r| r['summary']['no'] == route_no }
+
+    if @route.nil?
+      redirect_to routes_path, alert: "Route not found."
+    else
+      @sections = @route['sections']
+    end
   end
 
   private
 
   def set_route_params
-    @start_lat = params[:start_lat] || 35.66897912700963
-    @start_long = params[:start_long] || 139.78638732593615
-    @end_lat = params[:end_lat] || 35.63402959100441
-    @end_long = params[:end_long] || 139.70818573942807
+    session[:start_lat] = params[:start_lat]
+    session[:start_long] = params[:start_long]
+    session[:end_lat] = params[:end_lat]
+    session[:end_long] = params[:end_long]
   end
 
-  def fetch_navitime_routes
-    start_lat = @start_lat
-    start_lon = @start_long
-    goal_lat = @end_lat
-    goal_lon = @end_long
+  def fetch_navitime_routes(start_lat, start_long, end_lat, end_long)
     datum = "wgs84"
     term = 1440
     limit = 5
@@ -38,8 +39,8 @@ class RoutesController < ApplicationController
     shape = true
 
     url = URI("https://navitime-route-totalnavi.p.rapidapi.com/route_transit?" +
-      "start=#{start_lat}%2C#{start_lon}&" +
-      "goal=#{goal_lat}%2C#{goal_lon}&" +
+      "start=#{start_lat}%2C#{start_long}&" +
+      "goal=#{end_lat}%2C#{end_long}&" +
       "datum=#{datum}&" +
       "term=#{term}&" +
       "limit=#{limit}&" +
@@ -66,10 +67,5 @@ class RoutesController < ApplicationController
   rescue StandardError => e
     Rails.logger.error("Error fetching Navitime routes: #{e.message}")
     nil
-  end
-
-  def render_route_details(route)
-    # Render or handle the route details here
-    # Example: render json: route
   end
 end
