@@ -1,15 +1,15 @@
 <div id="mylist-content" class="content-section">
   <div id="review-places-list" class="list-group">
-    <% @reviews.each do |review| %>
+    <% @reviews.where(user: current_user).order(created_at: :desc).each do |review| %> <!-- Filter reviews by current_user -->
       <div class="review-place list-group-item">
         <div class="d-flex w-100 justify-content-between">
           <div class="d-flex align-items-center">
             <% if review.user.photo.attached? %>
-              <%= cl_image_tag review.user.photo.key, class: "avatar-large me-3" %>
+              <%= cl_image_tag review.user.photo.key, class: "avatar-large me-3" %> <!-- Corrected method to access user photo -->
             <% else %>
               <%= image_tag "default_avatar.png", class: "avatar-large me-3" %>
             <% end %>
-            <h5 class="mb-1 ml-3"><%= review.user %></h5>
+            <h5 class="mb-1 ml-3"><%= review.user.username %></h5> <!-- Display user's name -->
           </div>
           <div class="d-flex align-items-center">
             <div class="star-rating">
@@ -34,10 +34,10 @@
             <button class="btn btn-light btn-sm mx-1"><i class="fas fa-ellipsis-h"></i></button>
           </div>
         </div>
-        <div class="d-flex flex-column align-items-end">
-          <button class="btn btn-light btn-sm mb-1"><i class="fas fa-heart"></i></button>
-          <button class="btn btn-light btn-sm mb-1"><i class="fas fa-comment"></i></button>
-          <button class="btn btn-light btn-sm"><i class="fas fa-bookmark"></i></button>
+        <div class="d-flex flex-row align-items-end">
+          <button class="btn btn-light custom-btn mb-1"><i class="fas fa-heart"></i></button>
+          <button class="btn btn-light custom-btn mb-1"><i class="fas fa-comment"></i></button>
+          <button class="btn btn-light custom-btn"><i class="fas fa-bookmark"></i></button>
         </div>
         <br><br>
         <div class="bottom-right-date ml-3">
