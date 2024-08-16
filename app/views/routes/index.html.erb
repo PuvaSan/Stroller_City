@@ -1,7 +1,8 @@
 <!-- app/views/routes/index.html.erb -->
-<h1>Available Routes</h1>
-<p>start coord: <%= @start_lat %>,<%= @start_long %></p>
-<p>end coord: <%= @end_lat %>,<%= @end_long %></p>
+<div class="p-3 mt-3">
+  <h3><i class="fa-solid fa-location-dot text-success"></i> <%= @origin %> </h3>
+  <h3><i class="fa-solid fa-location-pin text-danger"></i> <%= @destination %></h3>
+</div>
 <% if @navitime_routes && @navitime_routes['items'].present? %>
   <% @navitime_routes['items'].each do |route| %>
     <%= render partial: 'routes', locals: { route: route } %>
