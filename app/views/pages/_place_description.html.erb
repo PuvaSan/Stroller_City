@@ -1,0 +1,39 @@
+<div id="place-description" class="container d-none w-100">
+  <h2 class="my-2"><strong data-home-map-target="name"></strong></h2>
+  <!-- address -->
+  <div class="d-flex align-items-center mb-2">
+    <div class="icon1 me-2"><i class="fa-solid fa-location-dot"></i></div>
+    <div class="d-flex flex-wrap">
+      <p data-home-map-target="address" class="m-0"></p>
+    </div>
+  </div>
+  <!-- phone_number -->
+  <div class="d-flex align-items-center mb-2">
+    <div class="icon1 me-2"><i id= "icon" class="fa-solid fa-phone"></i></div>
+    <div class="d-flex flex-wrap">
+      <p data-home-map-target="phone" class="m-0"></p>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-around my-3" id="tabs" data-controller="place-toggler">
+    <div class="w-100 text-center active" id="overview" data-action="click->place-toggler#toggleTab"><h5>Overview</h5></div>
+    <div class="w-100 text-center" id="reviews" data-action="click->place-toggler#toggleTab"><h5>Reviews</h5></div>
+  </div>
+
+  <div class="container-container w-100">
+    <!-- Overview -->
+    <div class="w-100" id="overview-container">
+      <p data-home-map-target="info"></p>
+      <h4><strong>Photos</strong></h5>
+      <div data-home-map-target="photo" id="place-photo-container" class="my-2"></div>
+    </div>
+
+    <!-- Reviews -->
+    <div id="reviews-container" class="p-3 m-3 d-none">
+      <%# review partial created in pages_controller in #render_reviews and inserted in home_map_controller fetch %>
+      <%#= "no reviews" unless @places.present? %>
+    </div>
+  </div>
+
+  <button class="btn px-4 py-2" data-action="click->home-map#showStuff" id="directions-button">Directions</button>
+</div>
