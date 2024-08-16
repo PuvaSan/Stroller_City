@@ -14,6 +14,8 @@ class RoutesController < ApplicationController
 
     @route = navitime_routes['items'].find { |r| r['summary']['no'] == route_no }
 
+    Rails.logger.error(@route)
+
     if @route.nil?
       redirect_to routes_path, alert: "Route not found."
     else
