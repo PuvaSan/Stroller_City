@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="another-map"
 export default class extends Controller {
-  static targets = [ "name", "address", "photo", "originInput", "phone", "info", "recent"]
+  static targets = [ "name", "address", "photo", "originInput", "phone", "info", "recent", "recommended"]
   connect() {
     console.log("home map connected")
     console.log(this.nameTarget, this.addressTarget)
@@ -13,6 +13,20 @@ export default class extends Controller {
         this.recentTarget.insertAdjacentHTML("beforeend", `<li>${place}</li>`)
         })
   }
+
+  ikumibutton(event) {
+    const buttonId = event.currentTarget.id;
+    const selectedContainer = document.getElementById(`${buttonId}-container`);
+    const containers = document.querySelectorAll(".ikumi-container > *");
+    containers.forEach(container => {
+      if (!container.classList.contains("d-none")) {
+        container.classList.add("d-none");
+      }
+    });
+    selectedContainer.classList.remove("d-none");
+    console.log(buttonId, selectedContainer, containers);
+  }
+
 
   originAutocomplete = null;
   destinationAutocomplete = null;
