@@ -1,17 +1,35 @@
-<% if @route.present? %>
-  <div class="route-summary card p-3 m-3">
-    <p class="text-center m-0">
-      <i class="fa-solid fa-stopwatch"></i> <%= @route['summary']['move']['time'] %> min |
-      <i class="fa-solid fa-ruler-horizontal"></i> <%= @route['summary']['move']['distance'] %> m |
-      <i class="fa-solid fa-shoe-prints"></i> <%= @route['summary']['move']['walk_distance'] %> m |
-      <strong>¥</strong> <%= @route['summary']['move']['fare']['unit_0'] %>
-    </p>
+<!-- frame -->
+<div style="height:100vh;width:100vw;" data-controller="home-map">
+  <!--  -->
+  <div class="d-none"><input id="input-fields" type="text"></div>
+  <!-- map -->
+  <div id="map" style="z-index: 0; height: 100vh;" data-action="load@window->home-map#initMap"></div>
+  <!-- draggable-panel -->
+  <div id="draggable-panel" class="bg-white w-100" data-controller="panel-resizer routes-map" style="height: 50vh;">
+    <!-- draggable thingy -->
+    <div id="resizer" class="w-100 d-flex align-items-center" data-action="mousedown->panel-resizer#grab touchstart->panel-resizer#grab">
+      <hr id="panel-top-line">
+    </div>
+    <div id="panel-content" class="w-100" data-routes-map-target="content">
+      <!-- Panel content -->
+      <% if @route.present? %>
+        <div class="route-summary card p-3 m-3">
+          <p class="text-center m-0">
+            <i class="fa-solid fa-stopwatch"></i> <%= @route['summary']['move']['time'] %> min |
+            <i class="fa-solid fa-ruler-horizontal"></i> <%= @route['summary']['move']['distance'] %> m |
+            <i class="fa-solid fa-shoe-prints"></i> <%= @route['summary']['move']['walk_distance'] %> m |
+            <strong>¥</strong> <%= @route['summary']['move']['fare']['unit_0'] %>
+          </p>
+        </div>
+        <div class="m-2 p-1">
+          <% @route['sections'].each_with_index do |section, index| %>
+            <%= render partial: 'section', locals: { section: section, index: index } %>
+          <% end %>
+        </div>
+      <% else %>
+        <p>No route details available.</p>
+      <% end %>
+    </div>
   </div>
-  <div class="m-2 p-1">
-    <% @route['sections'].each_with_index do |section, index| %>
-      <%= render partial: 'section', locals: { section: section, index: index } %>
-    <% end %>
-  </div>
-<% else %>
-  <p>No route details available.</p>
-<% end %>
+  <!-- draggable-panel -->
+</div>
