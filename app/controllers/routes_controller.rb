@@ -20,6 +20,8 @@ class RoutesController < ApplicationController
       redirect_to routes_path, alert: "Route not found."
     else
       @sections = @route['sections']
+      @first_point_section = @sections.find { |s| s['type'] == 'point' && s['name'] == 'start' }
+    @last_point_section = @sections.reverse.find { |s| s['type'] == 'point' && s['name'] == 'goal' }
     end
   end
 

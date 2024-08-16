@@ -1,5 +1,3 @@
-<% first_point_section = @route['sections'].find { |s| s['type'] == 'point' && s['name'] == 'start' } %>
-<% last_point_section = @route['sections'].reverse.find { |s| s['type'] == 'point' && s['name'] == 'goal' } %>
 <div class="section mb-4">
   <% if section['type'] == 'point' %>
     <p>
