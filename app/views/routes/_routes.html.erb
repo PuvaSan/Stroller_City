@@ -1,16 +1,29 @@
 <!-- app/views/routes/_route.html.erb -->
-<div class="route">
-  <h2>Route <%= route['summary']['no'] %></h2>
-  <p>Duration: <%= route['summary']['move']['time'] %> min | Distance: <%= route['summary']['move']['distance'] %> m | Walk Distance: <%= route['summary']['move']['walk_distance'] %> m</p>
-  <p></p>
-  <p></p>
+<div class="route card p-3 m-3 shadow-sm">
+  <div class="d-flex justify-content-between">
+    <h2><i class="fa-solid fa-route text-secondary"></i> Route <%= route['summary']&.dig('no') || 'Unknown' %></h2>
+    <div>
+      <i class="fa-solid fa-baby-carriage"></i>
+      <% 5.times do %>
+        <i class="fa-solid fa-star text-warning"></i>
+      <% end %>
+    </div>
+  </div>
+  <p class="text-center mt-3">
+    <i class="fa-solid fa-stopwatch"></i> <%= route['summary']&.dig('move', 'time') || 'N/A' %> min |
+    <i class="fa-solid fa-ruler-horizontal"></i> <%= route['summary']&.dig('move', 'distance') || 'N/A' %> m |
+    <i class="fa-solid fa-shoe-prints"></i> <%= route['summary']&.dig('move', 'walk_distance') || 'N/A' %> m |
+    <strong>¥</strong> <%= route['summary']&.dig('move', 'fare', 'unit_0') || 'N/A' %>
+  </p>
   <% # Extract and list the transit stations %>
-  <% stations = route['sections'].select { |section| section['node_types']&.include?('station') }.map { |station| station['name'] } %>
-  <h5>Transit Stations (<%= stations.size %>):</h5>
-  <ul>
+  <% stations = route['sections'].select { |section| section['node_types']&.include?('station') }.map { |station| station['name'] || 'Unknown' } %>
+  <ul class="list-group list-group-horizontal mb-3">
+    <li class="list-group-item list-group-item-secondary"><i class="fa-solid fa-train-subway"></i>(<%= stations.size %>): </li>
     <% stations.each do |station| %>
-      <li><%= station %></li>
+      <li class="list-group-item"><%= station %></li>
     <% end %>
   </ul>
-  <%= link_to "View Route #{route['summary']['no']} Details", route_path(route['summary']['no']), class: 'btn btn-primary' %>
+  <% if route['summary']&.dig('no').present? %>
+    <%= link_to "", route_path(route['summary']['no']), class: 'btn btn-primary fa-solid fa-arrow-right-long' %>
+  <% end %>
 </div>
