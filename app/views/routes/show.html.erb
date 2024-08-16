@@ -1,9 +1,9 @@
 <!-- frame -->
-<div style="height:100vh;width:100vw;" data-controller="home-map">
+<div style="height:100vh;width:100vw;" data-controller="routes-map">
   <!--  -->
   <div class="d-none"><input id="input-fields" type="text"></div>
   <!-- map -->
-  <div id="map" style="z-index: 0; height: 100vh;" data-action="load@window->home-map#initMap"></div>
+  <div id="map" data-routes-map-target="map" style="z-index: 0; height: 100vh;" data-action="load@window->routes-map#initMap"></div>
   <!-- draggable-panel -->
   <div id="draggable-panel" class="bg-white w-100" data-controller="panel-resizer routes-map" style="height: 50vh;">
     <!-- draggable thingy -->
