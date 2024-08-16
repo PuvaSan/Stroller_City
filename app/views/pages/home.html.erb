@@ -18,6 +18,7 @@
   </div>
   <!-- map -->
   <div id="map" style="z-index: 0; height: 100vh;" data-action="load@window->home-map#initMap"></div>
+
   <!-- draggable-panel -->
   <div id="draggable-panel" class="bg-white w-100" data-controller="panel-resizer">
     <!-- draggable thingy -->
@@ -48,15 +49,17 @@
               <h3 class="text-info m-0">Login</h3>
             <% end %>
           <% end %>
-    </div>
-    <div>
-      <button class="icon-button rounded-pill">🕒 Recent</button>
-      <button class="icon-button rounded-pill">🔥 Recommended</button>
-      <button class="icon-button rounded-pill">👶 Saved</button>
-    </div>
-    <div class="card" style="margin: 10px;">
-      <!-- render recents -->
-      <%= render 'recent' %>
+        </div>
+        <div>
+          <button class="icon-button rounded-pill">🕒 Recent</button>
+          <button class="icon-button rounded-pill">🔥 Recommended</button>
+          <button class="icon-button rounded-pill">👶 Saved</button>
+        </div>
+        <div class="card" style="margin: 10px;">
+          <!-- render recents -->
+          <%= render 'recent' %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
