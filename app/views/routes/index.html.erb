@@ -1,7 +1,7 @@
 <!-- app/views/routes/index.html.erb -->
 <div class="p-3 mt-3">
   <h3><i class="fa-solid fa-location-dot text-success"></i> <%= @origin %> </h3>
-  <h3> <i class="fa-solid fa-location-pin text-danger"></i> <%= @destination %></h3>
+  <h3><i class="fa-solid fa-location-pin text-danger"></i> <%= @destination %></h3>
 </div>
 <% if @navitime_routes && @navitime_routes['items'].present? %>
   <% @navitime_routes['items'].each do |route| %>
