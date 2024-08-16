@@ -1,0 +1,47 @@
+.icon1 {
+  background-color: #F5F5F5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  min-width: 40px;
+
+  i {
+    color: #FE6726;
+    font-size: 1.5rem;
+  }
+}
+
+#place-photo-container {
+  width: 100%;
+  height: 80px;
+  overflow-x: auto;
+  display: flex;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  img {
+    object-fit: cover;
+    border-radius: 16px;
+  }
+}
+
+#directions-button {
+  background-color: #FE6726;
+  border-radius: 40px;
+  color: white;
+}
+
+#tabs {
+  div {
+    border-bottom: 3px solid #F5F5F5;
+    color: #F5F5F5;
+  }
+
+  .active {
+    border-bottom: 3px solid #FE6726;
+    color: black;
+  }
+}

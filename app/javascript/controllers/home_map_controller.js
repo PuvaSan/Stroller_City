@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="another-map"
 export default class extends Controller {
-  static targets = [ "name", "address", "photo", "originInput", "phone", "recent", "recommended"]
+  static targets = [ "name", "address", "photo", "originInput", "phone", "info", "recent", "recommended"]
   connect() {
     console.log("home map connected")
     console.log(this.nameTarget, this.addressTarget)
@@ -13,6 +13,20 @@ export default class extends Controller {
         this.recentTarget.insertAdjacentHTML("beforeend", `<li>${place}</li>`)
         })
   }
+
+  ikumibutton(event) {
+    const buttonId = event.currentTarget.id;
+    const selectedContainer = document.getElementById(`${buttonId}-container`);
+    const containers = document.querySelectorAll(".ikumi-container > *");
+    containers.forEach(container => {
+      if (!container.classList.contains("d-none")) {
+        container.classList.add("d-none");
+      }
+    });
+    selectedContainer.classList.remove("d-none");
+    console.log(buttonId, selectedContainer, containers);
+  }
+
 
   originAutocomplete = null;
   destinationAutocomplete = null;
@@ -34,10 +48,10 @@ export default class extends Controller {
     this.originAutocomplete = new google.maps.places.Autocomplete(document.getElementById('origin'))
     this.destinationAutocomplete = new google.maps.places.Autocomplete(document.getElementById('destination'))
 
-    var paragraphs = document.querySelectorAll('#description');
-    paragraphs.forEach(function(p) {
-      p.style.fontSize = '10px';
-    });
+    // var paragraphs = document.querySelectorAll('#description');
+    // paragraphs.forEach(function(p) {
+    //   p.style.fontSize = '10px';
+    // });
 
     this.destinationAutocomplete.addListener('place_changed', () => {
       let place = this.destinationAutocomplete.getPlace();
@@ -51,15 +65,17 @@ export default class extends Controller {
         this.nameTarget.innerText = place.name;
         this.addressTarget.innerText = place.formatted_address;
         this.phoneTarget.innerText = place.formatted_phone_number
+        if (place.editorial_summary) {
+          this.infoTarget.innerText = place.editorial_summary
+        }
         this.photoTarget.innerHTML = "";
         console.log(place)
-        place.photos.slice(0, 3).forEach((photo) => {
+        place.photos.forEach((photo) => {
           const placeImage = photo.getUrl();
-          const imgElement = `<img height=100 class="m-3" src="${placeImage}" />`;
+          const imgElement = `<img height=80 width=80 class="me-2" src="${placeImage}" />`;
           this.photoTarget.insertAdjacentHTML("beforeend", imgElement);
         });
-        document.querySelector("#draggable-panel").style.height = "80vh";
-        document.querySelector("#draggable-panel").style.borderRadius = "0px";
+        document.querySelector("#draggable-panel").style.height = "fit-content";
         document.querySelector("#initial-content").outerHTML = "";
         document.querySelector("#place-description").classList.toggle("d-none");
         document.querySelector("#reviews-container").classList.toggle("d-none");
@@ -142,7 +158,7 @@ export default class extends Controller {
       console.log(data);
 
       // Construct the Rails route URL with query parameters
-      const redirectUrl = `/routes?start_lat=${start_lat}&start_long=${start_long}&end_lat=${end_lat}&end_long=${end_long}`;
+      const redirectUrl = `/routes?start_lat=${start_lat}&start_long=${start_long}&end_lat=${end_lat}&end_long=${end_long}&origin=${origin.name}&destination=${destination.name}`;
 
       // Redirect to the constructed URL
       window.location.href = redirectUrl;

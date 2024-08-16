@@ -7,11 +7,11 @@ class PagesController < ApplicationController
 
     # Handle the initial page load
     @top_places = Place
-    .select('places.id, places.name, COALESCE(AVG(reviews.rating), 0) AS average_rating')
-    .left_joins(:reviews)
-    .group('places.id, places.name') # Group by all selected columns
-    .order('average_rating DESC')
-    .limit(5) # Limit the results to 5 places
+        .select('places.address, COALESCE(AVG(reviews.rating), 0) AS average_rating')
+        .left_joins(:reviews) # This performs a LEFT JOIN with the reviews table
+        .group('places.id, places.name') # Group by place id and name
+        .order('average_rating DESC') # Order by average rating in descending order
+        .limit(5) # Limit the results to 5 places
     render :home
   end
 

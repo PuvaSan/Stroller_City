@@ -1,1 +1,22 @@
-<h1>Route <%= params['id']%> Details</h1>
+<% if @route.present? %>
+  <div class="route-summary card p-3 m-3">
+    <p class="text-center">
+      <i class="fa-solid fa-location-dot"></i> <%= @origin %>
+      <i class="fa-solid fa-arrow-right"></i>
+      <i class="fa-solid fa-location-pin"></i> <%= @destination %>
+    </p>
+    <p class="text-center">
+      <i class="fa-solid fa-stopwatch"></i> <%= @route['summary']['move']['time'] %> min |
+      <i class="fa-solid fa-ruler-horizontal"></i> <%= @route['summary']['move']['distance'] %> m |
+      <i class="fa-solid fa-shoe-prints"></i> <%= @route['summary']['move']['walk_distance'] %> m |
+      <strong>¥</strong> <%= @route['summary']['move']['fare']['unit_0'] %>
+    </p>
+  </div>
+  <div class="m-2 p-1">
+    <% @route['sections'].each_with_index do |section, index| %>
+      <%= render partial: 'section', locals: { section: section, index: index } %>
+    <% end %>
+  </div>
+<% else %>
+  <p>No route details available.</p>
+<% end %>

@@ -19,40 +19,14 @@
   <!-- map -->
   <div id="map" style="z-index: 0; height: 100vh;" data-action="load@window->home-map#initMap"></div>
   <!-- draggable-panel -->
-  <div id="draggable-panel" class="bg-white" data-controller="panel-resizer">
+  <div id="draggable-panel" class="bg-white w-100" data-controller="panel-resizer">
     <!-- draggable thingy -->
     <div id="resizer" class="w-100 d-flex align-items-center" data-action="mousedown->panel-resizer#grab touchstart->panel-resizer#grab">
       <hr id="panel-top-line">
     </div>
-    <div id="panel-content">
+    <div id="panel-content w-100">
       <!-- Place description -->
-      <div>
-        <div id="place-description" class="container mt-3 d-none">
-          <div class="row">
-            <div class="col">
-              <h2 data-home-map-target="name"></h2>
-              <%# <p>Address:</p> %>
-              <div class="d-flex">
-                <i id="icon" class="fa-solid fa-location-crosshairs"></i>
-                <p id="description" data-home-map-target="address"></p>
-              </div>
-              <%# <p>phone-number:</p> %>
-              <div class="d-flex">
-                <i id="icon" class="fa-solid fa-phone"></i>
-                <p id="description" data-home-map-target="phone"></p>
-              </div>
-              <%# <p>photos:</p> %>
-              <div data-home-map-target="photo"></div>
-              <button class="btn btn-secondary" data-action="click->home-map#showStuff" id="directions-button">Directions</button>
-            </div>
-          </div>
-        </div>
-        <!-- Reviews -->
-        <div id="reviews-container" class="d-none p-3 m-3">
-          <%# review partial created in pages_controller in #render_reviews and inserted in home_map_controller fetch %>
-          <%#= "no reviews" unless @places.present? %>
-        </div>
-      </div>
+      <%= render partial: 'place_description' %>
       <!-- home -->
       <div id="initial-content">
         <h1 class="mt-3">Welcome to Stroller city!</h1>
@@ -73,18 +47,18 @@
             <% end %>
           <% end %>
         </div>
+        <div>
+          <button id="recent-p"class="icon-button rounded-pill" data-action="click->home-map#ikumibutton">🕒 Recent</button>
+          <button id="recommended-p" class="icon-button rounded-pill" data-action="click->home-map#ikumibutton">🔥 Recommended</button>
+          <button id="saved-p" class="icon-button rounded-pill" data-action="click->home-map#ikumibutton">👶 Saved</button>
+        </div>
+        <div class="card ikumi-container" style="margin: 10px;">
+          <!-- render recents -->
+          <%= render 'recent' %>
+          <!-- render recommended -->
+          <%= render 'recommended' %>
+        </div>
       </div>
-    </div>
-    <div>
-      <button class="icon-button rounded-pill">🕒 Recent</button>
-      <button class="icon-button rounded-pill">🔥 Recommended</button>
-      <button class="icon-button rounded-pill">👶 Saved</button>
-    </div>
-    <div class="card" style="margin: 10px;">
-      <!-- render recents -->
-      <%= render 'recent' %>
-      <!-- render recommended -->
-      <%= render 'recommended' %>
     </div>
   </div>
 </div>

@@ -1,24 +1,22 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-require 'json'
+puts "Destroying all records..."
 
-# Update the path to the JSON file
-file_path = Rails.root.join('db', 'seeds', 'directions.json')
-file = File.read(file_path)
-data = JSON.parse(file)
+# Destroy dependent records first
+Detail.destroy_all
+Trip.destroy_all
+Route.destroy_all
 
-# Extract data from the JSON file and create records in the database
-
-User.destroy_all
+# Destroy non-dependent records
 Review.destroy_all
+User.destroy_all
 Place.destroy_all
+
+# (Your seed data creation code follows here...)
+
+# Create places
+# Place creation code here...
+
+# Create routes
+# Route creation code here...
 #Create places
 
 data['places_info'].each do |place|
@@ -91,24 +89,21 @@ User.create!(
     { email: "IkumiOjiro2017@gmail.com", password: "mybirthday01", username: "SuperSaiyanIkumi" }
   ]
 )
+
+# Find users to attach photos
 user1 = User.find_by(username: "brianUchiha")
 user2 = User.find_by(username: "AyyyaSayonara")
 user3 = User.find_by(username: "HabiPieKing")
 user4 = User.find_by(username: "SuperSaiyanIkumi")
+
+# Attach photos
 user1.photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600697/brian_zwyeui.jpg"), filename: "brian.jpg")
 user2.photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600697/aya_sqzo1w.jpg"), filename: "aya.jpg")
 user3.photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600697/javi_pps9n6.jpg"), filename: "javi.jpg")
 user4.photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600699/ikumi_lqqsra.png"), filename: "ikumi.jpg")
 
-Review.create!(
-  [
-    { user: user1, place: Place.all[1], rating: 4, comment: "Great coffee and cozy atmosphere!" },
-    { user: user2, place: Place.all[1], rating: 5, comment: "Loved the ambiance and my children loved it." },
-    { user: user3, place: Place.all[0], rating: 3, comment: "Stroller friedly but a bit pricey." },
-    { user: user4, place: Place.all[0], rating: 4, comment: "Fresh food and friendly staff." }
-  ]
-)
-
+puts "creating places"
+# Create places
 Place.create!(
   [
     { address: "Tokyo Skytree", latitude: 35.71024561621056, longitude: 139.81074331053827 },
@@ -118,16 +113,30 @@ Place.create!(
   ]
 )
 
-Review.create(
+puts "creating reviews"
+# Create reviews for places
+Review.create!(
   [
-    { user: user1, place: Place.all[2], rating: 5, comment: "An iconic tower in Tokyo." },
-    { user: user2, place: Place.all[3], rating: 4, comment: "Looks like Eiffel Tower but orange" },
-    { user: user3, place: Place.all[4], rating: 4, comment: "A historic temple in Tokyo." },
-    { user: user4, place: Place.all[5], rating: 3, comment: "The busiest intersection in the world." }
+    { user: user1, place: Place.all[1], rating: 4, comment: "Great coffee and cozy atmosphere!" },
+    { user: user2, place: Place.all[1], rating: 5, comment: "Loved the ambiance and my children loved it." },
+    { user: user3, place: Place.all[0], rating: 3, comment: "Stroller friedly but a bit pricey." },
+    { user: user4, place: Place.all[0], rating: 4, comment: "Fresh food and friendly staff." }
   ]
 )
 
+puts "creating photos"
+# Attach photos to reviews
 Review.find(5).photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723625039/skytree-header_lvsoje.jpg"), filename: "skytree.jpg")
 Review.find(6).photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723624942/Tokyo-Tower--800x500_u6fept.jpg"), filename: "tokyo_tower.jpg")
 Review.find(7).photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723625269/Sensoji_2023_uherro.jpg"), filename: "sensoji.jpg")
 Review.find(8).photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723625161/1189690204_f8lek8.webp"), filename: "shibuya.jpg")
+
+# Update review timestamps
+Review.find(1).update_column(:created_at, Time.new(2021, 8, 13, 12, 0, 0))
+Review.find(2).update_column(:created_at, Time.new(2021, 8, 13, 12, 0, 0))
+Review.find(3).update_column(:created_at, Time.new(2021, 8, 13, 12, 0, 0))
+Review.find(4).update_column(:created_at, Time.new(2021, 8, 13, 12, 0, 0))
+
+puts "updating reviews"
+
+puts "seeding complete"

@@ -1,16 +1,45 @@
 class RoutesController < ApplicationController
+  before_action :set_route_params, only: [:index]
+  before_action :set_origin_destination, only: [:index, :show]
+
   def index
+    @navitime_routes = fetch_navitime_routes(session[:start_lat], session[:start_long], session[:end_lat], session[:end_long])
+  end
 
-    @start_lat = params[:start_lat]
-    @start_long = params[:start_long]
-    @end_lat = params[:end_lat]
-    @end_long = params[:end_long]
+  def show
+    route_no = params[:id]
 
-    # You can pass these as parameters or get them from the user input
-    start_lat = 35.66897912700963
-    start_lon = 139.78638732593615
-    goal_lat = 35.63402959100441
-    goal_lon = 139.70818573942807
+    # Make a new API call using the same parameters in saved sessions
+    navitime_routes = fetch_navitime_routes(session[:start_lat], session[:start_long], session[:end_lat], session[:end_long])
+
+    @route = navitime_routes['items'].find { |r| r['summary']['no'] == route_no }
+
+    Rails.logger.error(@route)
+
+    if @route.nil?
+      redirect_to routes_path, alert: "Route not found."
+    else
+      @sections = @route['sections']
+    end
+  end
+
+  private
+
+  def set_origin_destination
+    @origin = session[:origin]
+    @destination = session[:destination]
+  end
+
+  def set_route_params
+    session[:start_lat] = params[:start_lat]
+    session[:start_long] = params[:start_long]
+    session[:end_lat] = params[:end_lat]
+    session[:end_long] = params[:end_long]
+    session[:origin] = params[:origin]
+    session[:destination] = params[:destination]
+  end
+
+  def fetch_navitime_routes(start_lat, start_long, end_lat, end_long)
     datum = "wgs84"
     term = 1440
     limit = 5
@@ -19,33 +48,13 @@ class RoutesController < ApplicationController
     walk_route = "babycar"
     shape = true
 
-    @navitime_routes = fetch_navitime_routes(start_lat, start_lon, goal_lat, goal_lon, datum, term, limit, start_time, coord_unit, walk_route, shape)
-
-    if @navitime_routes.nil? || @navitime_routes['items'].blank?
-      flash[:alert] = "No routes found or API request failed."
-    end
-  end
-
-
-    def show
-      if @navitime_routes && @navitime_routes['items'].present?
-        @route = @navitime_routes['items'].first
-      else
-        @route = nil
-      end
-    end
-
-  private
-
-  def fetch_navitime_routes(start_lat, start_lon, goal_lat, goal_lon, datum, term, limit, start_time, coord_unit, walk_route, shape)
-    # Build the URL dynamically
     url = URI("https://navitime-route-totalnavi.p.rapidapi.com/route_transit?" +
-      "start=#{start_lat}%2C#{start_lon}&" +
-      "goal=#{goal_lat}%2C#{goal_lon}&" +
+      "start=#{start_lat}%2C#{start_long}&" +
+      "goal=#{end_lat}%2C#{end_long}&" +
       "datum=#{datum}&" +
       "term=#{term}&" +
       "limit=#{limit}&" +
-      "start_time=#{URI.encode_www_form_component(start_time)}&" + # Updated encoding
+      "start_time=#{URI.encode_www_form_component(start_time)}&" +
       "coord_unit=#{coord_unit}&" +
       "walk_route=#{walk_route}&" +
       "shape=#{shape}")
@@ -54,13 +63,10 @@ class RoutesController < ApplicationController
     http.use_ssl = true
 
     request = Net::HTTP::Get.new(url)
-    request["x-rapidapi-key"] = ENV['RAPIDAPI_KEY'] # Use your environment variable
+    request["x-rapidapi-key"] = ENV['RAPIDAPI_KEY']
     request["x-rapidapi-host"] = 'navitime-route-totalnavi.p.rapidapi.com'
 
     response = http.request(request)
-
-    # Rails.logger.info("Navitime API Response Code: #{response.code}")
-    # Rails.logger.info("Navitime API Response Body: #{response.body}")
 
     if response.code == "200"
       JSON.parse(response.body)
