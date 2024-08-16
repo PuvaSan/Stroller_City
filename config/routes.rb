@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   resources :routes
   resources :details
   resources :places do
-    resources :reviews
+    resources :reviews, only: [:new, :create]
   end
+  post "reviews", to: "favorites#create"
   resources :favorites do
     resources :reviews, only: [:index, :new, :create]
   end
