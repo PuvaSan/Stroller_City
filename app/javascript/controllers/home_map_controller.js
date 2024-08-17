@@ -45,7 +45,6 @@ export default class extends Controller {
     transitLayer.setMap(map);
 
     // autocompletes location inputs for origin and destination
-    this.originAutocomplete = new google.maps.places.Autocomplete(document.getElementById('origin'))
     this.destinationAutocomplete = new google.maps.places.Autocomplete(document.getElementById('destination'))
 
     // var paragraphs = document.querySelectorAll('#description');
@@ -60,6 +59,12 @@ export default class extends Controller {
       if (place.geometry && place.geometry.location) {
         map.setCenter(place.geometry.location);
         map.setZoom(15);
+        // Add marker to the selected place
+        const marker = new google.maps.Marker({
+          position: place.geometry.location,
+          map: map,
+          title: place.name
+        });
 
         // displays place name, address, and photos
         this.nameTarget.innerText = place.name;
@@ -69,7 +74,6 @@ export default class extends Controller {
           this.infoTarget.innerText = place.editorial_summary
         }
         this.photoTarget.innerHTML = "";
-        console.log(place)
         place.photos.forEach((photo) => {
           const placeImage = photo.getUrl();
           const imgElement = `<img height=80 width=80 class="me-2" src="${placeImage}" />`;
@@ -79,7 +83,6 @@ export default class extends Controller {
         document.querySelector("#initial-content").outerHTML = "";
         document.querySelector("#place-description").classList.toggle("d-none");
         document.querySelector("#reviews-container").classList.toggle("d-none");
-        console.log(place.name)
 
         if (localStorage.getItem('recent') === null) {
           let recent = [];
@@ -90,6 +93,10 @@ export default class extends Controller {
           recent.push(place.name);
           localStorage.setItem('recent', JSON.stringify(recent));
         }
+
+        //new changes for inputs
+        this.originInputTarget.classList.toggle("d-none")
+        document.getElementById("destination").parentElement.classList.add("d-none")
 
         // Send the place name to Rails controller via AJAX
         if (place.name) {
@@ -124,9 +131,21 @@ export default class extends Controller {
     });
   }
 
-  showStuff() {
-    this.originInputTarget.classList.toggle("d-none")
-    document.getElementById("go-button").classList.toggle("d-none")
+  getCurrentPosition() {
+    //sets origin to user's current location
+    navigator.geolocation.getCurrentPosition((position) => {
+      let user_lat = position.coords.latitude;
+      let user_long = position.coords.longitude;
+      fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${user_lat},${user_long}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+        })
+    })
+
+    // this.userLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    // document.getElementById('origin').value = (poition.coords.latitude + ", " + position.coords.longitude);
+    // this.originAutocomplete = new google.maps.places.Autocomplete(document.getElementById('origin'))
   }
 
   direct() {

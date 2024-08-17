@@ -32,7 +32,34 @@
   border-radius: 2px;
 }
 
-input {
-  background-color: white !important;
-  border-radius: 20px !important;
+#input-fields {
+  input {
+  background-color: white;
+  border: none;
+  flex-grow: 1;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  > * {
+    border: 1px solid grey;
+    border-radius: 30px;
+    background-color: white;
+    padding: 8px 8px 8px 24px;
+  }
+
+  > *:focus-within {
+    outline: 1px solid blue
+  }
+
+  button {
+    height: 100%;
+    border-radius: 100%;
+  }
+}
+
+.br-30 {
+  border-radius: 30px;
 }
