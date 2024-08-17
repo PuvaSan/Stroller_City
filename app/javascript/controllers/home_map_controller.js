@@ -272,6 +272,8 @@ export default class extends Controller {
     document.getElementById("first-back-button").classList.toggle("d-none");
     this.originInputTarget.classList.toggle("d-none")
     document.getElementById("destination").parentElement.classList.toggle("d-none")
+    // Remove marker from the map
+    marker.setMap(null);
   }
 
   direct() {
