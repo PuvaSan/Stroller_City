@@ -2,6 +2,9 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="another-map"
 export default class extends Controller {
+  static values = {
+    apiKey: String,
+  }
   static targets = [ "name", "address", "photo", "originInput", "phone", "info", "recent", "recommended"]
   connect() {
     console.log("home map connected")
@@ -148,7 +151,7 @@ export default class extends Controller {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'x-rapidapi-key': 'ee4ee6a653msh2bda56689a8b341p1b0f92jsnc9c233194414',
+        'x-rapidapi-key': this.apiKeyValue,
         'x-rapidapi-host': 'navitime-route-totalnavi.p.rapidapi.com',
       },
     })
