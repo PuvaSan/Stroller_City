@@ -1,49 +1,40 @@
 <div id="mylist-content" class="content-section">
   <div id="review-places-list" class="list-group">
-    <% @reviews.where(user: current_user).order(created_at: :desc).each do |review| %> <!-- Filter reviews by current_user -->
-      <div class="review-place list-group-item">
+    <% @reviews.where(user: current_user).order(created_at: :desc).each do |review| %>
+      <div class="review-place list-group-item p-3 border-0 shadow-sm mb-3" style="border-radius: 10px; background-color: #fff;">
         <div class="d-flex w-100 justify-content-between">
           <div class="d-flex align-items-center">
             <% if review.user.photo.attached? %>
-              <%= cl_image_tag review.user.photo.key, class: "avatar-large me-3" %> <!-- Corrected method to access user photo -->
+              <%= cl_image_tag review.user.photo.key, class: "avatar-large me-3 rounded-circle" %>
             <% else %>
-              <%= image_tag "default_avatar.png", class: "avatar-large me-3" %>
+              <%= image_tag "default_avatar.png", class: "avatar-large me-3 rounded-circle" %>
             <% end %>
-            <h5 class="mb-1 ml-3"><strong><%= review.user.username %></strong></h5> <!-- Display user's name -->
+            <h5 class="mb-1 ml-3"><strong><%= review.user.username %></strong></h5>
+          </div>
+          <div class="top-right-date">
+            <p class="text-muted" style="font-size: 12px;"><%= review.created_at.strftime("%H:%M %B %d, %Y") %></p>
           </div>
         </div>
-        <div class="d-flex w-100 justify-content-between">
-          <div class="d-flex align-items-center">
-            <div class="star-rating">
-              <p>
-                <%= review.rating %>
-                <% review.rating.times do %> <!-- Display stars based on rating -->
-                  <span>&#9733;</span>
-                <% end %>
-              </p>
-            </div>
+        <div class="d-flex w-100 justify-content-between mt-2">
+          <div class="star-rating">
+            <%= review.rating %>
+            <% r_rating = review.rating %>
+            <% r_rating.times do %>
+              <i class="fa-solid fa-star text-warning"></i>
+            <% end %>
           </div>
         </div>
+
         <% if review.photos.any? %>
-          <%= cl_image_tag review.photos[0].key, class: "place-image mt-3 mb-3" %>
-        <% else %>
-          <%= image_tag "Picture1.png", class: "place-image mt-3 mb-3" %>
-        <% end %>
+          <%= cl_image_tag review.photos[0].key, class: "place-image mt-3 mb-3 w-100 rounded" %>
+        <% end %> <!-- Only show image if there are photos -->
+
         <p class="mb-1"><%= review.comment %></p>
-        <div class="d-flex justify-content-between align-items-end">
-          <div class="bottom-left-buttons">
-            <button class="btn btn-light btn-sm mx-1"><i class="fas fa-share"></i></button>
-            <button class="btn btn-light btn-sm mx-1"><i class="fas fa-ellipsis-h"></i></button>
-          </div>
-        </div>
-        <div class="d-flex flex-row align-items-end">
-          <button class="btn btn-light custom-btn mb-1"><i class="fas fa-heart"></i></button>
-          <button class="btn btn-light custom-btn mb-1"><i class="fas fa-comment"></i></button>
-          <button class="btn btn-light custom-btn"><i class="fas fa-bookmark"></i></button>
-        </div>
-        <br><br>
-        <div class="bottom-right-date ml-3">
-          <p class="date-text"><%= review.created_at.strftime("%H:%M %B %d, %Y") %></p>
+        <div class="d-flex justify-content-around mt-2 border-top pt-2">
+          <button class="btn btn-light btn-lg btn-block"><i class="fas fa-thumbs-up"></i> </button>
+          <button class="btn btn-light btn-lg btn-block"><i class="fas fa-comment"></i> </button>
+          <button class="btn btn-light btn-lg btn-block"><i class="fas fa-share"></i> </button>
+          <button class="btn btn-primary btn-lg btn-block" style="border-radius: 20px;">Directions</button>
         </div>
       </div>
     <% end %>
