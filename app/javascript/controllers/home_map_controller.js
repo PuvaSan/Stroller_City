@@ -5,7 +5,7 @@ export default class extends Controller {
   static values = {
     apiKey: String,
   }
-  static targets = [ "name", "address", "photo", "originInput", "phone", "info", "recent", "recommended"]
+  static targets = [ "name", "address", "photo", "originInput", "phone", "info", "recent"]
   connect() {
     console.log("home map connected")
     console.log(this.nameTarget, this.addressTarget)
