@@ -2,7 +2,10 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="another-map"
 export default class extends Controller {
-  static targets = [ "name", "address", "photo", "originInput", "phone", "info", "recent"]
+  static values = {
+    apiKey: String,
+  }
+  static targets = [ "name", "address", "photo", "originInput", "phone", "info", "recent", "recommended"]
   connect() {
     console.log("home map connected")
     console.log(this.nameTarget, this.addressTarget)
@@ -12,6 +15,7 @@ export default class extends Controller {
         recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
         this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card"><div class="card-body"> <div class="card-text">${place}</div></div></div>`)
         })
+    // console.log("api key", this.apiKeyValue)
   }
 
   //Switches the Ikumi container based on the button clicked
