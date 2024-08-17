@@ -9,8 +9,10 @@
             <% else %>
               <%= image_tag "default_avatar.png", class: "avatar-large me-3" %>
             <% end %>
-            <h5 class="mb-1 ml-3"><%= review.user.username %></h5> <!-- Display user's name -->
+            <h5 class="mb-1 ml-3"><strong><%= review.user.username %></strong></h5> <!-- Display user's name -->
           </div>
+        </div>
+        <div class="d-flex w-100 justify-content-between">
           <div class="d-flex align-items-center">
             <div class="star-rating">
               <p>
