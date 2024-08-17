@@ -32,7 +32,42 @@
   border-radius: 2px;
 }
 
-input {
-  background-color: white !important;
-  border-radius: 20px !important;
+#input-fields {
+  padding: 16px 0 16px 0;
+
+  input {
+    background-color: white;
+    border: none;
+    flex-grow: 1;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  > * {
+    border: 1px solid grey;
+    border-radius: 30px;
+    background-color: white;
+    padding: 6px 8px 6px 16px;
+  }
+
+  > *:focus-within {
+    outline: 1px solid blue
+  }
+
+  button {
+    height: 100%;
+    border-radius: 100%;
+  }
+}
+
+.br-30 {
+  border-radius: 30px;
+}
+
+#first-back-button {
+  height: 41px !important;
+  border: none;
+  padding: 8px 16px;
 }
