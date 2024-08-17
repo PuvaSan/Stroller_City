@@ -10,7 +10,7 @@ export default class extends Controller {
         //get recent search history from local storage
         const recent = JSON.parse(localStorage.getItem('recent'))
         recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
-        this.recentTarget.insertAdjacentHTML("beforeend", `<li>${place}</li>`)
+        this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card"><div class="card-body"> <div class="card-text">${place}</div></div></div>`)
         })
   }
 
@@ -27,16 +27,17 @@ export default class extends Controller {
     selectedContainer.classList.remove("d-none");
     console.log(buttonId, selectedContainer, containers);
   }
-      select(event) {
-        // Remove the 'selected' class from all buttons
-        this.element.querySelectorAll('.animated-button').forEach(button => {
-            button.classList.remove('selected');
-        });
 
-        // Add the 'selected' class to the clicked button
-        event.target.classList.add('selected');
-        console.log(this.element.querySelectorAll('.animated-button'))
-      }
+  select(event) {
+    // Remove the 'selected' class from all buttons
+    this.element.querySelectorAll('.animated-button').forEach(button => {
+        button.classList.remove('selected');
+    });
+
+    // Add the 'selected' class to the clicked button
+    event.target.classList.add('selected');
+    console.log(this.element.querySelectorAll('.animated-button'))
+  }
 
   //Makes the list of recent searches and recommended clickable
   clickable(event) {

@@ -1,8 +1,9 @@
-<div id="recommended-p-container">
-  <ul style="list-style-type: none;">
-    <% @top_places.each do |place| %>
-      <li><%= place.address %></li>
-    <% end %>
-  </ul>
-</div>
+<div id="recommended-p-container" class="card-grid">
+  <% @top_places.take(5).each do |place| %>
+    <div class="card">
+      <div class="card-body">
+        <p class="card-text"><%= place.address %></p>
+      </div>
+    </div>
+  <% end %>
 </div>

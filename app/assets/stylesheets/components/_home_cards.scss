@@ -1,0 +1,33 @@
+/* Container for the grid of cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px; /* Space between the cards */
+  padding: 16px; /* Space around the grid */
+}
+
+/* Individual card styling */
+.card {
+  background-color: #fff; /* Background color of the card */
+  border: 1px solid #ddd; /* Border around the card */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for a 3D effect */
+  overflow: hidden; /* Ensure content does not overflow the card */
+  transition: transform 0.3s ease; /* Smooth transform effect */
+}
+
+.card:hover {
+  transform: translateY(-4px); /* Lift the card on hover */
+}
+
+/* Card body styling */
+.card-body {
+  padding: 16px; /* Space inside the card */
+}
+
+/* Text inside the card */
+.card-text {
+  margin: 0; /* Remove default margin */
+  font-size: 16px; /* Font size */
+  color: #333; /* Text color */
+}
