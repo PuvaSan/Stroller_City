@@ -15,6 +15,7 @@ export default class extends Controller {
         recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
         this.recentTarget.insertAdjacentHTML("beforeend", `<li>${place}</li>`)
         })
+    // console.log("api key", this.apiKeyValue)
   }
 
   ikumibutton(event) {
