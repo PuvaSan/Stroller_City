@@ -1,26 +1,34 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="routes-map"
 export default class extends Controller {
-  static targets = ["content"]
+  static targets = ["content", "map"]
 
   connect() {
     console.log("Routes map controller connected");
-    // Additional logic can be added here to interact with the content inside the draggable panel
-    document.querySelector("#draggable-panel").style.height = "50vh";
+    this.initMap();
   }
 
-  async initMap() {
-    let map = new google.maps.Map(document.getElementById('map'),{
-      center:{lat:35.652832,lng:139.839478},
-      zoom:13
-    })
-    google.maps.event.addListener(map,"click",function(event) {
-      this.setOptions({scrollwheel:true})
-    })
+  initMap() {
+    this.map = new google.maps.Map(this.mapTarget, {
+      center: { lat: 35.652832, lng: 139.839478 },
+      zoom: 13
+    });
 
-    // adds transit layer over our map
     const transitLayer = new google.maps.TransitLayer();
-    transitLayer.setMap(map);
+    transitLayer.setMap(this.map);
+  }
+
+  zoomTo(event) {
+    const lat = parseFloat(event.currentTarget.dataset.lat);
+    const lng = parseFloat(event.currentTarget.dataset.lng);
+    const position = { lat, lng };
+
+    this.map.setCenter(position);
+    this.map.setZoom(18);
+
+    new google.maps.Marker({
+      position,
+      map: this.map,
+    });
   }
 }

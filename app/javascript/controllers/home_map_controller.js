@@ -2,6 +2,9 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="another-map"
 export default class extends Controller {
+  static values = {
+    apiKey: String,
+  }
   static targets = [ "name", "address", "photo", "originInput", "phone", "info", "recent", "recommended"]
   connect() {
     console.log("home map connected")
@@ -12,6 +15,7 @@ export default class extends Controller {
         recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
         this.recentTarget.insertAdjacentHTML("beforeend", `<li>${place}</li>`)
         })
+    // console.log("api key", this.apiKeyValue)
   }
 
   ikumibutton(event) {
