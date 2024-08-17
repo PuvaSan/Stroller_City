@@ -7,24 +7,18 @@
         <i class="fa-solid fa-less-than text-secondary"></i>
       </button>
     </div>
-
     <div id="input-fields" class="container">
       <div class="d-flex justify-content-between d-none" data-home-map-target="originInput">
         <input type="text" placeholder="Enter starting location" id="origin">
         <button class="btn btn-primary" data-action="click->home-map#getCurrentPosition"><i class="fa-solid fa-location-dot text-white"></i></button>
       </div>
-
       <div class="d-flex justify-content-between ">
         <input type="text" placeholder="Where do you wanna go?" id="destination">
         <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass text-white"></i></button>
       </div>
     </div>
-
     <div id="for-centering" style="width: 73px"></div>
   </div>
-
-
-
   <!-- map -->
   <div id="map" style="z-index: 0; height: 100vh;" data-action="load@window->home-map#initMap"></div>
   <!-- draggable-panel -->
