@@ -14,6 +14,7 @@ export default class extends Controller {
         })
   }
 
+  //Switches the Ikumi container based on the button clicked
   ikumibutton(event) {
     const buttonId = event.currentTarget.id;
     const selectedContainer = document.getElementById(`${buttonId}-container`);
