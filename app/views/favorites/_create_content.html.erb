@@ -1,12 +1,12 @@
-<div id="create-content">
+<div id="create-content" class="content-section">
   <%= simple_form_for @review do |f| %>
 
     <div class="form-group">
-      <%= f.input :place, label: "Place", label: "Name of Location" %>
+      <%= f.association :place, label: "Name of Location" %>
     </div>
 
     <div class="form-group">
-      <%= f.input :image, as: :file, label: "Upload Photo" %>
+      <%= f.input :photos, as: :file, label: "Upload Photo" %>
     </div>
 
     <div class="form-group">
