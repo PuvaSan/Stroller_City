@@ -3,10 +3,8 @@
   <div class="d-flex justify-content-between">
     <h2><i class="fa-solid fa-route text-secondary"></i> Route <%= route['summary']&.dig('no') || 'Unknown' %></h2>
     <div>
-      <i class="fa-solid fa-baby-carriage"></i>
-      <% 5.times do %>
-        <i class="fa-solid fa-star text-warning"></i>
-      <% end %>
+      <i class="fa-solid fa-baby-carriage text-warning"></i>
+      <%# <%= route.rating %>  <p>(5) </p>
     </div>
   </div>
   <p class="text-center mt-3">
