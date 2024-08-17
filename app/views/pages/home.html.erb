@@ -42,7 +42,7 @@
         <p>Accessible routing, made easy</p>
         <hr>
         <div class="d-flex justify-content-between align-items-center mb-3">
-          <% if user_signed_in? %>
+          <% if user_signed_in? && current_user.photo.any? %>
             <%= cl_image_tag current_user.photo.key, class: "avatar-large me-3" %>
             <h3 class="flex-grow-1 m-0"><strong><%= current_user.username %></strong></h3>
             <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "text-decoration-none" do %>
@@ -50,7 +50,11 @@
             <% end %>
           <% else %>
             <%= image_tag "guest.png", class: "avatar-large me-3" %>
+            <% if user_signed_in? && !current_user.photo.any? %>
+              <h3 class="flex-grow-1 m-0"><strong><%= current_user.username %></strong></h3>
+            <% else %>
             <h3 class="flex-grow-1 m-0"><strong>Guest</strong></h3>
+            <% end %>
             <%= link_to new_user_session_path, class: "text-decoration-none" do %>
               <h3 class="text-info m-0">Login</h3>
             <% end %>

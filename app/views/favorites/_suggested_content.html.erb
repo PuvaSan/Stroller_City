@@ -5,16 +5,16 @@
         <div class="d-flex w-100 justify-content-between">
           <div class="d-flex align-items-center">
             <%= cl_image_tag review.user.photo.key, class: "avatar-large me-3" %>
-            <h5 class="mb-1 ml-3"><%= review.user %></h5>
+            <h5 class="mb-1 ml-3"><strong><%= review.user.username %></strong></h5>
           </div>
+        </div>
+        <div class="d-flex w-100 justify-content-between">
           <div class="d-flex align-items-center">
             <div class="star-rating">
-              <p>
                 <%= review.rating %>
                 <% 5.times do |i| %>
                   <span>&#9733;</span>
                 <% end %>
-              </p>
             </div>
           </div>
         </div>
@@ -30,10 +30,10 @@
             <button class="btn btn-light btn-sm mx-1"><i class="fas fa-ellipsis-h"></i></button>
           </div>
         </div>
-        <div class="d-flex flex-column align-items-end">
-          <button class="btn btn-light btn-sm mb-1"><i class="fas fa-heart"></i></button>
-          <button class="btn btn-light btn-sm mb-1"><i class="fas fa-comment"></i></button>
-          <button class="btn btn-light btn-sm"><i class="fas fa-bookmark"></i></button>
+        <div class="d-flex flex-row align-items-end">
+          <button class="btn btn-light custom-btn mb-1"><i class="fas fa-heart"></i></button>
+          <button class="btn btn-light custom-btn mb-1"><i class="fas fa-comment"></i></button>
+          <button class="btn btn-light custom-btn"><i class="fas fa-bookmark"></i></button>
         </div>
         <br>
         <br>

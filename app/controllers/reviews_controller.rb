@@ -10,17 +10,19 @@ class ReviewsController < ApplicationController
     @place = Place.find(params[:place_id])
     @review = Review.new(review_params)
     @review.place = @place
+    @review = @place.reviews.build(review_params)
+    @review.user = current_user
 
     if @review.save
       redirect_to place_path(@place), notice: 'Review was successfully created.'
     else
-      redirect_to root_path
+      render :new, alert: 'Review could not be created. Please check the form and try again.'
     end
   end
 
   private
 
   def review_params
-    params.require(:review).permit(:image, :comment, :rating)
+    params.require(:review).permit(:place_id, :image, :comment, :rating)
   end
 end
