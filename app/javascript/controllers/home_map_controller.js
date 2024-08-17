@@ -26,9 +26,24 @@ export default class extends Controller {
     });
     selectedContainer.classList.remove("d-none");
     console.log(buttonId, selectedContainer, containers);
-
   }
+      select(event) {
+        // Remove the 'selected' class from all buttons
+        this.element.querySelectorAll('.animated-button').forEach(button => {
+            button.classList.remove('selected');
+        });
 
+        // Add the 'selected' class to the clicked button
+        event.target.classList.add('selected');
+        console.log(this.element.querySelectorAll('.animated-button'))
+      }
+
+  //Makes the list of recent searches and recommended clickable
+  clickable(event) {
+    const place = event.currentTarget.innerText;
+    this.destinationAutocomplete.set('place', place);
+    console.log(place);
+  }
 
   originAutocomplete = null;
   destinationAutocomplete = null;
