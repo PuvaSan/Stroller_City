@@ -5,7 +5,7 @@ export default class extends Controller {
 
   connect() {
     console.log("Routes map controller connected");
-    this.initMap();
+    // No need to call initMap() here since it's triggered by window load
   }
 
   initMap() {
