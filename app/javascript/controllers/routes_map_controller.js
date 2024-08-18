@@ -21,6 +21,13 @@ export default class extends Controller {
   zoomTo(event) {
     const lat = parseFloat(event.currentTarget.dataset.lat);
     const lng = parseFloat(event.currentTarget.dataset.lng);
+
+    if (isNaN(lat) || isNaN(lng)) {
+      console.warn("No valid coordinates found for this section.");
+      return;
+    }
+
+    console.log(`Zooming to coordinates: ${lat}, ${lng}`);
     const position = { lat, lng };
 
     this.map.setCenter(position);
