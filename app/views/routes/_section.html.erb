@@ -2,8 +2,10 @@
 <% last_point_section = @route['sections'].reverse.find { |s| s['type'] == 'point' && s['name'] == 'goal' } %>
 <div class="section mb-4">
   <% if section['type'] == 'point' %>
-    <div class="card instruction-card" data-action="click->routes-map#zoomTo" data-lat="<%= section['coord']&.dig('lat') %>" data-lng="<%= section['coord']&.dig('lon') %>">
-      <p data-routes-map-target="coordinates">
+    <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
+      data-coordinates="<%= section['coord'].present? ? "#{section['coord']['lat']},#{section['coord']['lon']}" : '' %>"
+      data-section-id="<%= section['node_id'] %>">
+      <p>
         <% if section == first_point_section %>
           <i class="fa-solid fa-location-dot text-success"></i> <%= @origin %>
         <% elsif section == last_point_section %>
@@ -17,25 +19,31 @@
       </p>
     </div>
   <% elsif section['type'] == 'move' %>
-    <div class="card instruction-card" data-action="click->routes-map#zoomTo" data-lat="<%= section['coord']&.dig('lat') %>" data-lng="<%= section['coord']&.dig('lon') %>">
-      <% if section['move'] == 'walk' %>
-        <p data-routes-map-target="coordinates">
+    <% if section['move'] == 'walk' %>
+      <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
+        data-coordinates="<%= section['coord'].present? ? "#{section['coord']['lat']},#{section['coord']['lon']}" : '' %>"
+        data-section-id="<%= section['node_id'] %>">
+        <p>
           <i class="fa-solid fa-person-walking"></i> Walk <%= section['distance'] %>m for
           <%= section['time'] %> mins
         </p>
-      <% else %>
-        <% if section['transport'].present? %>
-          <p data-routes-map-target="coordinates">
+      </div>
+    <% else %>
+      <% if section['transport'].present? %>
+        <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
+          data-coordinates=""
+          data-section-id="<%= section['transport']['links'][0]['from']['node_id'] %>">
+          <p>
             <i class="fa-solid fa-train-subway"></i> Take
             <span style="background-color:<%= section['transport']['color'] %>;"><%= section['transport']['name'] %></span>
             from <strong><%= section['transport']['links'][0]['from']['name'] if section['transport']['links'] && section['transport']['links'][0] %></strong>
             to <strong><%= section['transport']['links'][0]['to']['name'] if section['transport']['links'] && section['transport']['links'][0] %></strong>.
           </p>
-        <% else %>
-          <p>Transport details not available for this step.</p>
-        <% end %>
+        </div>
+      <% else %>
+        <p>Transport details not available for this step.</p>
       <% end %>
-    </div>
+    <% end %>
   <% else %>
     <p>Unknown step in the journey. Please check the details.</p>
   <% end %>
