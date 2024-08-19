@@ -5,23 +5,24 @@ export default class extends Controller {
 
   connect() {
     console.log("Routes map controller connected");
+    // Initialize the map when the controller is connected
+    this.initMap();
   }
 
   initMap() {
-    this.map = new google.maps.Map(this.mapTarget, {
-      center: { lat: 35.652832, lng: 139.839478 },
-      zoom: 13,
-    });
+    const mapOptions = {
+      zoom: 11,
+      center: { lat: 35.690916, lng: 139.785495 }, // A central point in Tokyo
+      mapTypeId: "terrain",
+    };
 
-    const transitLayer = new google.maps.TransitLayer();
-    transitLayer.setMap(this.map);
+    this.map = new google.maps.Map(this.mapTarget, mapOptions);
 
     // Draw the full polyline route and adjust the map view
     this.drawFullPolylineRoute();
   }
 
   drawFullPolylineRoute() {
-    // Parse route data
     const routeData = this.element.dataset.route;
     let route;
     try {
@@ -34,55 +35,27 @@ export default class extends Controller {
 
     // Collect all coordinates from the shapes and group by 'ways'
     const shapes = route.shapes.features;
-    let currentPath = [];
-    let currentWays = null;
-    let currentProperties = null;
+    const bounds = new google.maps.LatLngBounds(); // To fit the map to the route
 
-    shapes.forEach((shape, index) => {
-      const shapeWays = shape.properties.ways;
-
-      if (shapeWays !== currentWays) {
-        // If the way type changes, draw the current path and start a new one
-        if (currentPath.length > 0) {
-          this.drawPolyline(currentPath, currentProperties);
-          currentPath = [];
-        }
-        currentWays = shapeWays;
-      }
-
+    shapes.forEach((shape) => {
       const shapeCoordinates = shape.geometry.coordinates.map((coord) => {
         return { lat: coord[1], lng: coord[0] };
       });
 
-      currentPath.push(...shapeCoordinates);
-      currentProperties = shape.properties;  // Store the properties for styling
+      // Extend the bounds to include this shape
+      shapeCoordinates.forEach(coord => bounds.extend(coord));
 
-      // Draw the remaining path after the loop ends
-      if (index === shapes.length - 1 && currentPath.length > 0) {
-        this.drawPolyline(currentPath, currentProperties);
-      }
+      // Draw the polyline
+      this.drawPolyline(shapeCoordinates, shape.properties);
     });
+
+    // Fit the map to the bounds of the entire route
+    this.map.fitBounds(bounds);
   }
 
   drawPolyline(pathCoordinates, properties) {
-    // Draw the outline polyline first (if it exists)
-    if (properties.outline) {
-      const outlinePolyline = new google.maps.Polyline({
-        path: pathCoordinates,
-        strokeColor: properties.outline.color,
-        strokeOpacity: properties.outline.opacity,
-        strokeWeight: properties.outline.width,
-        map: this.map,
-        strokeLinecap: properties.outline.strokelinecap || 'round',
-        strokeLinejoin: properties.outline.strokelinejoin || 'round',
-      });
-      outlinePolyline.setMap(this.map);
-    }
-
-    // Determine if the line is for walking or transport
     const isWalking = properties.ways === "walk";
 
-    // Draw the inline polyline on top
     const polyline = new google.maps.Polyline({
       path: pathCoordinates,
       strokeColor: properties.inline.color,
@@ -91,20 +64,19 @@ export default class extends Controller {
       map: this.map,
       strokeLinecap: properties.inline.strokelinecap || 'round',
       strokeLinejoin: properties.inline.strokelinejoin || 'round',
-      // If it's a walking path, make it dotted
       icons: isWalking ? [{
         icon: {
           path: 'M 0,-1 0,1',
-          strokeOpacity: 1,
           scale: 4,
+          strokeColor: properties.inline.color,
+          strokeOpacity: properties.inline.opacity,
         },
         offset: '0',
-        repeat: '10px'
+        repeat: '20px'
       }] : [],
     });
     polyline.setMap(this.map);
 
-    // Add markers for the start and end of transport lines
     if (!isWalking) {
       new google.maps.Marker({
         position: pathCoordinates[0],
@@ -118,14 +90,6 @@ export default class extends Controller {
         title: "End of Transport",
       });
     }
-
-    // Adjust the map view to fit the entire polyline
-    const bounds = new google.maps.LatLngBounds();
-    pathCoordinates.forEach((coord) => {
-      bounds.extend(coord);
-    });
-
-    this.map.fitBounds(bounds);
   }
 
   handleCardClick(event) {
@@ -193,7 +157,15 @@ export default class extends Controller {
 
         console.log(`Drawing polyline for section ${sectionId} with coordinates:`, pathCoordinates);
 
-        this.drawPolyline(pathCoordinates, feature.properties);
+        const polyline = new google.maps.Polyline({
+          path: pathCoordinates,
+          strokeColor: feature.properties.inline.color,
+          strokeOpacity: feature.properties.inline.opacity,
+          strokeWeight: feature.properties.inline.width,
+          map: this.map,
+        });
+
+        polyline.setMap(this.map);
       }
     });
   }
