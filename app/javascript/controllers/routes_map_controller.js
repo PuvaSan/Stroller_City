@@ -56,41 +56,54 @@ export default class extends Controller {
   drawPolyline(pathCoordinates, properties) {
     const isWalking = properties.ways === "walk";
 
-    const polyline = new google.maps.Polyline({
-      path: pathCoordinates,
-      strokeColor: properties.inline.color,
-      strokeOpacity: properties.inline.opacity,
-      strokeWeight: properties.inline.width,
-      map: this.map,
-      strokeLinecap: properties.inline.strokelinecap || 'round',
-      strokeLinejoin: properties.inline.strokelinejoin || 'round',
-      icons: isWalking ? [{
-        icon: {
-          path: 'M 0,-1 0,1',
-          scale: 4,
-          strokeColor: properties.inline.color,
-          strokeOpacity: properties.inline.opacity,
-        },
-        offset: '0',
-        repeat: '20px'
-      }] : [],
-    });
+    const polylineOptions = {
+        path: pathCoordinates,
+        strokeOpacity: isWalking ? 0 : 0.5, // Set opacity to 0 for dashed lines
+        strokeWeight: 10,
+        map: this.map,
+        strokeLinecap: properties.inline.strokelinecap || 'round',
+        strokeLinejoin: properties.inline.strokelinejoin || 'round',
+    };
+
+    if (isWalking) {
+        // Define the dashed line symbol for walking routes
+        const lineSymbol = {
+            path: 'M 0,-1 0,1',
+            scale: 4,
+            strokeColor: properties.inline.color,
+            strokeOpacity: 0.5,
+        };
+
+        // Add the dashed line effect to the polyline
+        polylineOptions.icons = [{
+            icon: lineSymbol,
+            offset: '0',
+            repeat: '15px'
+        }];
+    } else {
+        // Set the color for transport routes
+        polylineOptions.strokeColor = properties.inline.color;
+    }
+
+    const polyline = new google.maps.Polyline(polylineOptions);
     polyline.setMap(this.map);
 
     if (!isWalking) {
-      new google.maps.Marker({
-        position: pathCoordinates[0],
-        map: this.map,
-        title: "Start of Transport",
-      });
+        // Add markers at the start and end of transport routes
+        new google.maps.Marker({
+            position: pathCoordinates[0],
+            map: this.map,
+            title: "Start of Transport",
+        });
 
-      new google.maps.Marker({
-        position: pathCoordinates[pathCoordinates.length - 1],
-        map: this.map,
-        title: "End of Transport",
-      });
+        new google.maps.Marker({
+            position: pathCoordinates[pathCoordinates.length - 1],
+            map: this.map,
+            title: "End of Transport",
+        });
     }
-  }
+}
+
 
   handleCardClick(event) {
     const sectionId = event.currentTarget.dataset.sectionId;
@@ -160,8 +173,8 @@ export default class extends Controller {
         const polyline = new google.maps.Polyline({
           path: pathCoordinates,
           strokeColor: feature.properties.inline.color,
-          strokeOpacity: feature.properties.inline.opacity,
-          strokeWeight: feature.properties.inline.width,
+          strokeOpacity: 0.5,
+          strokeWeight: 10,
           map: this.map,
         });
 
