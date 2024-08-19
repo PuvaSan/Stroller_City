@@ -22,8 +22,8 @@
           </p>
         </div>
         <div class="m-2 p-1 instructions-container">
-          <% @route['sections'].each do |section| %>
-            <%= render partial: 'section', locals: { section: section} %>
+          <% @route['sections'].each_with_index do |section, index| %>
+            <%= render partial: 'section', locals: { section: section, index: index} %>
           <% end %>
         </div>
       <% else %>

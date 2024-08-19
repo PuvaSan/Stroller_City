@@ -20,25 +20,20 @@
     </div>
   <% elsif section['type'] == 'move' %>
     <% if section['move'] == 'walk' %>
-      <% walk_index ||= 0 %> <!-- Initialize walk index if not already set -->
       <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
         data-move="walk"
-        data-index="<%= walk_index %>">
+        data-index="<%= index %>">
         <p>
-          <i class="fa-solid fa-person-walking"></i> Walk <%= section['distance'] %>m for
-          <%= section['time'] %> mins
+          <i class="fa-solid fa-person-walking"></i> Walk <%= section['distance'] %>m for <%= section['time'] %> mins
         </p>
       </div>
-      <% walk_index += 1 %> <!-- Increment walk index for each walk section -->
     <% else %>
       <% if section['transport'].present? %>
         <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
-          data-move="transport">
+          data-move="transport"
+          data-index="<%= index %>">
           <p>
-            <i class="fa-solid fa-train-subway"></i> Take
-            <span style="background-color:<%= section['transport']['color'] %>;"><%= section['transport']['name'] %></span>
-            from <strong><%= section['transport']['links'][0]['from']['name'] if section['transport']['links'] && section['transport']['links'][0] %></strong>
-            to <strong><%= section['transport']['links'][0]['to']['name'] if section['transport']['links'] && section['transport']['links'][0] %></strong>.
+            <i class="fa-solid fa-train-subway"></i> Take <%= section['transport']['name'] %> from <strong><%= section['transport']['links'][0]['from']['name'] %></strong> to <strong><%= section['transport']['links'][0]['to']['name'] %></strong>.
           </p>
         </div>
       <% else %>
