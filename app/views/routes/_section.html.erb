@@ -4,7 +4,7 @@
   <% if section['type'] == 'point' %>
     <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
       data-coordinates="<%= section['coord'].present? ? "#{section['coord']['lat']},#{section['coord']['lon']}" : '' %>"
-      data-section-id="<%= section['node_id'] %>">
+      data-move="point">
       <p>
         <% if section == first_point_section %>
           <i class="fa-solid fa-location-dot text-success"></i> <%= @origin %>
@@ -20,19 +20,20 @@
     </div>
   <% elsif section['type'] == 'move' %>
     <% if section['move'] == 'walk' %>
+      <% walk_index ||= 0 %> <!-- Initialize walk index if not already set -->
       <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
-        data-coordinates="<%= section['coord'].present? ? "#{section['coord']['lat']},#{section['coord']['lon']}" : '' %>"
-        data-section-id="<%= section['node_id'] %>">
+        data-move="walk"
+        data-index="<%= walk_index %>">
         <p>
           <i class="fa-solid fa-person-walking"></i> Walk <%= section['distance'] %>m for
           <%= section['time'] %> mins
         </p>
       </div>
+      <% walk_index += 1 %> <!-- Increment walk index for each walk section -->
     <% else %>
       <% if section['transport'].present? %>
         <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
-          data-coordinates=""
-          data-section-id="<%= section['transport']['links'][0]['from']['node_id'] %>">
+          data-move="transport">
           <p>
             <i class="fa-solid fa-train-subway"></i> Take
             <span style="background-color:<%= section['transport']['color'] %>;"><%= section['transport']['name'] %></span>
