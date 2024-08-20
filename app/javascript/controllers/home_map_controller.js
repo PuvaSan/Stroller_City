@@ -324,4 +324,84 @@ export default class extends Controller {
     window.location.href = redirectUrl;
   }
 
+  javi() {
+    let place = this.destinationAutocomplete.getPlace();
+
+      // recenters map when input is changed to a google place
+      if (place.geometry && place.geometry.location) {
+        map.setCenter( { lat: place.geometry.location.lat() - 0.005, lng: place.geometry.location.lng() });
+        map.setZoom(15);
+        // Add marker to the selected place
+        const marker = new google.maps.Marker({
+          position: place.geometry.location,
+          map: map,
+          title: place.name
+        });
+
+        this.getCurrentPosition();
+
+        // displays place name, address, and photos
+        this.nameTarget.innerText = place.name;
+        this.addressTarget.innerText = place.formatted_address;
+        this.phoneTarget.innerText = place.formatted_phone_number
+        if (place.editorial_summary) {
+          this.infoTarget.innerText = place.editorial_summary
+        }
+        this.photoTarget.innerHTML = "";
+        place.photos.forEach((photo) => {
+          const placeImage = photo.getUrl();
+          const imgElement = `<img height=80 width=80 class="me-2" src="${placeImage}" />`;
+          this.photoTarget.insertAdjacentHTML("beforeend", imgElement);
+        });
+        document.querySelector("#draggable-panel").style.height = "350px";
+        document.querySelector("#initial-content").classList.toggle("d-none");
+        document.querySelector("#place-description").classList.toggle("d-none");
+        document.querySelector("#reviews-container").classList.toggle("d-none");
+        document.getElementById("first-back-button").classList.toggle("d-none");
+
+        if (localStorage.getItem('recent') === null) {
+          let recent = [];
+          recent.push(place.name);
+          localStorage.setItem('recent', JSON.stringify(recent));
+        } else {
+          let recent = JSON.parse(localStorage.getItem('recent'));
+          recent.push(place.name);
+          localStorage.setItem('recent', JSON.stringify(recent));
+        }
+
+        //new changes for inputs
+        this.originInputTarget.classList.toggle("d-none")
+        document.getElementById("destination").parentElement.classList.add("d-none")
+
+        // Send the place name to Rails controller via AJAX
+        if (place.name) {
+          fetch('/pages/receive_place_name', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            body: JSON.stringify({ place_name: place.name })
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log("Place name sent successfully", data);
+            if (data.status === "success") {
+              // Fetch the reviews partial and insert it into the reviews section
+              fetch(`/pages/render_reviews?id=${data.id}`)
+                .then(response => response.text())
+                .then(html => {
+                  document.getElementById('reviews-container').innerHTML = html;
+                });
+            } else {
+              console.error("Error:", data.message);
+            }
+          })
+          .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+          });
+        }
+      }
+
+  }
 }
