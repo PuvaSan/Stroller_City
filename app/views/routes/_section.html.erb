@@ -1,46 +1,50 @@
-<% first_point_section = @route['sections'].find { |s| s['type'] == 'point' && s['name'] == 'start' } %>
-<% last_point_section = @route['sections'].reverse.find { |s| s['type'] == 'point' && s['name'] == 'goal' } %>
-<div class="section mb-4">
-  <% if section['type'] == 'point' %>
-    <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
-      data-coordinates="<%= section['coord'].present? ? "#{section['coord']['lat']},#{section['coord']['lon']}" : '' %>"
-      data-move="point">
-      <p>
-        <% if section == first_point_section %>
-          <i class="fa-solid fa-location-dot text-success"></i> <%= @origin %>
-        <% elsif section == last_point_section %>
-          <i class="fa-solid fa-location-pin text-danger"></i> <%= @destination %>
-        <% else %>
-          <i class="fa-solid fa-building"></i> <%= section['name'] %> Station
-        <% end %>
-        <% if section['gateway'].present? %>
-          <i class="fa-solid fa-elevator"></i> Take the elevator near <%= section['gateway'] %>
-        <% end %>
-      </p>
-    </div>
-  <% elsif section['type'] == 'move' %>
-    <% if section['move'] == 'walk' %>
+<% walk_card_index = 0 %> <!-- Initialize walk index once, outside of the loop -->
+<% first_point_section = route['sections'].find { |s| s['type'] == 'point' && s['name'] == 'start' } %>
+<% last_point_section = route['sections'].reverse.find { |s| s['type'] == 'point' && s['name'] == 'goal' } %>
+<% route['sections'].each_with_index do |section, index| %> <!-- Loop over each section -->
+  <div class="section mb-4">
+    <% if section['type'] == 'point' %>
       <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
-        data-move="walk"
-        data-index="<%= index %>">
+        data-coordinates="<%= section['coord'].present? ? "#{section['coord']['lat']},#{section['coord']['lon']}" : '' %>"
+        data-move="point">
         <p>
-          <i class="fa-solid fa-person-walking"></i> Walk <%= section['distance'] %>m for <%= section['time'] %> mins
+          <% if section == first_point_section %>
+            <i class="fa-solid fa-location-dot text-success"></i> <%= @origin %>
+          <% elsif section == last_point_section %>
+            <i class="fa-solid fa-location-pin text-danger"></i> <%= @destination %>
+          <% else %>
+            <i class="fa-solid fa-building"></i> <%= section['name'] %> Station
+          <% end %>
+          <% if section['gateway'].present? %>
+            <i class="fa-solid fa-elevator"></i> Take the elevator near <%= section['gateway'] %>
+          <% end %>
         </p>
       </div>
-    <% else %>
-      <% if section['transport'].present? %>
+    <% elsif section['type'] == 'move' %>
+      <% if section['move'] == 'walk' %>
         <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
-          data-move="transport"
-          data-index="<%= index %>">
+          data-move="walk"
+          data-index="<%= walk_card_index %>"> <!-- Use walk_card_index here -->
           <p>
-            <i class="fa-solid fa-train-subway"></i> Take <%= section['transport']['name'] %> from <strong><%= section['transport']['links'][0]['from']['name'] %></strong> to <strong><%= section['transport']['links'][0]['to']['name'] %></strong>.
+            <i class="fa-solid fa-person-walking"></i> Walk <%= section['distance'] %>m for <%= section['time'] %> mins
           </p>
         </div>
+        <% walk_card_index += 1 %> <!-- Increment walk index for each walk section -->
       <% else %>
-        <p>Transport details not available for this step.</p>
+        <% if section['transport'].present? %>
+          <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
+            data-move="transport"
+            data-index="<%= index %>">
+            <p>
+              <i class="fa-solid fa-train-subway"></i> Take <%= section['transport']['name'] %> from <strong><%= section['transport']['links'][0]['from']['name'] %></strong> to <strong><%= section['transport']['links'][0]['to']['name'] %></strong>.
+            </p>
+          </div>
+        <% else %>
+          <p>Transport details not available for this step.</p>
+        <% end %>
       <% end %>
+    <% else %>
+      <p>Unknown step in the journey. Please check the details.</p>
     <% end %>
-  <% else %>
-    <p>Unknown step in the journey. Please check the details.</p>
-  <% end %>
-</div>
+  </div>
+<% end %>

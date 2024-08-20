@@ -62,41 +62,45 @@ export default class extends Controller {
     return walkSections;
 }
 
+handleCardClick(event) {
+  const moveType = event.currentTarget.dataset.move; // Get the move type (walk, transport, point, etc.)
+  const cardIndex = event.currentTarget.dataset.index; // Get the index of the card
 
+  console.log(`[handleCardClick] Move type: ${moveType}`);
+  console.log(`[handleCardClick] Index: ${cardIndex}`);
 
-  handleCardClick(event) {
-    const moveType = event.currentTarget.dataset.move;
-    const index = event.currentTarget.dataset.index;
+  if (moveType === "walk") {
+      console.log(`[handleCardClick] This is a walk card with index: ${cardIndex}`);
 
-    console.log(`[handleCardClick] Move type: ${moveType}`);
-    console.log(`[handleCardClick] Index: ${index}`);
+      const walkSection = this.walkSections[cardIndex];
 
-    if (moveType === "walk" && index !== undefined) {
-        const walkSection = this.walkSections[index];
-
-        if (walkSection) {
-            console.log(`[handleCardClick] Focusing on walk section for index: ${index}`);
-            this.fitMapToBounds(walkSection.bounds);
-        } else {
-            console.error(`[handleCardClick] No matching walk section found for index: ${index}`);
-        }
-    } else if (moveType === "transport") {
-        const transportCoordinates = this.getCoordinatesForMoveType("transport");
-        if (transportCoordinates.length > 0) {
-            this.fitMapToCoordinates(transportCoordinates);
-        } else {
-            console.error("[handleCardClick] No matching transport route found.");
-        }
-    } else if (moveType === "point" && event.currentTarget.dataset.coordinates) {
-        const coordinates = event.currentTarget.dataset.coordinates.split(',').map(parseFloat);
-        if (coordinates.length === 2) {
-            this.zoomTo({ lat: coordinates[0], lng: coordinates[1] });
-        } else {
-            console.error(`[handleCardClick] Invalid coordinates format for point: ${coordinates}`);
-        }
-    } else {
-        console.error(`[handleCardClick] No matching section found for index: ${index}`);
-    }
+      if (walkSection) {
+          console.log(`[handleCardClick] Focusing on walk section for index: ${cardIndex}`);
+          this.fitMapToBounds(walkSection.bounds);
+      } else {
+          console.error(`[handleCardClick] No matching walk section found for index: ${cardIndex}`);
+      }
+  } else if (moveType === "transport") {
+      // Handle transport cards
+      console.log(`[handleCardClick] This is a transport card.`);
+      const transportCoordinates = this.getCoordinatesForMoveType("transport");
+      if (transportCoordinates.length > 0) {
+          this.fitMapToCoordinates(transportCoordinates);
+      } else {
+          console.error("[handleCardClick] No matching transport route found.");
+      }
+  } else if (moveType === "point" && event.currentTarget.dataset.coordinates) {
+      // Handle point cards
+      const coordinates = event.currentTarget.dataset.coordinates.split(',').map(parseFloat);
+      if (coordinates.length === 2) {
+          console.log(`[handleCardClick] Point location found. Zooming into: lat=${coordinates[0]}, lng=${coordinates[1]}`);
+          this.zoomTo({ lat: coordinates[0], lng: coordinates[1] });
+      } else {
+          console.error(`[handleCardClick] Invalid coordinates format for point: ${coordinates}`);
+      }
+  } else {
+      console.error(`[handleCardClick] No matching section found for ID: ${sectionId}`);
+  }
 }
 
   drawFullPolylineRoute() {
