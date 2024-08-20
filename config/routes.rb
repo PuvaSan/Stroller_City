@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  resources :trips
   resources :routes
-  resources :details
   resources :places do
     resources :reviews, only: [:new, :create]
   end
