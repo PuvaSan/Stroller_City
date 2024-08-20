@@ -4,7 +4,8 @@ class PagesController < ApplicationController
   def home
     @place = Place.find_by(params[:id]) if params[:id].present?
     # @place = Place.find_by(name: @place_name) if @place_name.present?
-
+    @reviews = Review.all
+    @review = Review.new
     # Handle the initial page load
     @top_places = Place
         .select('places.address, COALESCE(AVG(reviews.rating), 0) AS average_rating')
