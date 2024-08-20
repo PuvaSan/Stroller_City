@@ -3,12 +3,12 @@
   display: flex;
   align-items: center;
   gap: 1px;
-  padding: 1px 18px; /* Updated padding */
+  padding: 1px 18px;
   border: 4px solid;
   border-color: transparent;
-  font-size: 10px; /* Updated font-size */
+  font-size: 10px;
   background-color: inherit;
-  border-radius: 50px; /* Updated border-radius */
+  border-radius: 50px;
   font-weight: 600;
   color: #FE6726;
   box-shadow: 0 0 0 2px #FE6726;
@@ -19,18 +19,18 @@
 
 .animated-button svg {
   position: absolute;
-  width: 12px; /* Updated width */
+  width: 12px;
   fill: #FE6726;
   z-index: 9;
   transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .animated-button .arr-1 {
-  right: 8px; /* Updated right */
+  right: 8px;
 }
 
 .animated-button .arr-2 {
-  left: -12.5%; /* Updated left */
+  left: -12.5%;
 }
 
 .animated-button .circle {
@@ -38,8 +38,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 10px; /* Updated width */
-  height: 10px; /* Updated height */
+  width: 10px;
+  height: 10px;
   background-color: #FE6726;
   border-radius: 50%;
   opacity: 0;
@@ -49,45 +49,16 @@
 .animated-button .text {
   position: relative;
   z-index: 1;
-  transform: translateX(-6px); /* Updated transform */
+  transform: translateX(-6px);
   transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.animated-button:hover {
-  box-shadow: 0 0 0 6px transparent; /* Updated box-shadow */
-  color: #212121;
-  border-radius: 6px; /* Updated border-radius */
-}
-
-.animated-button:hover .arr-1 {
-  right: -12.5%; /* Updated right */
-}
-
-.animated-button:hover .arr-2 {
-  left: 8px; /* Updated left */
-}
-
-.animated-button:hover .text {
-  transform: translateX(6px); /* Updated transform */
-}
-
-.animated-button:hover svg {
-  fill: #212121;
 }
 
 .animated-button:active {
   scale: 0.95;
-  box-shadow: 0 0 0 2px #FE6726; /* Updated box-shadow */
-
+  box-shadow: 0 0 0 2px #FE6726;
 }
 
 .focus:focus{
   background-color: #FE6726;
   color: white;
-}
-
-.animated-button:hover .circle {
-  width: 110px; /* Updated width */
-  height: 110px; /* Updated height */
-  opacity: 1;
 }
