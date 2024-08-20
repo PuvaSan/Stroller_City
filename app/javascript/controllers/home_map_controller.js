@@ -32,6 +32,7 @@ export default class extends Controller {
     console.log(buttonId, selectedContainer, containers);
   }
 
+
   select(event) {
     // Remove the 'selected' class from all buttons
     this.element.querySelectorAll('.animated-button').forEach(button => {
@@ -226,11 +227,11 @@ export default class extends Controller {
 
         if (localStorage.getItem('recent') === null) {
           let recent = [];
-          recent.push(place.name);
+          recent.push({ name: place.name, photo: place.photos[0].getUrl() });
           localStorage.setItem('recent', JSON.stringify(recent));
         } else {
           let recent = JSON.parse(localStorage.getItem('recent'));
-          recent.push(place.name);
+          recent.push({ name: place.name, photo: place.photos[0].getUrl() });
           localStorage.setItem('recent', JSON.stringify(recent));
         }
 
