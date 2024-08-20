@@ -26,7 +26,10 @@ export default class extends Controller {
 
     // Get the coordinates for walk sections and draws the full polyline route
     this.walkSections = this.getCoordinatesForWalkSections();
+    this.transportSections = this.getCoordinatesForTransportSections();
     this.drawFullPolylineRoute();
+
+
 
     // adds transit layer over our map
     const transitLayer = new google.maps.TransitLayer();
@@ -151,11 +154,11 @@ export default class extends Controller {
     const routeData = this.element.dataset.route;
     let route;
     try {
-        route = JSON.parse(routeData);
-        console.log("[getCoordinatesForWalkSections] Parsed route data successfully:", route);
+      route = JSON.parse(routeData);
+      console.log("[getCoordinatesForWalkSections] Parsed route data successfully:", route);
     } catch (error) {
-        console.error("[getCoordinatesForWalkSections] Failed to parse route data:", error);
-        return [];
+      console.error("[getCoordinatesForWalkSections] Failed to parse route data:", error);
+      return [];
     }
 
     const walkSections = [];
@@ -163,70 +166,110 @@ export default class extends Controller {
     let currentBounds = new google.maps.LatLngBounds();
 
     route.shapes.features.forEach((shape) => {
-        if (shape.properties.ways === "walk") {
-            // Add coordinates to the current walk section
-            shape.geometry.coordinates.forEach((coord) => {
-                const latLng = { lat: coord[1], lng: coord[0] };
-                currentSection.push(latLng);
-                currentBounds.extend(latLng);
-            });
-        } else if (currentSection.length > 0) {
-            // If we're switching from walk to transport, finalize the current walk section
-            walkSections.push({ coordinates: currentSection, bounds: currentBounds });
-            currentSection = [];
-            currentBounds = new google.maps.LatLngBounds(); // Reset for the next section
-        }
+      if (shape.properties.ways === "walk") {
+        shape.geometry.coordinates.forEach((coord) => {
+          const latLng = { lat: coord[1], lng: coord[0] };
+          currentSection.push(latLng);
+          currentBounds.extend(latLng);
+        });
+      } else if (currentSection.length > 0) {
+        walkSections.push({ coordinates: currentSection, bounds: currentBounds });
+        currentSection = [];
+        currentBounds = new google.maps.LatLngBounds(); // Reset for the next section
+      }
     });
 
-    // Push the last collected walk section if it wasn't pushed yet
     if (currentSection.length > 0) {
-        walkSections.push({ coordinates: currentSection, bounds: currentBounds });
+      walkSections.push({ coordinates: currentSection, bounds: currentBounds });
     }
 
     console.log("[getCoordinatesForWalkSections] Collected walk sections:", walkSections);
     return walkSections;
-}
+  }
 
-handleCardClick(event) {
-  const moveType = event.currentTarget.dataset.move; // Get the move type (walk, transport, point, etc.)
-  const cardIndex = event.currentTarget.dataset.index; // Get the index of the card
+  getCoordinatesForTransportSections() {
+    const routeData = this.element.dataset.route;
+    let route;
+    try {
+      route = JSON.parse(routeData);
+      console.log("[getCoordinatesForTransportSections] Parsed route data successfully:", route);
+    } catch (error) {
+      console.error("[getCoordinatesForTransportSections] Failed to parse route data:", error);
+      return [];
+    }
 
-  console.log(`[handleCardClick] Move type: ${moveType}`);
-  console.log(`[handleCardClick] Index: ${cardIndex}`);
+    const transportSections = [];
+    let currentSection = [];
+    let currentBounds = new google.maps.LatLngBounds();
 
-  if (moveType === "walk") {
+    route.shapes.features.forEach((shape) => {
+      if (shape.properties.ways === "transport") { // Group only transport sections
+        shape.geometry.coordinates.forEach((coord) => {
+          const latLng = { lat: coord[1], lng: coord[0] };
+          currentSection.push(latLng);
+          currentBounds.extend(latLng);
+        });
+      } else if (currentSection.length > 0) {
+        // If we're switching from transport to walk, finalize the current transport section
+        transportSections.push({ coordinates: currentSection, bounds: currentBounds });
+        currentSection = [];
+        currentBounds = new google.maps.LatLngBounds(); // Reset for the next section
+      }
+    });
+
+    // Push the last collected transport section if it wasn't pushed yet
+    if (currentSection.length > 0) {
+      transportSections.push({ coordinates: currentSection, bounds: currentBounds });
+    }
+
+    console.log("[getCoordinatesForTransportSections] Collected transport sections:", transportSections);
+    return transportSections;
+  }
+
+
+
+  handleCardClick(event) {
+    const moveType = event.currentTarget.dataset.move; // Get the move type (walk, transport, point, etc.)
+    const cardIndex = event.currentTarget.dataset.index; // Get the index of the card
+
+    console.log(`[handleCardClick] Move type: ${moveType}`);
+    console.log(`[handleCardClick] Index: ${cardIndex}`);
+
+    if (moveType === "walk") {
       console.log(`[handleCardClick] This is a walk card with index: ${cardIndex}`);
 
       const walkSection = this.walkSections[cardIndex];
 
       if (walkSection) {
-          console.log(`[handleCardClick] Focusing on walk section for index: ${cardIndex}`);
-          this.fitMapToBounds(walkSection.bounds);
+        console.log(`[handleCardClick] Focusing on walk section for index: ${cardIndex}`);
+        this.fitMapToBounds(walkSection.bounds);
       } else {
-          console.error(`[handleCardClick] No matching walk section found for index: ${cardIndex}`);
+        console.error(`[handleCardClick] No matching walk section found for index: ${cardIndex}`);
       }
-  } else if (moveType === "transport") {
-      // Handle transport cards
-      console.log(`[handleCardClick] This is a transport card.`);
-      const transportCoordinates = this.getCoordinatesForMoveType("transport");
-      if (transportCoordinates.length > 0) {
-          this.fitMapToCoordinates(transportCoordinates);
+    } else if (moveType === "transport") {
+      console.log(`[handleCardClick] This is a transport card with index: ${cardIndex}`);
+
+      const transportSection = this.transportSections[cardIndex];
+
+      if (transportSection) {
+        console.log(`[handleCardClick] Focusing on transport section for index: ${cardIndex}`);
+        this.fitMapToBounds(transportSection.bounds);
       } else {
-          console.error("[handleCardClick] No matching transport route found.");
+        console.error(`[handleCardClick] No matching transport section found for index: ${cardIndex}`);
       }
-  } else if (moveType === "point" && event.currentTarget.dataset.coordinates) {
-      // Handle point cards
+    } else if (moveType === "point" && event.currentTarget.dataset.coordinates) {
       const coordinates = event.currentTarget.dataset.coordinates.split(',').map(parseFloat);
       if (coordinates.length === 2) {
-          console.log(`[handleCardClick] Point location found. Zooming into: lat=${coordinates[0]}, lng=${coordinates[1]}`);
-          this.zoomTo({ lat: coordinates[0], lng: coordinates[1] });
+        console.log(`[handleCardClick] Point location found. Zooming into: lat=${coordinates[0]}, lng=${coordinates[1]}`);
+        this.zoomTo({ lat: coordinates[0], lng: coordinates[1] });
       } else {
-          console.error(`[handleCardClick] Invalid coordinates format for point: ${coordinates}`);
+        console.error(`[handleCardClick] Invalid coordinates format for point: ${coordinates}`);
       }
-  } else {
-      console.error(`[handleCardClick] No matching section found for ID: ${sectionId}`);
+    } else {
+      console.error(`[handleCardClick] No matching section found for ID: ${cardIndex}`);
+    }
   }
-}
+
 
   drawFullPolylineRoute() {
     const routeData = this.element.dataset.route;
