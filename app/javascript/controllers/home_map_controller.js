@@ -2,9 +2,6 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="another-map"
 export default class extends Controller {
-  static values = {
-    apiKey: String,
-  }
   static targets = [ "name", "address", "photo", "originInput", "phone", "info", "recent", "recommended"]
   connect() {
     console.log("home map connected")
@@ -17,6 +14,8 @@ export default class extends Controller {
         })
     // console.log("api key", this.apiKeyValue)
   }
+
+  apiKey = "AIzaSyCWOSZTJ-G738Y4qoVuyVHh1YYjtWUSlao";
 
   //Switches the Ikumi container based on the button clicked
   ikumibutton(event) {
@@ -106,7 +105,7 @@ export default class extends Controller {
           this.infoTarget.innerText = place.editorial_summary
         }
         this.photoTarget.innerHTML = "";
-        place.photos.forEach((photo) => {
+        place.photos.slice(0, 5).forEach((photo) => {
           const placeImage = photo.getUrl();
           const imgElement = `<img height=80 width=80 class="me-2" src="${placeImage}" />`;
           this.photoTarget.insertAdjacentHTML("beforeend", imgElement);
@@ -168,7 +167,7 @@ export default class extends Controller {
     navigator.geolocation.getCurrentPosition((position) => {
       this.user_lat = position.coords.latitude;
       this.user_long = position.coords.longitude;
-      fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.user_lat},${this.user_long}&key=AIzaSyA4qrApURx9lwvAae-pPmNbV07vPqlbHxo`)
+      fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.user_lat},${this.user_long}&key=${this.apiKey}`)
         .then(response => response.json())
         .then(data => {
           document.getElementById('origin').value = data.results[0].formatted_address
@@ -214,40 +213,40 @@ export default class extends Controller {
     // Redirect to the constructed URL
     window.location.href = redirectUrl;
   }
+
   javi(event) {
     const buttonId = event.currentTarget.id;
-    const url = `https://maps.googleapis.com/maps/api/place/details/json?fields=name%2Cphoto%2Cformatted_address%2Cgeometry%2Cphoto&place_id=${buttonId}&key=AIzaSyA4qrApURx9lwvAae-pPmNbV07vPqlbHxo`
-
+    // const url = `https://maps.googleapis.com/maps/api/place/details/json?fields=name%2Cphoto%2Cformatted_phone%2Cformatted_address%2Cgeometry%2Cphoto&place_id=${buttonId}&key=AIzaSyA4qrApURx9lwvAae-pPmNbV07vPqlbHxo`
+    const url = `https://places.googleapis.com/v1/places/${buttonId}?fields=displayName,formattedAddress,photos,location,nationalPhoneNumber,editorialSummary&key=${this.apiKey}`
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data.result)
-        const place = data.result;
-
+        const place = data;
+        console.log(place);
 
         // recenters map when input is changed to a google place
-        if (place.geometry && place.geometry.location) {
-          this.map.setCenter( { lat: place.geometry.location.lat() - 0.005, lng: place.geometry.location.lng() });
+        if (place.location) {
+          this.map.setCenter( { lat: place.location.latitude - 0.005, lng: place.location.longitude });
           this.map.setZoom(15);
           // Add marker to the selected place
           const marker = new google.maps.Marker({
-            position: place.geometry.location,
+            position: { lat: place.location.latitude, lng: place.location.longitude },
             map: this.map,
-            title: place.name
+            title: place.displayName.text
           });
 
           this.getCurrentPosition();
 
           // displays place name, address, and photos
-          this.nameTarget.innerText = place.name;
-          this.addressTarget.innerText = place.formatted_address;
-          this.phoneTarget.innerText = place.formatted_phone_number
-          if (place.editorial_summary) {
-            this.infoTarget.innerText = place.editorial_summary
+          this.nameTarget.innerText = place.displayName.text;
+          this.addressTarget.innerText = place.formattedAddress;
+          this.phoneTarget.innerText = place.nationalPhoneNumber
+          if (place.editorialSummary) {
+            this.infoTarget.innerText = place.editorialSummary.text
           }
           this.photoTarget.innerHTML = "";
-          place.photos.forEach((photo) => {
-            const placeImage = photo.getUrl();
+          place.photos.slice(0, 5).forEach((photo) => {
+            const placeImage = `https://places.googleapis.com/v1/${photo.name}/media?maxHeightPx=400&maxWidthPx=400&key=${this.apiKey}`
             const imgElement = `<img height=80 width=80 class="me-2" src="${placeImage}" />`;
             this.photoTarget.insertAdjacentHTML("beforeend", imgElement);
           });
@@ -259,11 +258,11 @@ export default class extends Controller {
 
           if (localStorage.getItem('recent') === null) {
             let recent = [];
-            recent.push(place.name);
+            recent.push(place.displayName.text);
             localStorage.setItem('recent', JSON.stringify(recent));
           } else {
             let recent = JSON.parse(localStorage.getItem('recent'));
-            recent.push(place.name);
+            recent.push(place.displayName.text);
             localStorage.setItem('recent', JSON.stringify(recent));
           }
 
@@ -272,14 +271,14 @@ export default class extends Controller {
           document.getElementById("destination").parentElement.classList.add("d-none")
 
           // Send the place name to Rails controller via AJAX
-          if (place.name) {
+          if (place.displayName) {
             fetch('/pages/receive_place_name', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
               },
-              body: JSON.stringify({ place_name: place.name })
+              body: JSON.stringify({ place_name: place.displayName.text })
             })
             .then(response => response.json())
             .then(data => {
@@ -302,8 +301,6 @@ export default class extends Controller {
       }
     });
   }
-
-
 
   //map styling
   retro = [
