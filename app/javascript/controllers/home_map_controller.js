@@ -9,12 +9,13 @@ export default class extends Controller {
   connect() {
     console.log("home map connected")
     console.log(this.nameTarget, this.addressTarget)
-    document.querySelector("#draggable-panel").style.height = "80vh";
-        //get recent search history from local storage
-        const recent = JSON.parse(localStorage.getItem('recent'))
-        recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
-        this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card"><div class="card-body"> <div class="card-text">${place}</div></div></div>`)
-        })
+    // document.querySelector("#draggable-panel").style.height = "80vh";
+    //get recent search history from local storage
+    document.querySelector("#current-location").innerText = this.getCurrentPosition();
+    const recent = JSON.parse(localStorage.getItem('recent'))
+    recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
+    this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card"><div class="card-body"> <div class="card-text">${place}</div></div></div>`)
+    })
     // console.log("api key", this.apiKeyValue)
   }
 
@@ -170,6 +171,9 @@ export default class extends Controller {
         .then(response => response.json())
         .then(data => {
           document.getElementById('origin').value = data.results[0].formatted_address
+          const addressComponents = data.results[0].address_components;
+          const localityComponent = addressComponents.find(component => component.types.includes('locality'));
+          return localityComponent;
         })
     })
     this.origin = undefined;

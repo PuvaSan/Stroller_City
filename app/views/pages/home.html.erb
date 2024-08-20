@@ -1,28 +1,64 @@
 <!-- frame -->
 <div style="height:100vh;width:100vw;" data-controller="home-map">
-  <!-- location input -->
-  <div class="d-flex w-100 align-items-center" style="position:absolute; top:0px; z-index:1;">
-    <div style="width: 73px">
-      <button class="mx-2 bg-white br-30 d-none" id="first-back-button" data-action="click->home-map#firstBack">
-        <i class="fa-solid fa-less-than text-secondary"></i>
-      </button>
+  <!-- navbar -->
+  <div class="d-flex justify-content-between bg-white pt-3" style="margin-bottom: -20px;">
+    <div class="d-flex ms-3 align-items-center">
+      <i class="fa-solid fa-location-dot text-primary me-2" style="z-index: 1;"></i>
+      <p style="z-index: 1;" class="m-0"><strong id="current-location"></strong></p>
     </div>
-    <div id="input-fields" class="container">
-      <div class="d-flex justify-content-between d-none" data-home-map-target="originInput">
-        <input type="text" placeholder="Enter starting location" id="origin">
-        <button class="btn btn-primary" data-action="click->home-map#getCurrentPosition"><i class="fa-solid fa-location-dot text-white"></i></button>
+
+    <% if user_signed_in? && current_user.photo.attached? %>
+      <div class="d-flex align-items-center">
+        <p class="m-0" style="z-index: 1;"><strong><%= current_user.username %></strong></p>
+        <%= cl_image_tag current_user.photo.key, class: "avatar mx-3", style: "z-index: 1;" %>
       </div>
-      <div class="d-flex justify-content-between ">
-        <input type="text" placeholder="Where do you wanna go?" id="destination">
-        <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass text-white"></i></button>
+    <% elsif user_signed_in? && !current_user.photo.attached? %>
+      <div class="d-flex align-items-center">
+        <p class="m-0" style="z-index: 1;"><strong><%= current_user.username %></strong></p>
+        <%= image_tag "guest.png", class: "avatar mx-3", style: "z-index: 1;" %>
       </div>
-    </div>
-    <div id="for-centering" style="width: 73px"></div>
+    <% else %>
+      <div class="d-flex align-items-center">
+        <p class="m-0" style="z-index: 1;"><strong>Guest</strong></p>
+        <%= image_tag "guest.png", class: "avatar mx-3", style: "z-index: 1;" %>
+      </div>
+    <% end %>
   </div>
+
+  <!-- header -->
+  <div class="w-100 bg-white d-flex justify-content-between align-items-center" style="position:relative;">
+    <div class="ms-3" style="z-index: 0;">
+      <h2 class="m-0 text-primary"><strong>Stroller City</strong></h2>
+      <p>Accessible routing, made easy</p>
+    </div>
+    <div class="me-3">
+      <%= image_tag 'stroll1.png', height: '180px' %>
+    </div>
+    <!-- location input -->
+    <div class="d-flex w-100 align-items-center" style="position:absolute; bottom:-40px; z-index:1;">
+      <div style="width: 73px">
+        <button class="mx-2 bg-white br-30 d-none" id="first-back-button" data-action="click->home-map#firstBack">
+          <i class="fa-solid fa-arrow-rotate-left"></i>
+        </button>
+      </div>
+      <div id="input-fields" class="container">
+        <div class="d-flex justify-content-between d-none" data-home-map-target="originInput">
+          <input type="text" placeholder="Enter starting location" id="origin">
+          <button class="btn btn-primary" data-action="click->home-map#getCurrentPosition"><i class="fa-solid fa-location-dot text-white"></i></button>
+        </div>
+        <div class="d-flex justify-content-between ">
+          <input type="text" placeholder="Where do you wanna go?" id="destination">
+          <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass text-white"></i></button>
+        </div>
+      </div>
+      <div id="for-centering" style="width: 73px"></div>
+    </div>
+  </div>
+
   <!-- map -->
   <div id="map" style="z-index: 0; height: 100vh;" data-action="load@window->home-map#initMap"></div>
   <!-- draggable-panel -->
-  <div id="draggable-panel" class="bg-white w-100" data-controller="panel-resizer">
+  <div id="draggable-panel" class="bg-white w-100" data-controller="panel-resizer" style="z-index: 0;">
     <!-- draggable thingy -->
     <div id="resizer" class="w-100 d-flex align-items-center" data-action="mousedown->panel-resizer#grab touchstart->panel-resizer#grab">
       <hr id="panel-top-line">
@@ -30,30 +66,35 @@
     <div id="panel-content w-100">
       <!-- Place description -->
       <%= render partial: 'place_description' %>
+
       <!-- home -->
       <div id="initial-content">
-        <h1 class="mt-3">Welcome to Stroller city!</h1>
-        <p>Accessible routing, made easy</p>
-        <hr>
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <% if user_signed_in? && current_user.photo.attached? %>
-            <%= cl_image_tag current_user.photo.key, class: "avatar-large me-3" %>
-            <h3 class="flex-grow-1 m-0"><strong><%= current_user.username %></strong></h3>
-            <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "text-decoration-none" do %>
-              <h3 class="text-info m-0">Logout</h3>
-            <% end %>
-          <% else %>
-            <%= image_tag "guest.png", class: "avatar-large me-3" %>
-            <% if user_signed_in? && !current_user.photo.attached? %>
+        <!--
+          <h1 class="mt-3">Welcome to Stroller city!</h1>
+          <p>Accessible routing, made easy</p>
+          <hr>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <% if user_signed_in? && current_user.photo.attached? %>
+              <%= cl_image_tag current_user.photo.key, class: "avatar-large me-3" %>
               <h3 class="flex-grow-1 m-0"><strong><%= current_user.username %></strong></h3>
+              <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "text-decoration-none" do %>
+                <h3 class="text-info m-0">Logout</h3>
+              <% end %>
             <% else %>
-              <h3 class="flex-grow-1 m-0"><strong>Guest</strong></h3>
+              <%= image_tag "guest.png", class: "avatar-large me-3" %>
+              <% if user_signed_in? && !current_user.photo.attached? %>
+                <h3 class="flex-grow-1 m-0"><strong><%= current_user.username %></strong></h3>
+              <% else %>
+                <h3 class="flex-grow-1 m-0"><strong>Guest</strong></h3>
+              <% end %>
+              <%= link_to new_user_session_path, class: "text-decoration-none" do %>
+                <h3 class="text-info m-0">Login</h3>
+              <% end %>
             <% end %>
-            <%= link_to new_user_session_path, class: "text-decoration-none" do %>
-              <h3 class="text-info m-0">Login</h3>
-            <% end %>
-          <% end %>
-        </div>
+          </div>
+        -->
+
+        <h3><strong>Places</strong></h3>
         <div class="d-flex">
           <!-- Button 2 -->
           <button class="animated-button mx-auto focus">
@@ -96,7 +137,7 @@
           <%= render 'recommended' %>
         </div>
         <div class="container" id="javier-container">
-          <h1 class="text-center">Reviews</h1>
+          <h3><strong>Reviews</strong></h3>
 
           <!-- Buttons -->
           <%= render 'javier/buttons' %>
