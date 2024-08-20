@@ -227,13 +227,14 @@ export default class extends Controller {
 
         if (localStorage.getItem('recent') === null) {
           let recent = [];
-          recent.push({ name: place.name, photo: place.photos[0].getUrl() });
+          recent.push(place.name);
           localStorage.setItem('recent', JSON.stringify(recent));
         } else {
           let recent = JSON.parse(localStorage.getItem('recent'));
-          recent.push({ name: place.name, photo: place.photos[0].getUrl() });
+          recent.push(place.name);
           localStorage.setItem('recent', JSON.stringify(recent));
         }
+
 
         //new changes for inputs
         this.originInputTarget.classList.toggle("d-none")
