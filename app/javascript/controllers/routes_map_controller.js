@@ -187,45 +187,70 @@ export default class extends Controller {
     return walkSections;
   }
 
+
   getCoordinatesForTransportSections() {
     const routeData = this.element.dataset.route;
     let route;
     try {
-      route = JSON.parse(routeData);
-      console.log("[getCoordinatesForTransportSections] Parsed route data successfully:", route);
+        route = JSON.parse(routeData);
+        console.log("[getCoordinatesForTransportSections] Parsed route data successfully:", route);
     } catch (error) {
-      console.error("[getCoordinatesForTransportSections] Failed to parse route data:", error);
-      return [];
+        console.error("[getCoordinatesForTransportSections] Failed to parse route data:", error);
+        return [];
     }
 
     const transportSections = [];
     let currentSection = [];
     let currentBounds = new google.maps.LatLngBounds();
 
+    const transferPoints = route.sections
+        .filter(section => section.type === 'point' && section.node_id && !section.gateway)
+        .map(section => ({ lat: section.coord.lat, lng: section.coord.lon }));
+
+    const isWithin100Meters = (coord1, coord2) => {
+      const rad = (x) => x * Math.PI / 180;
+      const R = 6371; // Earth’s mean radius in km
+      const dLat = rad(coord2.lat - coord1.lat);
+      const dLong = rad(coord2.lng - coord1.lng);
+      const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(rad(coord1.lat)) * Math.cos(rad(coord2.lat)) *
+                Math.sin(dLong / 2) * Math.sin(dLong / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      const distance = R * c; // Distance in km
+      return distance < 0.1; // Adjust the threshold to 200 meters
+  };
+
     route.shapes.features.forEach((shape) => {
-      if (shape.properties.ways === "transport") { // Group only transport sections
-        shape.geometry.coordinates.forEach((coord) => {
-          const latLng = { lat: coord[1], lng: coord[0] };
-          currentSection.push(latLng);
-          currentBounds.extend(latLng);
-        });
-      } else if (currentSection.length > 0) {
-        // If we're switching from transport to walk, finalize the current transport section
-        transportSections.push({ coordinates: currentSection, bounds: currentBounds });
-        currentSection = [];
-        currentBounds = new google.maps.LatLngBounds(); // Reset for the next section
-      }
+        if (shape.properties.ways === "transport") {
+            const coords = shape.geometry.coordinates;
+
+            coords.forEach(([lon, lat]) => {
+                const latLng = { lat: lat, lng: lon };
+
+                if (transferPoints.some(tp => isWithin100Meters(latLng, tp))) {
+                    // If the current coordinate is within 1km of a transfer point, finalize the current section
+                    if (currentSection.length > 0) {
+                        transportSections.push({ coordinates: currentSection, bounds: currentBounds });
+                        currentSection = [];
+                        currentBounds = new google.maps.LatLngBounds(); // Reset for the next section
+                    }
+                }
+
+                // Add the current coordinate to the current section
+                currentSection.push(latLng);
+                currentBounds.extend(latLng);
+            });
+        }
     });
 
     // Push the last collected transport section if it wasn't pushed yet
     if (currentSection.length > 0) {
-      transportSections.push({ coordinates: currentSection, bounds: currentBounds });
+        transportSections.push({ coordinates: currentSection, bounds: currentBounds });
     }
 
     console.log("[getCoordinatesForTransportSections] Collected transport sections:", transportSections);
     return transportSections;
-  }
-
+}
 
 
   handleCardClick(event) {

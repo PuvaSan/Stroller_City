@@ -13,6 +13,8 @@
             <i class="fa-solid fa-location-dot text-success"></i> <%= @origin %>
           <% elsif section == last_point_section %>
             <i class="fa-solid fa-location-pin text-danger"></i> <%= @destination %>
+          <% elsif section['node_id'].present? && section['gateway'].nil? %> <!-- condition: no gateway but has a node -->
+            <i class="fa-solid fa-right-left"></i> Transfer at <%= section['name'] %> Station
           <% else %>
             <i class="fa-solid fa-building"></i> <%= section['name'] %> Station
           <% end %>
