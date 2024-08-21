@@ -1,16 +1,11 @@
 puts "Destroying all records..."
-
-# Destroy dependent records first to avoid foreign key violations
-Detail.destroy_all
-Trip.destroy_all
-Route.destroy_all
-
 # Destroy non-dependent records
 Review.destroy_all
 User.destroy_all
 Place.destroy_all
+puts "All records destroyed!"
 
-puts "Creating users..."
+puts "Creating 4 main users..."
 # Create users
 User.create!(
   [
@@ -20,69 +15,76 @@ User.create!(
     { email: "IkumiOjiro2017@gmail.com", password: "mybirthday01", username: "SuperSaiyanIkumi" }
   ]
 )
+puts "4 main users created!"
 
-# Find users to attach photos
-user1 = User.find_by(username: "brianUchiha")
-user2 = User.find_by(username: "AyyyaSayonara")
-user3 = User.find_by(username: "HabiPieKing")
-user4 = User.find_by(username: "SuperSaiyanIkumi")
+puts "Attaching photos to 4 main users..."
+User.find_by(username: "brianUchiha").photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600697/brian_zwyeui.jpg"), filename: "brian.jpg")
+User.find_by(username: "AyyyaSayonara").photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600697/aya_sqzo1w.jpg"), filename: "aya.jpg")
+User.find_by(username: "HabiPieKing").photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600697/javi_pps9n6.jpg"), filename: "javi.jpg")
+User.find_by(username: "SuperSaiyanIkumi").photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600699/ikumi_lqqsra.png"), filename: "ikumi.jpg")
+puts "Photos attached to 4 main users!"
 
-puts "Attaching photos to users..."
-# Attach photos if users were created successfully
-if user1 && user2 && user3 && user4
-  user1.photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600697/brian_zwyeui.jpg"), filename: "brian.jpg")
-  user2.photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600697/aya_sqzo1w.jpg"), filename: "aya.jpg")
-  user3.photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600697/javi_pps9n6.jpg"), filename: "javi.jpg")
-  user4.photo.attach(io: URI.open("https://res.cloudinary.com/dzfjdlafz/image/upload/v1723600699/ikumi_lqqsra.png"), filename: "ikumi.jpg")
-else
-  puts "Error: One or more users were not found, skipping photo attachments."
+def place_instantiator(place_id)
+  url = "https://maps.googleapis.com/maps/api/place/details/json?fields=name%2Cphoto%2Cformatted_address%2Cgeometry%2Cphoto&place_id=#{place_id}&key=#{ENV['GOOGLE_MAPS_API_KEY']}"
+
+  fetch_place = URI.open(url)
+  place = JSON.parse(fetch_place.read)
+  name = place["result"]["name"]
+  address = place["result"]["formatted_address"]
+  latitude = place["result"]["geometry"]["location"]["lat"]
+  longitude = place["result"]["geometry"]["location"]["lng"]
+
+  Place.create!(name: name, address: address, latitude: latitude, longitude: longitude)
+  Place.last.photos.attach(io: URI.open(place["result"]["photos"][0]["html_attributions"][0].split('"')[1]), filename: "#{name}.jpg")
 end
 
-puts "Creating places..."
-# Create places
-places = Place.create!(
-  [
-    { address: "Tokyo Skytree", latitude: 35.71024561621056, longitude: 139.81074331053827 },
-    { address: "Tokyo Tower", latitude: 35.658676362124375, longitude: 139.7453792510146 },
-    { address: "Sensoji Temple", latitude: 35.715056833214376, longitude: 139.79663381563967 },
-    { address: "Shibuya Scramble Crossing", latitude: 35.65969990070708, longitude: 139.70059178169979 }
-  ]
-)
+javi_places = {
+  tokyo_skytree: "ChIJ35ov0dCOGGARKvdDH7NPHX0",
+  tokyo_tower: "ChIJCewJkL2LGGAR3Qmk0vCTGkg",
+  sensō_ji: "ChIJ8T1GpMGOGGARDYGSgpooDWw",
+  shibuya_scramble_crossing: "ChIJK9EM68qLGGARacmu4KJj5SA"
+}
+puts "Creating 4 javi places..."
+javi_places.each do |place, value|
+  place_instantiator(value)
+end
+puts "4 javi places created!"
 
-puts "Creating reviews..."
+puts "creating more people..."
+20.times {
+  User.create!(
+    email: Faker::Internet.email,
+    password: "password",
+    username: Faker::Internet.username(specifier: 5..11, separators: ['_']),
+  )
+  User.last.photo.attach(io: URI.open(Faker::LoremFlickr.image(size: "300x300", search_terms: ['people,japan'])), filename: "user#{User.last.id}.jpg")
+}
+puts "created 20 more people!"
+
+puts "Creating 4 javi reviews..."
 # Create reviews for places
 Review.create!(
   [
-    { user: user1, place: places[1], rating: 4, comment: "Great coffee and cozy atmosphere!" },
-    { user: user2, place: places[1], rating: 5, comment: "Loved the ambiance and my children loved it." },
-    { user: user3, place: places[0], rating: 3, comment: "Stroller friendly but a bit pricey." },
-    { user: user4, place: places[0], rating: 4, comment: "Fresh food and friendly staff." }
+    { user: User.all.sample, place: Place.all[0], rating: 4, comment: "Great coffee and cozy atmosphere!" },
+    { user: User.all.sample, place: Place.all[1], rating: 5, comment: "Loved the ambiance and my children loved it." },
+    { user: User.all.sample, place: Place.all[2], rating: 3, comment: "Stroller friendly but a bit pricey." },
+    { user: User.all.sample, place: Place.all[3], rating: 4, comment: "Fresh food and friendly staff." }
   ]
 )
+puts "created 4 javi reviews!"
 
-puts "Attaching photos to reviews..."
+puts "Attaching photos to javi reviews..."
 # Attach photos to reviews
-if Review.exists?(5)
-  Review.find(5).photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723625039/skytree-header_lvsoje.jpg"), filename: "skytree.jpg")
-end
-
-if Review.exists?(6)
-  Review.find(6).photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723624942/Tokyo-Tower--800x500_u6fept.jpg"), filename: "tokyo_tower.jpg")
-end
-
-if Review.exists?(7)
-  Review.find(7).photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723625269/Sensoji_2023_uherro.jpg"), filename: "sensoji.jpg")
-end
-
-if Review.exists?(8)
-  Review.find(8).photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723625161/1189690204_f8lek8.webp"), filename: "shibuya.jpg")
-end
-
-puts "Updating review timestamps..."
+  Review.all[0].photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723625039/skytree-header_lvsoje.jpg"), filename: "skytree.jpg")
+  Review.all[1].photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723624942/Tokyo-Tower--800x500_u6fept.jpg"), filename: "tokyo_tower.jpg")
+  Review.all[2].photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723625269/Sensoji_2023_uherro.jpg"), filename: "sensoji.jpg")
+  Review.all[3].photos.attach(io: URI.open("https://res.cloudinary.com/dufvk5oei/image/upload/v1723625161/1189690204_f8lek8.webp"), filename: "shibuya.jpg")
+puts "Updating javi review timestamps..."
 # Update review timestamps if reviews exist
-Review.find_by(id: 1)&.update_column(:created_at, Time.new(2021, 8, 13, 12, 0, 0))
-Review.find_by(id: 2)&.update_column(:created_at, Time.new(2021, 8, 13, 12, 0, 0))
-Review.find_by(id: 3)&.update_column(:created_at, Time.new(2021, 8, 13, 12, 0, 0))
-Review.find_by(id: 4)&.update_column(:created_at, Time.new(2021, 8, 13, 12, 0, 0))
+Review.all[0].update_column(:created_at, Time.new(2021, 8, 13, 12, 0, 0))
+Review.all[1].update_column(:created_at, Time.new(2022, 8, 13, 12, 0, 0))
+Review.all[2].update_column(:created_at, Time.new(2023, 8, 13, 12, 0, 0))
+Review.all[3].update_column(:created_at, Time.new(2024, 8, 13, 12, 0, 0))
+puts "Javi review timestamps updated! and photos attached!"
 
-puts "Seeding complete"
+puts "Creating 5 aya places..."
