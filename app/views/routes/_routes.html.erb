@@ -2,6 +2,7 @@
 <div class="route card p-3 m-3 shadow-sm">
   <div class="d-flex justify-content-between">
     <h2><i class="fa-solid fa-route text-secondary"></i> Route <%= route['summary']&.dig('no') || 'Unknown' %></h2>
+    <%# top right corner for route score %>
     <div>
       <i class="fa-solid fa-baby-carriage text-warning"></i>
       <%# <%= route.rating %>
