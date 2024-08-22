@@ -1,13 +1,14 @@
 <div id="recommended-p-container" class="card-grid">
-  <% @top_places.take(5).each do |place| %>
+  <% @places.take(5).each do |place| %>
     <div class="card">
       <% if place.photos.first %>
-        <div class="card-body" style="background-image: url('<%= image_path(place.photos.first) %>')">
-        <% else %>
-          <div class="card-body">
-          <% end %>
-          <p class="card-text recommended-places"><%= place.address %></p>
-        </div>
+      <% else %>
+        <div class="card-body">
+        <% end %>
+        <p class="card-text recommended-places"><%= place.address %></p>
+        <%= image_tag place.photos.first %>
+        <p class="card-text recommended-places"><%= place.name %></p>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+</div>

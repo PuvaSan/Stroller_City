@@ -26,16 +26,18 @@ puts "Photos attached to 4 main users!"
 
 def place_instantiator(place_id)
   url = "https://maps.googleapis.com/maps/api/place/details/json?fields=name%2Cphoto%2Cformatted_address%2Cgeometry%2Cphoto&place_id=#{place_id}&key=#{ENV['GOOGLE_MAPS_API_KEY']}"
-
-  fetch_place = URI.open(url)
-  place = JSON.parse(fetch_place.read)
+  fetch_place = URI.open(url).read
+  place = JSON.parse(fetch_place)
   name = place["result"]["name"]
   address = place["result"]["formatted_address"]
   latitude = place["result"]["geometry"]["location"]["lat"]
   longitude = place["result"]["geometry"]["location"]["lng"]
 
   Place.create!(name: name, address: address, latitude: latitude, longitude: longitude)
-  Place.last.photos.attach(io: URI.open(place["result"]["photos"][0]["html_attributions"][0].split('"')[1]), filename: "#{name}.jpg")
+  photo_reference = place["result"]["photos"][0]["photo_reference"]
+  photourl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{ENV['GOOGLE_MAPS_API_KEY']}"
+  fetch_photo = URI.open(photourl)
+  Place.last.photos.attach(io: fetch_photo, filename: "#{name}.jpg")
 end
 
 javi_places = {
