@@ -25,6 +25,9 @@
       </div>
     <% elsif section['type'] == 'move' %>
       <% if section['move'] == 'walk' %>
+        <% if section['distance'].to_i == 0 %>
+          <% next %> <!-- Skip this iteration if distance is 0m -->
+        <% end %>
         <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
           data-move="walk"
           data-index="<%= walk_card_index %>"> <!-- Use walk_card_index here -->
