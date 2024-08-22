@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_22_105207) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_22_115547) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_22_105207) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "details", force: :cascade do |t|
+    t.bigint "trip_id", null: false
+    t.string "title"
+    t.string "action"
+    t.integer "distance"
+    t.integer "duration"
+    t.string "formatted_distance"
+    t.string "formatted_duration"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_details_on_trip_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -77,8 +92,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_22_105207) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "likes_count"
     t.index ["place_id"], name: "index_reviews_on_place_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "routes", force: :cascade do |t|
+    t.bigint "start_id", null: false
+    t.bigint "end_id", null: false
+    t.integer "distance"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer "duration"
+    t.string "formatted_distance"
+    t.string "formatted_duration"
+    t.integer "cost"
+    t.string "currency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["end_id"], name: "index_routes_on_end_id"
+    t.index ["start_id"], name: "index_routes_on_start_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -112,6 +145,27 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_22_105207) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "trips", force: :cascade do |t|
+    t.bigint "route_id", null: false
+    t.string "travel_mode"
+    t.string "title"
+    t.integer "distance"
+    t.integer "duration"
+    t.string "formatted_distance"
+    t.string "formatted_duration"
+    t.string "start_stop_name"
+    t.string "start_stop_id"
+    t.datetime "start_time"
+    t.string "end_stop_name"
+    t.string "end_stop_id"
+    t.datetime "end_time"
+    t.string "service_name"
+    t.string "service_link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["route_id"], name: "index_trips_on_route_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -127,7 +181,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_22_105207) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "details", "trips"
   add_foreign_key "reviews", "places"
   add_foreign_key "reviews", "users"
+  add_foreign_key "routes", "places", column: "end_id"
+  add_foreign_key "routes", "places", column: "start_id"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "trips", "routes"
 end
