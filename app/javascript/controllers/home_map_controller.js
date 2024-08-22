@@ -2,9 +2,6 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="another-map"
 export default class extends Controller {
-  static values = {
-    apiKey: String,
-  }
   static targets = [ "name", "address", "photo", "originInput", "phone", "info", "recent", "recommended"]
   connect() {
     console.log("home map connected")
@@ -17,6 +14,8 @@ export default class extends Controller {
         })
     // console.log("api key", this.apiKeyValue)
   }
+
+  apiKey = "AIzaSyCWOSZTJ-G738Y4qoVuyVHh1YYjtWUSlao";
 
   //Switches the Ikumi container based on the button clicked
   ikumibutton(event) {
@@ -56,22 +55,24 @@ export default class extends Controller {
 
   origin = null;
 
+  map = null;
+
   async initMap() {
-    let map = new google.maps.Map(document.getElementById('map'),{
+    this.map = new google.maps.Map(document.getElementById('map'),{
       center:{lat:35.652832,lng:139.839478},
       zoom:13,
       disableDefaultUI: true,
     })
-    google.maps.event.addListener(map,"click",function(event) {
+    google.maps.event.addListener(this.map,"click",function(event) {
       this.setOptions({scrollwheel:true})
     })
 
     // adds transit layer over our map
     const transitLayer = new google.maps.TransitLayer();
-    transitLayer.setMap(map);
+    transitLayer.setMap(this.map);
 
-    //add retro style
-    map.setOptions({ styles: this.retro });
+
+    this.map.setOptions({ styles: this.retro });
 
     // autocompletes location inputs for origin and destination
     this.originAutocomplete = new google.maps.places.Autocomplete(document.getElementById('origin'))
@@ -86,12 +87,12 @@ export default class extends Controller {
 
       // recenters map when input is changed to a google place
       if (place.geometry && place.geometry.location) {
-        map.setCenter( { lat: place.geometry.location.lat() - 0.005, lng: place.geometry.location.lng() });
-        map.setZoom(15);
+        this.map.setCenter( { lat: place.geometry.location.lat() - 0.005, lng: place.geometry.location.lng() });
+        this.map.setZoom(15);
         // Add marker to the selected place
         const marker = new google.maps.Marker({
           position: place.geometry.location,
-          map: map,
+          map: this.map,
           title: place.name
         });
 
@@ -105,7 +106,7 @@ export default class extends Controller {
           this.infoTarget.innerText = place.editorial_summary
         }
         this.photoTarget.innerHTML = "";
-        place.photos.forEach((photo) => {
+        place.photos.slice(0, 5).forEach((photo) => {
           const placeImage = photo.getUrl();
           const imgElement = `<img height=80 width=80 class="me-2" src="${placeImage}" />`;
           this.photoTarget.insertAdjacentHTML("beforeend", imgElement);
@@ -169,7 +170,7 @@ export default class extends Controller {
     navigator.geolocation.getCurrentPosition((position) => {
       this.user_lat = position.coords.latitude;
       this.user_long = position.coords.longitude;
-      fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.user_lat},${this.user_long}&key=AIzaSyA4qrApURx9lwvAae-pPmNbV07vPqlbHxo`)
+      fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.user_lat},${this.user_long}&key=${this.apiKey}`)
         .then(response => response.json())
         .then(data => {
           document.getElementById('origin').value = data.results[0].formatted_address
@@ -214,6 +215,94 @@ export default class extends Controller {
 
     // Redirect to the constructed URL
     window.location.href = redirectUrl;
+  }
+
+  javi(event) {
+    const buttonId = event.currentTarget.id;
+    // const url = `https://maps.googleapis.com/maps/api/place/details/json?fields=name%2Cphoto%2Cformatted_phone%2Cformatted_address%2Cgeometry%2Cphoto&place_id=${buttonId}&key=AIzaSyA4qrApURx9lwvAae-pPmNbV07vPqlbHxo`
+    const url = `https://places.googleapis.com/v1/places/${buttonId}?fields=displayName,formattedAddress,photos,location,nationalPhoneNumber,editorialSummary&key=${this.apiKey}`
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const place = data;
+        console.log(place);
+
+        // recenters map when input is changed to a google place
+        if (place.location) {
+          this.map.setCenter( { lat: place.location.latitude - 0.005, lng: place.location.longitude });
+          this.map.setZoom(15);
+          // Add marker to the selected place
+          const marker = new google.maps.Marker({
+            position: { lat: place.location.latitude, lng: place.location.longitude },
+            map: this.map,
+            title: place.displayName.text
+          });
+
+          this.getCurrentPosition();
+
+          // displays place name, address, and photos
+          this.nameTarget.innerText = place.displayName.text;
+          this.addressTarget.innerText = place.formattedAddress;
+          this.phoneTarget.innerText = place.nationalPhoneNumber
+          if (place.editorialSummary) {
+            this.infoTarget.innerText = place.editorialSummary.text
+          }
+          this.photoTarget.innerHTML = "";
+          place.photos.slice(0, 5).forEach((photo) => {
+            const placeImage = `https://places.googleapis.com/v1/${photo.name}/media?maxHeightPx=400&maxWidthPx=400&key=${this.apiKey}`
+            const imgElement = `<img height=80 width=80 class="me-2" src="${placeImage}" />`;
+            this.photoTarget.insertAdjacentHTML("beforeend", imgElement);
+          });
+          document.querySelector("#draggable-panel").style.height = "350px";
+          document.querySelector("#initial-content").classList.toggle("d-none");
+          document.querySelector("#place-description").classList.toggle("d-none");
+          document.querySelector("#reviews-container").classList.toggle("d-none");
+          document.getElementById("first-back-button").classList.toggle("d-none");
+
+          if (localStorage.getItem('recent') === null) {
+            let recent = [];
+            recent.push(place.displayName.text);
+            localStorage.setItem('recent', JSON.stringify(recent));
+          } else {
+            let recent = JSON.parse(localStorage.getItem('recent'));
+            recent.push(place.displayName.text);
+            localStorage.setItem('recent', JSON.stringify(recent));
+          }
+
+          //new changes for inputs
+          this.originInputTarget.classList.toggle("d-none")
+          document.getElementById("destination").parentElement.classList.add("d-none")
+
+          // Send the place name to Rails controller via AJAX
+          if (place.displayName) {
+            fetch('/pages/receive_place_name', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+              },
+              body: JSON.stringify({ place_name: place.displayName.text })
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log("Place name sent successfully", data);
+              if (data.status === "success") {
+                // Fetch the reviews partial and insert it into the reviews section
+                fetch(`/pages/render_reviews?id=${data.id}`)
+                  .then(response => response.text())
+                  .then(html => {
+                    document.getElementById('reviews-container').innerHTML = html;
+                  });
+              } else {
+                console.error("Error:", data.message);
+              }
+            })
+            .catch(error => {
+              console.error('There was a problem with the fetch operation:', error);
+            });
+          }
+      }
+    });
   }
 
   //map styling
@@ -327,4 +416,5 @@ export default class extends Controller {
       stylers: [{ color: "#92998d" }],
     },
   ];
+
 }
