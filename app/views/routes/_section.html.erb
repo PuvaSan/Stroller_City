@@ -1,4 +1,5 @@
 <% walk_card_index = 0 %> <!-- Initialize walk index once, outside of the loop -->
+<% transport_card_index = 0 %> <!-- Initialize transport index once, outside of the loop -->
 <% first_point_section = route['sections'].find { |s| s['type'] == 'point' && s['name'] == 'start' } %>
 <% last_point_section = route['sections'].reverse.find { |s| s['type'] == 'point' && s['name'] == 'goal' } %>
 <% route['sections'].each_with_index do |section, index| %> <!-- Loop over each section -->
@@ -9,9 +10,11 @@
         data-move="point">
         <p>
           <% if section == first_point_section %>
-            <i class="fa-solid fa-location-dot text-success"></i> <%= @origin %>
+            <i class="fa-solid fa-location-dot text-success"></i> Start <%#= @origin %>
           <% elsif section == last_point_section %>
             <i class="fa-solid fa-location-pin text-danger"></i> <%= @destination %>
+          <% elsif section['node_id'].present? && section['gateway'].nil? %> <!-- condition: no gateway but has a node -->
+            <i class="fa-solid fa-right-left"></i> Transfer at <%= section['name'] %> Station
           <% else %>
             <i class="fa-solid fa-building"></i> <%= section['name'] %> Station
           <% end %>
@@ -22,6 +25,9 @@
       </div>
     <% elsif section['type'] == 'move' %>
       <% if section['move'] == 'walk' %>
+        <% if section['distance'].to_i == 0 %>
+          <% next %> <!-- Skip this iteration if distance is 0m -->
+        <% end %>
         <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
           data-move="walk"
           data-index="<%= walk_card_index %>"> <!-- Use walk_card_index here -->
@@ -34,11 +40,16 @@
         <% if section['transport'].present? %>
           <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
             data-move="transport"
-            data-index="<%= index %>">
+            data-index="<%= transport_card_index %>"> <!-- Use transport_card_index here -->
             <p>
-              <i class="fa-solid fa-train-subway"></i> Take <%= section['transport']['name'] %> from <strong><%= section['transport']['links'][0]['from']['name'] %></strong> to <strong><%= section['transport']['links'][0]['to']['name'] %></strong>.
+              <i class="fa-solid fa-train-subway"></i> Take
+              <span style="background-color:<%= section['transport']['color'] %>; color: #fff; padding: 2px 4px; border-radius: 3px;">
+                <%= section['transport']['name'] %>
+              </span>
+              from <strong><%= section['transport']['links'][0]['from']['name'] %></strong> to <strong><%= section['transport']['links'][0]['to']['name'] %></strong>.
             </p>
           </div>
+          <% transport_card_index += 1 %> <!-- Increment transport index for each transport section -->
         <% else %>
           <p>Transport details not available for this step.</p>
         <% end %>
