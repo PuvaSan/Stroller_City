@@ -11,7 +11,7 @@ export default class extends Controller {
     document.querySelector("#current-location").innerText = this.getCurrentPosition();
     const recent = JSON.parse(localStorage.getItem('recent'))
     recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
-    this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card"><div class="card-body"> <div class="card-text">${place}</div></div></div>`)
+      this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card"><div class="card-body"> <div class="card-text">${place}</div></div></div>`)
     })
     // console.log("api key", this.apiKeyValue)
   }

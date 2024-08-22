@@ -36,7 +36,7 @@ export default class extends Controller {
      // Calculate the new height based on the mouse movement
     let newHeight = this.height + (this.cursorY - event.clientY);
      // Calculate the maximum height based on the available space
-    const maxHeight = window.innerHeight - document.getElementById("input-fields").clientHeight;
+    const maxHeight = window.innerHeight - document.getElementById("stick-to-top").clientHeight;
 
     // Set the new height of the element if within range
     if (newHeight <= maxHeight && newHeight >= 200) {

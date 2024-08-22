@@ -1,8 +1,8 @@
 <!-- frame -->
 <div style="height:100vh;width:100vw;" data-controller="home-map">
-  <div class="stick-to-top" >
+  <div id="stick-to-top" class="w-100" style="position:absolute; top:0px; z-index:1;">
     <!-- navbar -->
-    <div class="d-flex justify-content-between bg-white pt-3" style="margin-bottom: -20px;">
+    <div class="d-flex justify-content-between bg-white pt-3 w-100" style="margin-bottom: -10px;">
       <div class="d-flex ms-3 align-items-center">
         <i class="fa-solid fa-location-dot text-primary me-2" style="z-index: 1;"></i>
         <p style="z-index: 1;" class="m-0"><strong id="current-location"></strong></p>
@@ -27,32 +27,34 @@
     </div>
 
     <!-- header -->
-    <div class="w-100 bg-white d-flex justify-content-between align-items-center" style="position:relative;">
-      <div class="ms-3" style="z-index: 0;">
-        <h2 class="m-0 text-primary"><strong>Stroller City</strong></h2>
-        <p>Accessible routing, made easy</p>
-      </div>
-      <div class="me-3">
-        <%= image_tag 'stroll1.png', height: '130px' %>
-      </div>
-      <!-- location input -->
-      <div class="d-flex w-100 align-items-center" style="position:absolute; bottom:-40px; z-index:1;">
-        <div style="width: 73px">
-          <button class="mx-2 bg-white br-30 d-none" id="first-back-button" data-action="click->home-map#firstBack">
-            <i class="fa-solid fa-arrow-rotate-left"></i>
-          </button>
+    <div class="container bg-white">
+      <div class="w-100 bg-white d-flex justify-content-between align-items-center" style="position:relative;">
+        <div class="ms-3" style="z-index: 0;">
+          <h2 class="m-0 text-primary"><strong>Stroller City</strong></h2>
+          <p>Accessible routing, made easy</p>
         </div>
-        <div id="input-fields" class="container">
-          <div class="d-flex justify-content-between d-none" data-home-map-target="originInput">
-            <input type="text" placeholder="Enter starting location" id="origin">
-            <button class="btn btn-primary" data-action="click->home-map#getCurrentPosition"><i class="fa-solid fa-location-dot text-white"></i></button>
-          </div>
-          <div class="d-flex justify-content-between ">
-            <input type="text" placeholder="Where do you wanna go?" id="destination">
-            <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass text-white"></i></button>
-          </div>
+        <div class="me-3">
+          <%= image_tag 'stroll1.png', height: '130px' %>
         </div>
-        <div id="for-centering" style="width: 73px"></div>
+        <!-- location input -->
+        <div class="d-flex w-100 align-items-center" style="position:absolute; bottom:-40px; z-index:1;">
+          <div style="width: 73px">
+            <button class="mx-2 bg-white br-30 d-none" id="first-back-button" data-action="click->home-map#firstBack">
+              <i class="fa-solid fa-arrow-rotate-left"></i>
+            </button>
+          </div>
+          <div id="input-fields" class="container">
+            <div class="d-flex justify-content-between d-none" data-home-map-target="originInput">
+              <input type="text" placeholder="Enter starting location" id="origin">
+              <button class="btn btn-primary" data-action="click->home-map#getCurrentPosition"><i class="fa-solid fa-location-dot text-white"></i></button>
+            </div>
+            <div class="d-flex justify-content-between ">
+              <input type="text" placeholder="Where do you wanna go?" id="destination">
+              <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass text-white"></i></button>
+            </div>
+          </div>
+          <div id="for-centering" style="width: 73px"></div>
+        </div>
       </div>
     </div>
   </div>
