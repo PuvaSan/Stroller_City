@@ -192,65 +192,80 @@ export default class extends Controller {
     const routeData = this.element.dataset.route;
     let route;
     try {
-        route = JSON.parse(routeData);
-        console.log("[getCoordinatesForTransportSections] Parsed route data successfully:", route);
+      route = JSON.parse(routeData);
+      console.log("[getCoordinatesForTransportSections] Parsed route data successfully:", route);
     } catch (error) {
-        console.error("[getCoordinatesForTransportSections] Failed to parse route data:", error);
-        return [];
+      console.error("[getCoordinatesForTransportSections] Failed to parse route data:", error);
+      return [];
     }
 
-    const transportSections = [];
-    let currentSection = [];
-    let currentBounds = new google.maps.LatLngBounds();
+    let proximityThreshold = 250; // Start with 250 meters
+    let transportSections = [];
 
-    const transferPoints = route.sections
-        .filter(section => section.type === 'point' && section.node_id && !section.gateway)
-        .map(section => ({ lat: section.coord.lat, lng: section.coord.lon }));
+    // Function to collect transport sections based on proximity threshold
+    const collectTransportSections = (threshold) => {
+      let currentSection = [];
+      let currentBounds = new google.maps.LatLngBounds();
+      let tempSections = [];
 
-    const isWithin100Meters = (coord1, coord2) => {
-      const rad = (x) => x * Math.PI / 180;
-      const R = 6371; // Earth’s mean radius in km
-      const dLat = rad(coord2.lat - coord1.lat);
-      const dLong = rad(coord2.lng - coord1.lng);
-      const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(rad(coord1.lat)) * Math.cos(rad(coord2.lat)) *
-                Math.sin(dLong / 2) * Math.sin(dLong / 2);
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      const distance = R * c; // Distance in km
-      return distance < 0.1; // Adjust the threshold to 200 meters
-  };
-
-    route.shapes.features.forEach((shape) => {
+      route.shapes.features.forEach((shape) => {
         if (shape.properties.ways === "transport") {
-            const coords = shape.geometry.coordinates;
+          shape.geometry.coordinates.forEach((coord) => {
+            const latLng = { lat: coord[1], lng: coord[0] };
 
-            coords.forEach(([lon, lat]) => {
-                const latLng = { lat: lat, lng: lon };
-
-                if (transferPoints.some(tp => isWithin100Meters(latLng, tp))) {
-                    // If the current coordinate is within 1km of a transfer point, finalize the current section
-                    if (currentSection.length > 0) {
-                        transportSections.push({ coordinates: currentSection, bounds: currentBounds });
-                        currentSection = [];
-                        currentBounds = new google.maps.LatLngBounds(); // Reset for the next section
-                    }
-                }
-
-                // Add the current coordinate to the current section
-                currentSection.push(latLng);
-                currentBounds.extend(latLng);
+            // Check against all transfer points
+            let isNearTransfer = route['sections'].some(section => {
+              if (section['type'] === 'point' && section['node_id'] && !section['gateway']) {
+                const transferCoords = { lat: section['coord']['lat'], lng: section['coord']['lon'] };
+                const distance = google.maps.geometry.spherical.computeDistanceBetween(
+                  new google.maps.LatLng(latLng),
+                  new google.maps.LatLng(transferCoords)
+                );
+                return distance <= threshold;
+              }
+              return false;
             });
-        }
-    });
 
-    // Push the last collected transport section if it wasn't pushed yet
-    if (currentSection.length > 0) {
-        transportSections.push({ coordinates: currentSection, bounds: currentBounds });
+            if (isNearTransfer) {
+              // If near a transfer point and currentSection has more than 1 coordinate, finalize this section
+              if (currentSection.length > 1) {
+                tempSections.push({ coordinates: currentSection, bounds: currentBounds });
+              }
+              // Start a new section
+              currentSection = [];
+              currentBounds = new google.maps.LatLngBounds();
+            }
+
+            currentSection.push(latLng);
+            currentBounds.extend(latLng);
+          });
+        }
+      });
+
+      // Push the last collected transport section if it wasn't pushed yet and has more than one coordinate
+      if (currentSection.length > 1) {
+        tempSections.push({ coordinates: currentSection, bounds: currentBounds });
+      }
+
+      return tempSections;
+    };
+
+    // Continue reducing proximity threshold until all sections have more than one coordinate
+    while (proximityThreshold > 0) {
+      transportSections = collectTransportSections(proximityThreshold);
+      const allSectionsValid = transportSections.every(section => section.coordinates.length > 1);
+
+      if (allSectionsValid) {
+        break; // Stop adjusting when all sections have more than one coordinate
+      }
+
+      proximityThreshold -= 50; // Decrement by 50m and check again
     }
 
     console.log("[getCoordinatesForTransportSections] Collected transport sections:", transportSections);
     return transportSections;
-}
+  }
+
 
 
   handleCardClick(event) {
