@@ -8,18 +8,49 @@
   <div id="draggable-panel" class="bg-white w-100" data-controller="" style="height: 50vh;padding-top: 16px;">
     <div id="panel-content" class="w-100" data-routes-map-target="content">
       <!-- Panel content -->
+      <div class="route-summary p-1 m-0">
+        <p class="text-center m-0">
+          <span class="material-symbols-outlined text-success">
+            location_on
+          </span><span class="material-symbols-outlined">
+            chevron_right
+          </span>
+          <% @route['sections'].each_with_index do |section, index| %>
+            <% if section['type'] == 'move' && section['move'] == 'walk' %>
+              <span class="material-symbols-outlined">directions_walk</span><span class="material-symbols-outlined">
+                chevron_right
+              </span>
+            <% elsif section['type'] == 'move' && section['move'] == 'local_train' %>
+              <span class="material-symbols-outlined"
+                    style="color:<%= section['transport']['color'] %>;">directions_subway</span><span class="material-symbols-outlined">
+                chevron_right
+              </span>
+            <% elsif section['type'] == 'point' && section['node_id'].present? && section['gateway'].nil? %> <!-- This is for transfer points -->
+              <span class="material-symbols-outlined">
+                swap_horiz
+              </span><span class="material-symbols-outlined">
+                chevron_right
+              </span>
+            <% end %>
+          <% end %>
+          <span class="material-symbols-outlined text-danger">
+            flag
+          </span>
+        </p>
+      </div>
       <% if @route.present? %>
-        <div class="route-summary p-1 m-0">
-          <p class="text-center m-0">
-            <i class="fa-solid fa-stopwatch"></i> <%= @route['summary']['move']['time'] %> min |
-            <i class="fa-solid fa-ruler-horizontal"></i> <%= @route['summary']['move']['distance'] %> m |
-            <i class="fa-solid fa-shoe-prints"></i> <%= @route['summary']['move']['walk_distance'] %> m |
-            <strong>¥</strong> <%= @route['summary']['move']['fare']['unit_0'] %>
-          </p>
-        </div>
-        <div class="m-2 p-1 instructions-container">
+        <div class="m-0 p-1 instructions-container">
           <!-- Render the partial that handles the route sections -->
           <%= render partial: 'section', locals: { route: @route } %>
+        </div>
+        <!-- route metrics dashboard -->
+        <div class="route-summary p-1 mb-3">
+          <h6 class="text-center m-0">
+            <span class="material-symbols-outlined">timer</span> <%= @route['summary']['move']['time'] %> min
+            <span class="material-symbols-outlined">straighten</span> <%= @route['summary']['move']['distance'] %> m
+            <span class="material-symbols-outlined">footprint</span><%= @route['summary']['move']['walk_distance'] %> m
+            <span class="material-symbols-outlined">currency_yen</span><%= @route['summary']['move']['fare']['unit_0'] %>
+          </h6>
         </div>
       <% else %>
         <p>No route details available.</p>
