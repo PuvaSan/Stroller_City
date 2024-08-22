@@ -1,0 +1,30 @@
+.routes-summary-bar {
+  display: flex;
+  justify-content: space-between;
+  color: #8594A8;
+
+  .btn-primary {
+    font-size: larger;
+    margin-bottom: 16px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 80px;
+  }
+
+  .stats-list {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      margin-right: 20px;
+      font-size: 20px;
+      font-weight: 100;
+    }
+  }
+
+}

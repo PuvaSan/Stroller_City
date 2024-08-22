@@ -4,15 +4,21 @@
     <h2><i class="fa-solid fa-route text-secondary"></i> Route <%= route['summary']&.dig('no') || 'Unknown' %></h2>
     <div>
       <i class="fa-solid fa-baby-carriage text-warning"></i>
-      <%# <%= route.rating %>  <p>(5) </p>
+      <%# <%= route.rating %>
+      <p>(5) </p>
     </div>
   </div>
-  <p class="text-center mt-3">
-    <i class="fa-solid fa-stopwatch"></i> <%= route['summary']&.dig('move', 'time') || 'N/A' %> min |
-    <i class="fa-solid fa-ruler-horizontal"></i> <%= route['summary']&.dig('move', 'distance') || 'N/A' %> m |
-    <i class="fa-solid fa-shoe-prints"></i> <%= route['summary']&.dig('move', 'walk_distance') || 'N/A' %> m |
-    <strong>¥</strong> <%= route['summary']&.dig('move', 'fare', 'unit_0') || 'N/A' %>
-  </p>
+  <div class="routes-summary-bar">
+    <ul class="stats-list">
+      <li><i class="fa-solid fa-clock"> </i> <%= route['summary']&.dig('move', 'time') || 'N/A' %> min </li>
+      <li><i class="fa-solid fa-location-pin"> </i> <%= route['summary']&.dig('move', 'distance') || 'N/A' %> m</li>
+      <li><i class="fa-solid fa-person-walking"> </i> <%= route['summary']&.dig('move', 'walk_distance') || 'N/A' %> m</li>
+      <li><i class="fa-solid fa-yen-sign"> </i> <%= route['summary']&.dig('move', 'fare', 'unit_0') || 'N/A' %></li>
+    </ul>
+    <% if route['summary']&.dig('no').present? %>
+      <%= link_to "Go", route_path(route['summary']['no']), class: 'btn btn-primary' %>
+    <% end %>
+  </div>
   <% # Extract and list the transit stations %>
   <% stations = route['sections'].select { |section| section['node_types']&.include?('station') }.map { |station| station['name'] || 'Unknown' } %>
   <ul class="list-group list-group-horizontal mb-3">
@@ -21,7 +27,4 @@
       <li class="list-group-item"><%= station %></li>
     <% end %>
   </ul>
-  <% if route['summary']&.dig('no').present? %>
-    <%= link_to "", route_path(route['summary']['no']), class: 'btn btn-primary fa-solid fa-arrow-right-long' %>
-  <% end %>
 </div>
