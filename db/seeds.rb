@@ -34,7 +34,7 @@ def place_instantiator(place_id)
   latitude = place["result"]["geometry"]["location"]["lat"]
   longitude = place["result"]["geometry"]["location"]["lng"]
 
-  Place.create!(name: name, address: address, latitude: latitude, longitude: longitude)
+  Place.create!(name: name, address: address, latitude: latitude, longitude: longitude, google_id: place_id)
   Place.last.photos.attach(io: URI.open(place["result"]["photos"][0]["html_attributions"][0].split('"')[1]), filename: "#{name}.jpg")
 end
 
