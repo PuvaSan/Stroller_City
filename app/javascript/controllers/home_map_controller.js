@@ -10,7 +10,7 @@ export default class extends Controller {
         //get recent search history from local storage
         const recent = JSON.parse(localStorage.getItem('recent'))
         recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
-        this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card"><div class="card-body"> <div class="card-text">${place}</div></div></div>`)
+        this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card"><div class="card-body"> <div class="card-text">${place.name}<img src="${place.photo}"></img></div></div></div>`)
         })
     // console.log("api key", this.apiKeyValue)
   }
@@ -30,6 +30,7 @@ export default class extends Controller {
     selectedContainer.classList.remove("d-none");
     console.log(buttonId, selectedContainer, containers);
   }
+
 
   select(event) {
     // Remove the 'selected' class from all buttons
@@ -120,13 +121,15 @@ export default class extends Controller {
 
         if (localStorage.getItem('recent') === null) {
           let recent = [];
-          recent.push(place.name);
+          recent.push({ name: place.name, photo: place.photos[0].getUrl() });
           localStorage.setItem('recent', JSON.stringify(recent));
         } else {
           let recent = JSON.parse(localStorage.getItem('recent'));
-          recent.push(place.name);
+          recent.push({ name: place.name, photo: place.photos[0].getUrl() });
           localStorage.setItem('recent', JSON.stringify(recent));
+          console.log(recent);
         }
+
 
         // Send the place name to Rails controller via AJAX
         if (place.name) {
