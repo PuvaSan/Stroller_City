@@ -21,12 +21,14 @@
   </div>
   <!-- map -->
   <div id="map" style="z-index: 0; height: 100vh;" data-action="load@window->home-map#initMap"></div>
+
   <!-- draggable-panel -->
-  <div id="draggable-panel" class="bg-white w-100" data-controller="panel-resizer">
+  <div id="draggable-panel" class="bg-white w-100" style="position:absolute; top:0px;" data-controller="panel-resizer">
     <!-- draggable thingy -->
     <div id="resizer" class="w-100 d-flex align-items-center" data-action="mousedown->panel-resizer#grab touchstart->panel-resizer#grab">
       <hr id="panel-top-line">
     </div>
+    
     <div id="panel-content w-100">
       <!-- Place description -->
       <%= render partial: 'place_description' %>
