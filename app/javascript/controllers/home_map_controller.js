@@ -6,12 +6,12 @@ export default class extends Controller {
   connect() {
     console.log("home map connected")
     console.log(this.nameTarget, this.addressTarget)
-    document.querySelector("#draggable-panel").style.height = "80vh";
-        //get recent search history from local storage
-        const recent = JSON.parse(localStorage.getItem('recent'))
-        recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
-        this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card"><div class="card-body"> <div class="card-text">${place.name}<img src="${place.photo}"></img></div></div></div>`)
-        })
+    //get recent search history from local storage
+    const recent = JSON.parse(localStorage.getItem('recent'))
+    recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
+    this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card"><div class="card-body"> <div class="card-text">${place.name}<img src="${place.photo}"></img></div></div></div>`)
+    })
+    document.getElementById("current-location").innerText = this.getCurrentPosition();
     // console.log("api key", this.apiKeyValue)
   }
 
@@ -112,6 +112,7 @@ export default class extends Controller {
           this.photoTarget.insertAdjacentHTML("beforeend", imgElement);
         });
         document.querySelector("#draggable-panel").style.height = "350px";
+        document.querySelector("#draggable-panel").style.borderRadius = "16px 16px 0 0";
         document.querySelector("#initial-content").classList.toggle("d-none");
         document.querySelector("#place-description").classList.toggle("d-none");
         document.querySelector("#reviews-container").classList.toggle("d-none");
@@ -176,7 +177,7 @@ export default class extends Controller {
           document.getElementById('origin').value = data.results[0].formatted_address
           const addressComponents = data.results[0].address_components;
           const localityComponent = addressComponents.find(component => component.types.includes('locality'));
-          return localityComponent;
+          return localityComponent.long_name;
         })
     })
     this.origin = undefined;
@@ -257,6 +258,7 @@ export default class extends Controller {
             this.photoTarget.insertAdjacentHTML("beforeend", imgElement);
           });
           document.querySelector("#draggable-panel").style.height = "350px";
+          document.querySelector("#draggable-panel").style.borderRadius = "16px 16px 0 0";
           document.querySelector("#initial-content").classList.toggle("d-none");
           document.querySelector("#place-description").classList.toggle("d-none");
           document.querySelector("#reviews-container").classList.toggle("d-none");
