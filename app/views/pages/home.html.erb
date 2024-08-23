@@ -6,9 +6,9 @@
   <div id="map" style="z-index: 0; height: 100vh;" data-action="load@window->home-map#initMap"></div>
 
   <!-- draggable-panel -->
-  <div id="draggable-panel" class="bg-white w-100" data-controller="panel-resizer" style="z-index: 0;">
+  <div id="draggable-panel" class="bg-white w-100 px-3" data-controller="panel-resizer" style="z-index: 0;">
     <!-- draggable thingy -->
-    <div id="resizer" class="w-100 d-flex align-items-center" data-action="mousedown->panel-resizer#grab touchstart->panel-resizer#grab">
+    <div id="resizer" class="w-100 d-flex align-items-center bg-white" style="position: sticky; top: 0;" data-action="mousedown->panel-resizer#grab touchstart->panel-resizer#grab">
       <hr id="panel-top-line">
     </div>
 
