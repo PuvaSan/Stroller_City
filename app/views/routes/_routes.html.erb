@@ -1,18 +1,71 @@
 <!-- app/views/routes/_route.html.erb -->
 <div class="route card p-3 m-3 shadow-sm">
   <div class="d-flex justify-content-between">
-    <h2><i class="fa-solid fa-route text-secondary"></i> Route <%= route['summary']&.dig('no') || 'Unknown' %></h2>
+    <h2>
+      <i class="fa-solid fa-route text-secondary"></i>
+      <!-- Badges for the route -->
+      <% if route == @quickest_route %>
+        <span class="badge bg-success">Quickest Route</span>
+      <% end %>
+      <% if route == @shortest_route %>
+        <span class="badge bg-primary">Shortest Route</span>
+      <% end %>
+      <% if route == @less_walking_route %>
+        <span class="badge bg-warning">Less Walking</span>
+      <% end %>
+      <% if route == @cheapest_route %>
+        <span class="badge bg-info">Cheapest Route</span>
+      <% end %>
+    </h2>
+    <%# top right corner for route score %>
     <div>
       <i class="fa-solid fa-baby-carriage text-warning"></i>
-      <%# <%= route.rating %>  <p>(5) </p>
+      <%# <%= route.rating %>
+      <p>(5) </p>
     </div>
   </div>
-  <p class="text-center mt-3">
-    <i class="fa-solid fa-stopwatch"></i> <%= route['summary']&.dig('move', 'time') || 'N/A' %> min |
-    <i class="fa-solid fa-ruler-horizontal"></i> <%= route['summary']&.dig('move', 'distance') || 'N/A' %> m |
-    <i class="fa-solid fa-shoe-prints"></i> <%= route['summary']&.dig('move', 'walk_distance') || 'N/A' %> m |
-    <strong>¥</strong> <%= route['summary']&.dig('move', 'fare', 'unit_0') || 'N/A' %>
-  </p>
+  <div class="routes-summary-bar">
+    <ul class="stats-list">
+      <li><i class="fa-solid fa-clock"> </i> <%= route['summary']&.dig('move', 'time') || 'N/A' %> min </li>
+      <li><i class="fa-solid fa-location-pin"> </i> <%= route['summary']&.dig('move', 'distance') || 'N/A' %> m</li>
+      <li><i class="fa-solid fa-person-walking"> </i> <%= route['summary']&.dig('move', 'walk_distance') || 'N/A' %> m</li>
+      <li><i class="fa-solid fa-yen-sign"> </i> <%= route['summary']&.dig('move', 'fare', 'unit_0') || 'N/A' %></li>
+    </ul>
+    <% if route['summary']&.dig('no').present? %>
+      <%= link_to "Go", route_path(route['summary']['no']), class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+  <div class="route-summary p-1 m-0">
+    <p class="m-0">
+      <span class="material-symbols-outlined text-success">
+        location_on
+      </span><span class="material-symbols-outlined">
+        chevron_right
+      </span>
+      <% route['sections'].each_with_index do |section, index| %>
+        <% if section['type'] == 'move' && section['move'] == 'walk' %>
+          <span class="material-symbols-outlined">directions_walk</span><span class="material-symbols-outlined">
+            chevron_right
+          </span>
+        <% elsif section['type'] == 'move' && section['move'] == 'local_train' %>
+          <span class="material-symbols-outlined"
+                    style="color:<%= section['transport']['color'] %>;">directions_subway</span><span class="material-symbols-outlined">
+            chevron_right
+          </span>
+        <% elsif section['type'] == 'point' && section['node_id'].present? && section['gateway'].nil? %> <!-- This is for transfer points -->
+          <span class="material-symbols-outlined">
+            swap_horiz
+          </span><span class="material-symbols-outlined">
+            chevron_right
+          </span>
+        <% end %>
+      <% end %>
+      <span class="material-symbols-outlined text-danger">
+        flag
+      </span>
+    </p>
+  </div>
+  <!--
   <% # Extract and list the transit stations %>
   <% stations = route['sections'].select { |section| section['node_types']&.include?('station') }.map { |station| station['name'] || 'Unknown' } %>
   <ul class="list-group list-group-horizontal mb-3">
@@ -20,8 +73,5 @@
     <% stations.each do |station| %>
       <li class="list-group-item"><%= station %></li>
     <% end %>
-  </ul>
-  <% if route['summary']&.dig('no').present? %>
-    <%= link_to "", route_path(route['summary']['no']), class: 'btn btn-primary fa-solid fa-arrow-right-long' %>
-  <% end %>
+  </ul>-->
 </div>

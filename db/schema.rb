@@ -144,6 +144,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_22_105207) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "transit_routes", force: :cascade do |t|
+    t.bigint "trip_id", null: false
+    t.text "coordinates"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_transit_routes_on_trip_id"
+  end
+
   create_table "trips", force: :cascade do |t|
     t.bigint "route_id", null: false
     t.string "travel_mode"
@@ -186,5 +194,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_22_105207) do
   add_foreign_key "routes", "places", column: "end_id"
   add_foreign_key "routes", "places", column: "start_id"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "transit_routes", "trips"
   add_foreign_key "trips", "routes"
 end
