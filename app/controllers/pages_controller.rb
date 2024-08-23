@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @place = Place.find_by(params[:id]) if params[:id].present?
+    @places = Place.all
     # @place = Place.find_by(name: @place_name) if @place_name.present?
     @reviews = Review.all
     @review = Review.new
