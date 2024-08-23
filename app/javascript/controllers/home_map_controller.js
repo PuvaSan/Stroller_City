@@ -9,8 +9,7 @@ export default class extends Controller {
     //get recent search history from local storage
     const recent = JSON.parse(localStorage.getItem('recent'))
     recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
-    this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card"><div class="card-body"> <div class="card-text">${place.name}<img src="${place.photo}"></img></div></div></div>`)
-    })
+    this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card-category me-3" style="width: 180px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("${place.photo}")">${place.name}</div>`)})
     document.getElementById("current-location").innerText = this.getCurrentPosition();
     // console.log("api key", this.apiKeyValue)
   }
@@ -22,13 +21,13 @@ export default class extends Controller {
     const buttonId = event.currentTarget.id;
     const selectedContainer = document.getElementById(`${buttonId}-container`);
     const containers = document.querySelectorAll(".ikumi-container > *");
+    console.log(buttonId, selectedContainer, containers);
     containers.forEach(container => {
       if (!container.classList.contains("d-none")) {
         container.classList.add("d-none");
       }
     });
     selectedContainer.classList.remove("d-none");
-    console.log(buttonId, selectedContainer, containers);
   }
 
 
