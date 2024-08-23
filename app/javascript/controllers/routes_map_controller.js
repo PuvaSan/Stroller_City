@@ -29,8 +29,6 @@ export default class extends Controller {
     this.transportSections = this.getCoordinatesForTransportSections();
     this.drawFullPolylineRoute();
 
-
-
     // adds transit layer over our map
     const transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
