@@ -21,10 +21,51 @@
     padding: 0;
 
     li {
-      margin-right: 20px;
-      font-size: 20px;
+      margin-right: 10px;
+      font-size: 14px;
       font-weight: 100;
     }
   }
 
+}
+
+.route-badges {
+  .badge-pill {
+    border-radius: 20px;
+    font-size: 14px;
+  }
+  .short-color {
+    background-color: #3954ed;
+  }
+
+  .average-route {
+    outline: 2px solid #000000;
+  }
+}
+
+.route-start-stop {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  padding: 5px;
+
+  h3 {
+    color: white;
+  }
+
+  .start {
+    text-align: center;
+  }
+
+  .stop {
+    text-align: center;
+  }
+}
+
+.route-banner {
+  background-size: cover;
+  background-position: center;
+  padding: 1px 6px;
+  background-color: #3587A4;
+  height: 85px;
 }
