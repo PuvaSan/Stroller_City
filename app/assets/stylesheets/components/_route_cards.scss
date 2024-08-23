@@ -9,7 +9,8 @@
   justify-content: center;
   align-items: center;
   width: 18rem;
-  height: 35vh;
+  height: 20vh;
+  width: 25vh;
   margin-right: 10px;
 
 
@@ -18,5 +19,13 @@
     white-space: normal; /* Allow the text to wrap within the card */
     margin: 10px; /* Add some padding inside the card */
     font-size: 18px;
+  }
+}
+
+.route-summary-trip {
+
+
+  .route-summary-trip-text {
+    font-size: 12px;
   }
 }
