@@ -29,3 +29,34 @@
     font-size: 12px;
   }
 }
+
+.card-point {
+
+  .card-point-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+  }
+}
+
+.card-walk {
+
+  .card-walk-text {
+    font-size: 12px;
+  }
+}
+
+.card-transport {
+
+  .card-transport-text {
+    font-size: 12px;
+  }
+}
+
+.start-goal-card {
+  height: 22vh;
+  width: 15vh;
+  .card-point-text {
+    font-size: 26px;
+  }
+}
