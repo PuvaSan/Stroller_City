@@ -110,7 +110,6 @@ export default class extends Controller {
           const imgElement = `<img height=80 width=80 class="me-2" src="${placeImage}" />`;
           this.photoTarget.insertAdjacentHTML("beforeend", imgElement);
         });
-        document.querySelector("#draggable-panel").style.height = "350px";
         document.querySelector("#draggable-panel").style.borderRadius = "16px 16px 0 0";
         document.querySelector("#initial-content").classList.toggle("d-none");
         document.querySelector("#place-description").classList.toggle("d-none");
