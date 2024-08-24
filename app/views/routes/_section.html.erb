@@ -93,13 +93,3 @@
     <% end %>
   </div>
 <% end %>
-<!-- JavaScript to handle image click and show the modal -->
-<script>
-  $(document).ready(function(){
-    $('img').on('click', function(){
-      const imgSrc = $(this).attr('src');
-      $('#modalImage').attr('src', imgSrc);
-      $('#imageModal').modal('show');
-    });
-  });
-</script>
