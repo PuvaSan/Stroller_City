@@ -10,7 +10,7 @@ export default class extends Controller {
     const recent = JSON.parse(localStorage.getItem('recent'))
     recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
     this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card-category me-3" style="width: 180px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("${place.photo}")">${place.name}</div>`)})
-    document.getElementById("current-location").innerText = this.getCurrentPosition();
+    this.getCurrentPosition();
     // console.log("api key", this.apiKeyValue)
   }
 
@@ -181,9 +181,8 @@ export default class extends Controller {
         .then(data => {
           document.getElementById('origin').value = data.results[0].formatted_address
           const addressComponents = data.results[0].address_components;
-          const localityComponent = addressComponents.find(component => component.types.includes('locality'));
-          console.log(localityComponent.long_name);
-          return localityComponent.long_name;
+          const localityComponent = addressComponents.find(component => component.types.includes('locality'));;
+          document.getElementById("current-location").innerText = localityComponent.long_name;
         })
     })
     this.origin = undefined;
