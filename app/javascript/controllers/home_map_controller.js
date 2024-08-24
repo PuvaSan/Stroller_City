@@ -195,7 +195,7 @@ export default class extends Controller {
   firstBack() {
     document.querySelector("#initial-content").classList.toggle("d-none");
     document.querySelector("#place-description").classList.toggle("d-none");
-    document.querySelector("#reviews-container").classList.toggle("d-none");
+    document.querySelector("#reviews-container").classList.add("d-none");
     document.getElementById("first-back-button").classList.toggle("d-none");
     this.originInputTarget.classList.toggle("d-none")
     document.getElementById("destination").parentElement.classList.toggle("d-none")
