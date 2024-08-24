@@ -13,11 +13,12 @@
         </div>
         <div class="d-flex w-100 justify-content-between mt-2">
           <div class="star-rating">
-            <%= review.rating %>
+            <% review.rating %>
             <% r_rating = review.rating %>
             <% r_rating.times do %>
               <i class="fa-solid fa-star text-warning"></i>
             <% end %>
+            <strong> <%= review.place.name %></strong>
           </div>
         </div>
         <% if review.photos.any? %>
@@ -26,9 +27,14 @@
 
         <p class="mb-1"><%= review.comment %></p>
         <div class="d-flex justify-content-around mt-2 border-top pt-2">
-          <button class="btn btn-light btn-lg btn-block" data-action="click->like#handleClick" data-review-id="<%= review.id %>">
-            <i class="fas fa-thumbs-up"></i> <span id="likes-count-<%= review.id %>"><%= review.likes_count %></span>
+          <button class="btn btn-light btn-lg btn-block" data-action="click->like#handleClick" data-controller="like" data-review-id="<%= review.id %>">
+            <% if current_user && review.like.exists?(user: current_user) %>
+              <i class="fas fa-thumbs-up"></i> <span id="likes-count-<%= review.id %>"><%= review.likes_count %></span> Unlike
+            <% else %>
+              <i class="fas fa-thumbs-up"></i> <span id="likes-count-<%= review.id %>"><%= review.likes_count %></span> Like
+            <% end %>
           </button>
+
           <button class="btn btn-light btn-lg btn-block"><i class="fas fa-comment"></i> </button>
           <button class="btn btn-light btn-lg btn-block"><i class="fas fa-share"></i> </button>
           <button class="btn btn-primary btn-lg btn-block" style="border-radius: 20px;" id="<%= review.place.google_id %>" data-action="click->home-map#javi">Directions</button>

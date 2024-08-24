@@ -4,10 +4,9 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
   post "reviews", to: "favorites#create"
-  resources :favorites do
-    resources :reviews, only: [:index, :new, :create]
+  resources :reviews do
     member do
-      post 'like'
+      post 'like', only: [:create, :destroy]
     end
   end
 
