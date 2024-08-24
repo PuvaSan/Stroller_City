@@ -33,7 +33,7 @@ def place_instantiator(place_id)
   latitude = place["result"]["geometry"]["location"]["lat"]
   longitude = place["result"]["geometry"]["location"]["lng"]
 
-  Place.create!(name: name, address: address, latitude: latitude, longitude: longitude)
+  Place.create!(name: name, address: address, latitude: latitude, longitude: longitude, google_id: place_id)
   photo_reference = place["result"]["photos"][0]["photo_reference"]
   photourl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{ENV['GOOGLE_MAPS_API_KEY']}"
   fetch_photo = URI.open(photourl)
