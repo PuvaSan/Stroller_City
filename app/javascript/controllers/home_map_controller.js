@@ -293,6 +293,11 @@ export default class extends Controller {
                   .then(html => {
                     document.getElementById('reviews-container').innerHTML = html;
                   });
+                fetch(`/pages/render_tags?id=${data.id}`)
+                  .then(response => response.text())
+                  .then(html => {
+                    document.getElementById('tags-container').innerHTML = html;
+                  });
               } else {
                 console.error("Error:", data.message);
               }

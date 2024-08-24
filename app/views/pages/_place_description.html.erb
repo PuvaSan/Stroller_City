@@ -1,7 +1,7 @@
 <div id="place-description" class="container d-none w-100">
   <div class="d-flex align-items-center justify-content-between">
     <div class="d-flex align-items-center">
-      <div class="p-0 align-items-start" style="width: 16vh">
+      <div class="p-0 align-items-start" style="max-width: 16vh">
         <h2 class="my-2 font-weight-bold" data-home-map-target="name"></h2>
       </div>
       <div>
@@ -42,7 +42,7 @@
     </div>
 
     <!-- Reviews -->
-    <div id="reviews-container" class="p-3 m-3 d-none">
+    <div id="reviews-container" class="py-3 d-none">
       <%# review partial created in pages_controller in #render_reviews and inserted in home_map_controller fetch %>
       <%#= "no reviews" unless @places.present? %>
     </div>
