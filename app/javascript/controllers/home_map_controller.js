@@ -2,17 +2,19 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="another-map"
 export default class extends Controller {
-  static targets = [ "name", "address", "photo", "originInput", "phone", "info", "recent", "recommended"]
+  static targets = [ "name", "address", "photo", "originInput", "phone", "info", "recent", "recommended", "place-photo-container"]
   connect() {
     console.log("home map connected")
     console.log(this.nameTarget, this.addressTarget)
     //get recent search history from local storage
     const recent = JSON.parse(localStorage.getItem('recent'))
     recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
-              this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card-category me-3" style="width: 180px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("${place.photo}")">${place.name}</div>`);
+              this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card-category me-3" style="width: 180px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${place.photo.trim()})">${place.name}</div>`);
+              console.log(place.photo)
             });
     document.getElementById("current-location").innerText = this.getCurrentPosition();
     // console.log("api key", this.apiKeyValue)
+
   }
 
   apiKey = "AIzaSyCWOSZTJ-G738Y4qoVuyVHh1YYjtWUSlao";
@@ -108,9 +110,11 @@ export default class extends Controller {
         this.photoTarget.innerHTML = "";
         place.photos.slice(0, 5).forEach((photo) => {
           const placeImage = photo.getUrl();
+
           const imgElement = `<img height=80 width=80 class="me-2" src="${placeImage}" />`;
           this.photoTarget.insertAdjacentHTML("beforeend", imgElement);
         });
+        console.log(this.placePhotoContainerTarget)
         document.querySelector("#draggable-panel").style.height = "350px";
         document.querySelector("#draggable-panel").style.borderRadius = "16px 16px 0 0";
         document.querySelector("#initial-content").classList.toggle("d-none");
@@ -122,11 +126,11 @@ export default class extends Controller {
 
         if (localStorage.getItem('recent') === null) {
           let recent = [];
-          recent.push({ name: place.name, photo: place.photos[0].getUrl() });
+          recent.push({ name: place.name, photo: place.photos[0].getUrl()});
           localStorage.setItem('recent', JSON.stringify(recent));
         } else {
           let recent = JSON.parse(localStorage.getItem('recent'));
-          recent.push({ name: place.name, photo: place.photos[0].getUrl() });
+          recent.push({ name: place.name, photo: place.photos[0].getUrl()});
           localStorage.setItem('recent', JSON.stringify(recent));
           console.log(recent);
         }
