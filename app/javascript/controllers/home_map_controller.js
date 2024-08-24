@@ -266,16 +266,6 @@ export default class extends Controller {
           document.querySelector("#reviews-container").classList.toggle("d-none");
           document.getElementById("first-back-button").classList.toggle("d-none");
 
-          if (localStorage.getItem('recent') === null) {
-            let recent = [];
-            recent.push(place.displayName.text);
-            localStorage.setItem('recent', JSON.stringify(recent));
-          } else {
-            let recent = JSON.parse(localStorage.getItem('recent'));
-            recent.push(place.displayName.text);
-            localStorage.setItem('recent', JSON.stringify(recent));
-          }
-
           //new changes for inputs
           this.originInputTarget.classList.toggle("d-none")
           document.getElementById("destination").parentElement.classList.add("d-none")
