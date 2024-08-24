@@ -9,7 +9,7 @@ export default class extends Controller {
     //get recent search history from local storage
     const recent = JSON.parse(localStorage.getItem('recent'))
     recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
-              this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card-category me-3" style="width: 180px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${place.photo.trim()})">${place.name}</div>`);
+              this.recentTarget.insertAdjacentHTML("beforeend", `<div id="${place.id}" data-action="click->home-map#javi" class="card-category me-3" style="width: 180px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${place.photo.trim()})">${place.name}</div>`);
             });
     document.getElementById("current-location").innerText = this.getCurrentPosition();
     // console.log("api key", this.apiKeyValue)
@@ -125,13 +125,14 @@ export default class extends Controller {
 
         if (localStorage.getItem('recent') === null) {
           let recent = [];
-          recent.push({ name: place.name, photo: place.photos[0].getUrl()});
+          recent.push({ name: place.name, photo: place.photos[0].getUrl(), id: place.place_id });
           localStorage.setItem('recent', JSON.stringify(recent));
         } else {
           let recent = JSON.parse(localStorage.getItem('recent'));
-          recent.push({ name: place.name, photo: place.photos[0].getUrl()});
+          recent.push({ name: place.name, photo: place.photos[0].getUrl(), id: place.place_id });
           localStorage.setItem('recent', JSON.stringify(recent));
           console.log(recent);
+          console.log(place.place_id);
         }
 
         // Send the place name to Rails controller via AJAX
