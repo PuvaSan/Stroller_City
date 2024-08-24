@@ -1,0 +1,70 @@
+.routes-summary-bar {
+  display: flex;
+  justify-content: space-between;
+  color: #8594A8;
+
+  .btn-primary {
+    font-size: larger;
+    margin-bottom: 16px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 80px;
+  }
+
+  .stats-list {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      margin-right: 10px;
+      font-size: 17px;
+      font-weight: 100;
+    }
+  }
+}
+
+.route-badges {
+  .badge-pill {
+    border-radius: 20px;
+    font-size: 14px;
+  }
+  .short-color {
+    background-color: #3954ed;
+  }
+
+  .average-route {
+    outline: 2px solid #000000;
+  }
+}
+
+.route-start-stop {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  padding: 5px;
+
+  h3 {
+    color: white;
+  }
+
+  .start {
+    text-align: center;
+  }
+
+  .stop {
+    text-align: center;
+  }
+}
+
+.route-banner {
+  background-size: cover;
+  background-position: center;
+  padding: 1px 6px;
+  background-color: #3587A4;
+  height: 85px;
+}

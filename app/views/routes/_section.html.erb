@@ -1,3 +1,23 @@
+<!-- Include jQuery before Bootstrap -->
+<%= javascript_include_tag 'https://code.jquery.com/jquery-3.5.1.min.js' %>
+<%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js' %>
+<!-- Modal structure for image preview -->
+<div id="imageModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <img id="modalImage" src="" alt="Image preview" style="max-width: 100%; height: auto;">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Your existing content -->
 <% walk_card_index = 0 %> <!-- Initialize walk index once, outside of the loop -->
 <% transport_card_index = 0 %> <!-- Initialize transport index once, outside of the loop -->
 <% first_point_section = route['sections'].find { |s| s['type'] == 'point' && s['name'] == 'start' } %>
@@ -5,21 +25,28 @@
 <% route['sections'].each_with_index do |section, index| %> <!-- Loop over each section -->
   <div class="section mb-4">
     <% if section['type'] == 'point' %>
-      <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
+      <div class="card instruction-card card-point <%= if section == first_point_section || section == last_point_section then "start-goal-card" end %>"
+           data-action="click->routes-map#handleCardClick"
         data-coordinates="<%= section['coord'].present? ? "#{section['coord']['lat']},#{section['coord']['lon']}" : '' %>"
         data-move="point">
-        <p>
+        <p class="card-point-text">
           <% if section == first_point_section %>
-            <i class="fa-solid fa-location-dot text-success"></i> Start <%#= @origin %>
+            <i class="text-center fa-solid fa-location-dot text-success"></i> <span>Start Trip</span> <%#= @origin %>
           <% elsif section == last_point_section %>
-            <i class="fa-solid fa-location-pin text-danger"></i> <%= @destination %>
+            <span><%= @destination %></span><%= link_to("End Trip", class: "end-trip-btn") %>
           <% elsif section['node_id'].present? && section['gateway'].nil? %> <!-- condition: no gateway but has a node -->
-            <i class="fa-solid fa-right-left"></i> Transfer at <%= section['name'] %> Station
+            <i class="fa-solid fa-right-left"></i> at <%= section['name'] %> Sta.
+            <img class="transfer-card-img" src="http://res.cloudinary.com/dckq0zged/image/upload/v1724436396/xqfdy2ahqffnbxooxkug.jpg" alt="elevator">
           <% else %>
-            <i class="fa-solid fa-building"></i> <%= section['name'] %> Station
+            <span class="point-title"><%= section['name'] %> Station</span>
           <% end %>
           <% if section['gateway'].present? %>
-            <i class="fa-solid fa-elevator"></i> Take the elevator near <%= section['gateway'] %>
+            <div class="elevator-image-container">
+              <img src="http://res.cloudinary.com/dckq0zged/image/upload/v1724434212/dnilq9ncpkzidf3ttuyc.png" alt="elevator">
+              <div class="exit">
+                <span class="badge bg-warning"><%= section['gateway'] %></span><span class="material-symbols-outlined">elevator</span>
+              </div>
+            </div>
           <% end %>
         </p>
       </div>
@@ -28,25 +55,32 @@
         <% if section['distance'].to_i == 0 %>
           <% next %> <!-- Skip this iteration if distance is 0m -->
         <% end %>
-        <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
+        <div class="card instruction-card card-walk" data-action="click->routes-map#handleCardClick"
           data-move="walk"
           data-index="<%= walk_card_index %>"> <!-- Use walk_card_index here -->
-          <p>
-            <i class="fa-solid fa-person-walking"></i> Walk <%= section['distance'] %>m for <%= section['time'] %> mins
-          </p>
+          <div class="walk-stats-container">
+            <ul class="walk-stats-list">
+              <%#= Time.at(section['from_time']).strftime('%H:%M %z') %>
+              <li><%= section['distance'] %>m</li>
+              <li><%= section['time'] %> mins</li>
+            </ul>
+          </div>
+          <div class="card-walk-text">
+            <i class="fa-solid fa-person-walking"></i> <span>Walk to</span> <i class="arrow fa-solid fa-arrow-right"></i>
+          </div>
         </div>
         <% walk_card_index += 1 %> <!-- Increment walk index for each walk section -->
       <% else %>
         <% if section['transport'].present? %>
-          <div class="card instruction-card" data-action="click->routes-map#handleCardClick"
+          <div class="card instruction-card card-transport" data-action="click->routes-map#handleCardClick"
             data-move="transport"
             data-index="<%= transport_card_index %>"> <!-- Use transport_card_index here -->
-            <p>
-              <i class="fa-solid fa-train-subway"></i> Take
+            <p class="card-transport-text">
+              <i class="fa-solid fa-train-subway " style="color:<%= section['transport']['color'] %>"></i> Take
               <span style="background-color:<%= section['transport']['color'] %>; color: #fff; padding: 2px 4px; border-radius: 3px;">
                 <%= section['transport']['name'] %>
               </span>
-              from <strong><%= section['transport']['links'][0]['from']['name'] %></strong> to <strong><%= section['transport']['links'][0]['to']['name'] %></strong>.
+              <!--from <strong><%= section['transport']['links'][0]['from']['name'] %></strong> to <strong><%= section['transport']['links'][0]['to']['name'] %></strong>.-->
             </p>
           </div>
           <% transport_card_index += 1 %> <!-- Increment transport index for each transport section -->
@@ -59,3 +93,13 @@
     <% end %>
   </div>
 <% end %>
+<!-- JavaScript to handle image click and show the modal -->
+<script>
+  $(document).ready(function(){
+    $('img').on('click', function(){
+      const imgSrc = $(this).attr('src');
+      $('#modalImage').attr('src', imgSrc);
+      $('#imageModal').modal('show');
+    });
+  });
+</script>
