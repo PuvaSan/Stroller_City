@@ -57,5 +57,6 @@ export default class extends Controller {
 
   heightMaxer() {
     document.querySelector("#draggable-panel").style.height = this.maxHeight + "px";
+    document.querySelector("#draggable-panel").style.borderRadius = 0;
   }
 }
