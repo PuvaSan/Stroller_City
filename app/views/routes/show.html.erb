@@ -3,13 +3,24 @@
   <!--  -->
   <div class="d-none"><input id="input-fields" type="text"></div>
   <!-- map -->
-  <div id="map" data-routes-map-target="map" style="z-index: 0; height: 50vh;" data-action="load@window->routes-map#initMap"></div>
+  <div id="map" data-routes-map-target="map" style="z-index: 0; height: 60vh;" data-action="load@window->routes-map#initMap"></div>
   <!-- draggable-panel -->
-  <div id="draggable-panel" class="bg-white w-100" data-controller="" style="height: 50vh;padding-top: 16px;">
+  <div id="draggable-panel" class="bg-white w-100" data-controller="" style="height: 40vh;padding-top: 16px;">
     <div id="panel-content" class="w-100" data-routes-map-target="content">
       <!-- Panel content -->
-      <div class="route-summary p-1 m-0">
-        <p class="text-center m-0">
+      <div class="">
+      </div>
+      <!-- route metrics dashboard -->
+      <div class="routes-summary-bar ps-1">
+        <ul class="stats-list">
+          <li><i class="fa-solid fa-clock"> </i> <%= @route['summary']&.dig('move', 'time') || 'N/A' %> min </li>
+          <li><i class="fa-solid fa-location-pin"> </i> <%= @route['summary']&.dig('move', 'distance') || 'N/A' %> m</li>
+          <li><i class="fa-solid fa-person-walking"> </i> <%= @route['summary']&.dig('move', 'walk_distance') || 'N/A' %> m</li>
+          <li><i class="fa-solid fa-yen-sign"> </i> <%= @route['summary']&.dig('move', 'fare', 'unit_0') || 'N/A' %></li>
+        </ul>
+      </div>
+      <div class="route-summary-trip">
+        <p class="route-summary-trip-text">
           <span class="material-symbols-outlined text-success">
             location_on
           </span><span class="material-symbols-outlined">
@@ -27,7 +38,7 @@
               </span>
             <% elsif section['type'] == 'point' && section['node_id'].present? && section['gateway'].nil? %> <!-- This is for transfer points -->
               <span class="material-symbols-outlined">
-                swap_horiz
+                transfer_within_a_station
               </span><span class="material-symbols-outlined">
                 chevron_right
               </span>
@@ -42,15 +53,6 @@
         <div class="m-0 p-1 instructions-container">
           <!-- Render the partial that handles the route sections -->
           <%= render partial: 'section', locals: { route: @route } %>
-        </div>
-        <!-- route metrics dashboard -->
-        <div class="route-summary p-1 mb-3">
-          <h6 class="text-center m-0">
-            <span class="material-symbols-outlined">timer</span> <%= @route['summary']['move']['time'] %> min
-            <span class="material-symbols-outlined">straighten</span> <%= @route['summary']['move']['distance'] %> m
-            <span class="material-symbols-outlined">footprint</span><%= @route['summary']['move']['walk_distance'] %> m
-            <span class="material-symbols-outlined">currency_yen</span><%= @route['summary']['move']['fare']['unit_0'] %>
-          </h6>
         </div>
       <% else %>
         <p>No route details available.</p>

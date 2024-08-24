@@ -3,8 +3,10 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="panel-resizer"
 export default class extends Controller {
   connect() {
-    document.querySelector("#draggable-panel").style.height = this.maxHeight + "px";
-    document.querySelector("#draggable-panel").style.borderRadius = 0;
+    if (document.querySelector("#place-description").classList.contains("d-none")) {
+      document.querySelector("#draggable-panel").style.height = this.maxHeight + "px";
+      document.querySelector("#draggable-panel").style.borderRadius = 0;
+    }
   }
   // initializing variables
   cursorY = 0;
@@ -51,5 +53,9 @@ export default class extends Controller {
     document.removeEventListener("mouseup", this.stopResizing);
     document.removeEventListener("touchmove", this.resize);
     document.removeEventListener("touchend", this.stopResizing);
+  }
+
+  heightMaxer() {
+    document.querySelector("#draggable-panel").style.height = this.maxHeight + "px";
   }
 }
