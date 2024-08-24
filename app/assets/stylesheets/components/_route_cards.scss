@@ -7,9 +7,9 @@
 .instruction-card {
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 18rem;
-  height: 35vh;
+  height: 20vh;
+  width: 20vh;
   margin-right: 10px;
 
 
@@ -20,3 +20,128 @@
     font-size: 18px;
   }
 }
+
+.route-summary-trip {
+
+
+  .route-summary-trip-text {
+    font-size: 12px;
+  }
+}
+
+.card-point {
+
+  .card-point-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+  }
+
+  .point-title {
+    margin-top: 10px;
+    color: blue;
+  }
+}
+
+.card-walk {
+  padding: 10px 15px;
+  .card-walk-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 26px;
+    color: blue
+  }
+}
+
+.card-transport {
+
+
+  .card-transport-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 26px;
+  }
+}
+
+.start-goal-card {
+  height: 22vh;
+  width: 15vh;
+  .card-point-text {
+    font-size: 26px;
+    text-align: center;
+  }
+
+  a {
+    height: 40px;
+    width: 80px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    transition: 0.3s;
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px auto;
+
+    &:hover {
+      background-color: #8f1212;
+    }
+
+  }
+}
+
+.end-trip-btn {
+  height: 40px;
+  width: 80px;
+}
+
+.walk-stats-container {
+  margin-bottom: 10px;
+  padding: 5px;
+
+  .walk-stats-list {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    color: gray;
+    font-size: 12px;
+  }
+
+}
+
+.arrow {
+  color: blue;
+  font-size: 34px;
+  text-align: end;
+}
+
+.elevator-image-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+
+  img {
+    height: 100px;
+    width: 85px;
+    border-radius: 15px;
+  };
+
+  .exit {
+    display: flex;
+    align-items: last baseline;
+
+  }
+}
+
+.transfer-card-img {
+  height: 100px;
+  width: 85px;
+  border-radius: 15px;
+  }
