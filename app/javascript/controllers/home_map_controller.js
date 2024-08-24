@@ -118,7 +118,6 @@ export default class extends Controller {
         document.querySelector("#draggable-panel").style.borderRadius = "16px 16px 0 0";
         document.querySelector("#initial-content").classList.toggle("d-none");
         document.querySelector("#place-description").classList.toggle("d-none");
-        document.querySelector("#reviews-container").classList.toggle("d-none");
         document.getElementById("first-back-button").classList.toggle("d-none");
         this.originInputTarget.classList.toggle("d-none")
         document.getElementById("destination").parentElement.classList.add("d-none")
@@ -155,6 +154,13 @@ export default class extends Controller {
                 .then(html => {
                   document.getElementById('reviews-container').innerHTML = html;
                 });
+
+              fetch(`/pages/render_tags?id=${data.id}`)
+                .then(response => response.text())
+                  .then(html => {
+                    document.getElementById('tags-container').innerHTML = html;
+                  });
+
             } else {
               console.error("Error:", data.message);
             }
@@ -179,8 +185,8 @@ export default class extends Controller {
         .then(data => {
           document.getElementById('origin').value = data.results[0].formatted_address
           const addressComponents = data.results[0].address_components;
-          const localityComponent = addressComponents.find(component => component.types.includes('locality'));
-          return localityComponent.long_name;
+          const localityComponent = addressComponents.find(component => component.types.includes('locality'));;
+          document.getElementById("current-location").innerText = localityComponent.long_name;
         })
     })
     this.origin = undefined;
@@ -189,12 +195,10 @@ export default class extends Controller {
   firstBack() {
     document.querySelector("#initial-content").classList.toggle("d-none");
     document.querySelector("#place-description").classList.toggle("d-none");
-    document.querySelector("#reviews-container").classList.toggle("d-none");
+    document.querySelector("#reviews-container").classList.add("d-none");
     document.getElementById("first-back-button").classList.toggle("d-none");
     this.originInputTarget.classList.toggle("d-none")
     document.getElementById("destination").parentElement.classList.toggle("d-none")
-    // Remove marker from the map
-    marker.setMap(null);
   }
 
   direct() {
@@ -263,7 +267,6 @@ export default class extends Controller {
           document.querySelector("#draggable-panel").style.borderRadius = "16px 16px 0 0";
           document.querySelector("#initial-content").classList.toggle("d-none");
           document.querySelector("#place-description").classList.toggle("d-none");
-          document.querySelector("#reviews-container").classList.toggle("d-none");
           document.getElementById("first-back-button").classList.toggle("d-none");
 
           //new changes for inputs
@@ -289,6 +292,11 @@ export default class extends Controller {
                   .then(response => response.text())
                   .then(html => {
                     document.getElementById('reviews-container').innerHTML = html;
+                  });
+                fetch(`/pages/render_tags?id=${data.id}`)
+                  .then(response => response.text())
+                  .then(html => {
+                    document.getElementById('tags-container').innerHTML = html;
                   });
               } else {
                 console.error("Error:", data.message);

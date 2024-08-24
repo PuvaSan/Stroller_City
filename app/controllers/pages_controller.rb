@@ -38,4 +38,14 @@ class PagesController < ApplicationController
     end
   end
 
+  def render_tags
+    @place = Place.find(params[:id])
+
+    if @place
+      render partial: 'shared/tag_card', locals: { place: @place }
+    else
+      render plain: "No tags found", status: :not_found
+    end
+  end
+
 end
