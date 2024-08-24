@@ -26,7 +26,7 @@
   <div class="section mb-4">
     <% if section['type'] == 'point' %>
       <div class="card instruction-card card-point <%= if section == first_point_section || section == last_point_section then "start-goal-card" end %>"
-           data-action="click->routes-map#handleCardClick"
+          data-action="click->routes-map#handleCardClick"
         data-coordinates="<%= section['coord'].present? ? "#{section['coord']['lat']},#{section['coord']['lon']}" : '' %>"
         data-move="point">
         <p class="card-point-text">
