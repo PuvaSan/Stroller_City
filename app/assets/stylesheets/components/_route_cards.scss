@@ -136,6 +136,14 @@
   .exit {
     display: flex;
     align-items: last baseline;
+    .exit-text {
+      font-size: 8px;
+      background-color: yellow;
+      color: black;
+      border-radius: 20px;
+      padding: 1px;
+      margin-right: 2px;
+    }
 
   }
 }
