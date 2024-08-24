@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="another-map"
 export default class extends Controller {
-  static targets = [ "name", "address", "photo", "originInput", "phone", "info", "recent", "recommended", "place-photo-container"]
+  static targets = [ "name", "address", "photo", "originInput", "phone", "info", "recent", "recommended","recent"]
   connect() {
     console.log("home map connected")
     console.log(this.nameTarget, this.addressTarget)
@@ -10,7 +10,6 @@ export default class extends Controller {
     const recent = JSON.parse(localStorage.getItem('recent'))
     recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
               this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card-category me-3" style="width: 180px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${place.photo.trim()})">${place.name}</div>`);
-              console.log(place.photo)
             });
     document.getElementById("current-location").innerText = this.getCurrentPosition();
     // console.log("api key", this.apiKeyValue)
@@ -134,7 +133,6 @@ export default class extends Controller {
           localStorage.setItem('recent', JSON.stringify(recent));
           console.log(recent);
         }
-
 
         // Send the place name to Rails controller via AJAX
         if (place.name) {
