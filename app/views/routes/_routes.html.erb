@@ -1,18 +1,44 @@
 <!-- app/views/routes/_route.html.erb -->
-<div class="route card p-3 m-3 shadow-sm">
-  <div class="d-flex justify-content-between">
-    <h2><i class="fa-solid fa-route text-secondary"></i> Route <%= route['summary']&.dig('no') || 'Unknown' %></h2>
-    <div>
+<div class="route-badges route card p-3 m-3 shadow-sm">
+  <div class="d-flex justify-content-between mb-3">
+    <h2>
+      <!-- Badges for the route -->
+      <% if route == @quickest_route %>
+        <span class="badge badge-pill bg-success">Quickest Route</span>
+      <% end %>
+      <% if route == @shortest_route %>
+        <span class="badge badge-pill short-color">Shortest Route</span>
+      <% end %>
+      <% if route == @less_walking_route %>
+        <span class="badge badge-pill bg-warning">Less Walking</span>
+      <% end %>
+      <% if route == @cheapest_route %>
+        <span class="badge badge-pill bg-info">Cheapest Route</span>
+      <% end %>
+      <!-- Display route number if no specific badge is applicable -->
+      <% if ![route == @quickest_route, route == @shortest_route, route == @less_walking_route, route == @cheapest_route].any? %>
+        <span class="badge badge-pill bg-light text-dark average-route">Average Route</span>
+      <% end %>
+    </h2>
+    <%# top right corner for route score %>
+    <!--<div>
       <i class="fa-solid fa-baby-carriage text-warning"></i>
-      <%# <%= route.rating %>  <p>(5) </p>
+      <%# <%= route.rating %>
+      <p>(5) </p>
     </div>
+    -->
   </div>
-  <p class="text-center mt-3">
-    <i class="fa-solid fa-stopwatch"></i> <%= route['summary']&.dig('move', 'time') || 'N/A' %> min |
-    <i class="fa-solid fa-ruler-horizontal"></i> <%= route['summary']&.dig('move', 'distance') || 'N/A' %> m |
-    <i class="fa-solid fa-shoe-prints"></i> <%= route['summary']&.dig('move', 'walk_distance') || 'N/A' %> m |
-    <strong>¥</strong> <%= route['summary']&.dig('move', 'fare', 'unit_0') || 'N/A' %>
-  </p>
+  <div class="routes-summary-bar">
+    <ul class="stats-list">
+      <li><i class="fa-solid fa-clock"> </i> <%= route['summary']&.dig('move', 'time') || 'N/A' %> min </li>
+      <li><i class="fa-solid fa-location-pin"> </i> <%= route['summary']&.dig('move', 'distance') || 'N/A' %> m</li>
+      <li><i class="fa-solid fa-person-walking"> </i> <%= route['summary']&.dig('move', 'walk_distance') || 'N/A' %> m</li>
+      <li><i class="fa-solid fa-yen-sign"> </i> <%= route['summary']&.dig('move', 'fare', 'unit_0') || 'N/A' %></li>
+    </ul>
+    <% if route['summary']&.dig('no').present? %>
+      <%= link_to "Go", route_path(route['summary']['no']), class: 'btn btn-primary' %>
+    <% end %>
+  </div>
   <% # Extract and list the transit stations %>
   <% stations = route['sections'].select { |section| section['node_types']&.include?('station') }.map { |station| station['name'] || 'Unknown' } %>
   <ul class="list-group list-group-horizontal mb-3">
@@ -21,7 +47,4 @@
       <li class="list-group-item"><%= station %></li>
     <% end %>
   </ul>
-  <% if route['summary']&.dig('no').present? %>
-    <%= link_to "", route_path(route['summary']['no']), class: 'btn btn-primary fa-solid fa-arrow-right-long' %>
-  <% end %>
 </div>

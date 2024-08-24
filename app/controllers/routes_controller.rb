@@ -4,6 +4,36 @@ class RoutesController < ApplicationController
 
   def index
     @navitime_routes = fetch_navitime_routes(session[:start_lat], session[:start_long], session[:end_lat], session[:end_long])
+
+    if @navitime_routes
+      # Initialize variables to store the best route characteristics
+      quickest_route = shortest_route = less_walking_route = cheapest_route = nil
+
+      @navitime_routes['items'].each do |route|
+        route_time = route['summary']&.dig('move', 'time') || Float::INFINITY
+        route_distance = route['summary']&.dig('move', 'distance') || Float::INFINITY
+        route_walk_distance = route['summary']&.dig('move', 'walk_distance') || Float::INFINITY
+        route_fare = route['summary']&.dig('move', 'fare', 'unit_0') || Float::INFINITY
+
+        # Find the quickest route
+        quickest_route = route if quickest_route.nil? || route_time < quickest_route['summary']['move']['time']
+
+        # Find the shortest route
+        shortest_route = route if shortest_route.nil? || route_distance < shortest_route['summary']['move']['distance']
+
+        # Find the route with less walking
+        less_walking_route = route if less_walking_route.nil? || route_walk_distance < less_walking_route['summary']['move']['walk_distance']
+
+        # Find the cheapest route
+        cheapest_route = route if cheapest_route.nil? || route_fare < cheapest_route['summary']['move']['fare']['unit_0']
+      end
+
+      # Set instance variables for use in the view
+      @quickest_route = quickest_route
+      @shortest_route = shortest_route
+      @less_walking_route = less_walking_route
+      @cheapest_route = cheapest_route
+    end
   end
 
   def show

@@ -3,11 +3,15 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="panel-resizer"
 export default class extends Controller {
   connect() {
-    console.log("panel resizer connected")
+    if (document.querySelector("#place-description").classList.contains("d-none")) {
+      document.querySelector("#draggable-panel").style.height = this.maxHeight + "px";
+      document.querySelector("#draggable-panel").style.borderRadius = 0;
+    }
   }
   // initializing variables
   cursorY = 0;
   height = 0;
+  maxHeight = window.innerHeight - document.getElementById("stick-to-top").clientHeight;
 
   // will trigger getting y-coordinate of the cursor/touch and the initial height of the panel
   grab = (event) => {
@@ -35,11 +39,9 @@ export default class extends Controller {
 
      // Calculate the new height based on the mouse movement
     let newHeight = this.height + (this.cursorY - event.clientY);
-     // Calculate the maximum height based on the available space
-    const maxHeight = window.innerHeight - document.getElementById("input-fields").clientHeight;
 
     // Set the new height of the element if within range
-    if (newHeight <= maxHeight && newHeight >= 200) {
+    if (newHeight <= this.maxHeight && newHeight >= 200) {
       this.element.style.height = `${newHeight}px`;
     }
   }
@@ -51,5 +53,9 @@ export default class extends Controller {
     document.removeEventListener("mouseup", this.stopResizing);
     document.removeEventListener("touchmove", this.resize);
     document.removeEventListener("touchend", this.stopResizing);
+  }
+
+  heightMaxer() {
+    document.querySelector("#draggable-panel").style.height = this.maxHeight + "px";
   }
 }

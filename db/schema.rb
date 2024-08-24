@@ -57,6 +57,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_22_115547) do
     t.index ["trip_id"], name: "index_details_on_trip_id"
   end
 
+  create_table "details", force: :cascade do |t|
+    t.bigint "trip_id", null: false
+    t.string "title"
+    t.string "action"
+    t.integer "distance"
+    t.integer "duration"
+    t.string "formatted_distance"
+    t.string "formatted_duration"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_details_on_trip_id"
+  end
+
   create_table "favorites", force: :cascade do |t|
     t.string "favoritable_type", null: false
     t.bigint "favoritable_id", null: false
@@ -114,6 +129,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_22_115547) do
     t.index ["start_id"], name: "index_routes_on_start_id"
   end
 
+  create_table "routes", force: :cascade do |t|
+    t.bigint "start_id", null: false
+    t.bigint "end_id", null: false
+    t.integer "distance"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer "duration"
+    t.string "formatted_distance"
+    t.string "formatted_duration"
+    t.integer "cost"
+    t.string "currency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["end_id"], name: "index_routes_on_end_id"
+    t.index ["start_id"], name: "index_routes_on_start_id"
+  end
+
   create_table "taggings", force: :cascade do |t|
     t.bigint "tag_id"
     t.string "taggable_type"
@@ -143,6 +175,35 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_22_115547) do
     t.datetime "updated_at", null: false
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "transit_routes", force: :cascade do |t|
+    t.bigint "trip_id", null: false
+    t.text "coordinates"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_transit_routes_on_trip_id"
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.bigint "route_id", null: false
+    t.string "travel_mode"
+    t.string "title"
+    t.integer "distance"
+    t.integer "duration"
+    t.string "formatted_distance"
+    t.string "formatted_duration"
+    t.string "start_stop_name"
+    t.string "start_stop_id"
+    t.datetime "start_time"
+    t.string "end_stop_name"
+    t.string "end_stop_id"
+    t.datetime "end_time"
+    t.string "service_name"
+    t.string "service_link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["route_id"], name: "index_trips_on_route_id"
   end
 
   create_table "trips", force: :cascade do |t|
@@ -187,5 +248,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_22_115547) do
   add_foreign_key "routes", "places", column: "end_id"
   add_foreign_key "routes", "places", column: "start_id"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "transit_routes", "trips"
   add_foreign_key "trips", "routes"
 end

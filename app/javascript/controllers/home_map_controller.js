@@ -6,12 +6,11 @@ export default class extends Controller {
   connect() {
     console.log("home map connected")
     console.log(this.nameTarget, this.addressTarget)
-    document.querySelector("#draggable-panel").style.height = "80vh";
-        //get recent search history from local storage
-        const recent = JSON.parse(localStorage.getItem('recent'))
-        recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
-        this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card"><div class="card-body"> <div class="card-text">${place}</div></div></div>`)
-        })
+    //get recent search history from local storage
+    const recent = JSON.parse(localStorage.getItem('recent'))
+    recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
+    this.recentTarget.insertAdjacentHTML("beforeend", `<div class="card-category me-3" style="width: 180px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("${place.photo}")">${place.name}</div>`)})
+    document.getElementById("current-location").innerText = this.getCurrentPosition();
     // console.log("api key", this.apiKeyValue)
   }
 
@@ -22,14 +21,15 @@ export default class extends Controller {
     const buttonId = event.currentTarget.id;
     const selectedContainer = document.getElementById(`${buttonId}-container`);
     const containers = document.querySelectorAll(".ikumi-container > *");
+    console.log(buttonId, selectedContainer, containers);
     containers.forEach(container => {
       if (!container.classList.contains("d-none")) {
         container.classList.add("d-none");
       }
     });
     selectedContainer.classList.remove("d-none");
-    console.log(buttonId, selectedContainer, containers);
   }
+
 
   select(event) {
     // Remove the 'selected' class from all buttons
@@ -111,6 +111,7 @@ export default class extends Controller {
           this.photoTarget.insertAdjacentHTML("beforeend", imgElement);
         });
         document.querySelector("#draggable-panel").style.height = "350px";
+        document.querySelector("#draggable-panel").style.borderRadius = "16px 16px 0 0";
         document.querySelector("#initial-content").classList.toggle("d-none");
         document.querySelector("#place-description").classList.toggle("d-none");
         document.querySelector("#reviews-container").classList.toggle("d-none");
@@ -120,13 +121,15 @@ export default class extends Controller {
 
         if (localStorage.getItem('recent') === null) {
           let recent = [];
-          recent.push(place.name);
+          recent.push({ name: place.name, photo: place.photos[0].getUrl() });
           localStorage.setItem('recent', JSON.stringify(recent));
         } else {
           let recent = JSON.parse(localStorage.getItem('recent'));
-          recent.push(place.name);
+          recent.push({ name: place.name, photo: place.photos[0].getUrl() });
           localStorage.setItem('recent', JSON.stringify(recent));
+          console.log(recent);
         }
+
 
         // Send the place name to Rails controller via AJAX
         if (place.name) {
@@ -171,13 +174,15 @@ export default class extends Controller {
         .then(response => response.json())
         .then(data => {
           document.getElementById('origin').value = data.results[0].formatted_address
+          const addressComponents = data.results[0].address_components;
+          const localityComponent = addressComponents.find(component => component.types.includes('locality'));
+          return localityComponent.long_name;
         })
     })
     this.origin = undefined;
   }
 
   firstBack() {
-    document.querySelector("#draggable-panel").style.height = "80vh";
     document.querySelector("#initial-content").classList.toggle("d-none");
     document.querySelector("#place-description").classList.toggle("d-none");
     document.querySelector("#reviews-container").classList.toggle("d-none");
@@ -251,6 +256,7 @@ export default class extends Controller {
             this.photoTarget.insertAdjacentHTML("beforeend", imgElement);
           });
           document.querySelector("#draggable-panel").style.height = "350px";
+          document.querySelector("#draggable-panel").style.borderRadius = "16px 16px 0 0";
           document.querySelector("#initial-content").classList.toggle("d-none");
           document.querySelector("#place-description").classList.toggle("d-none");
           document.querySelector("#reviews-container").classList.toggle("d-none");
