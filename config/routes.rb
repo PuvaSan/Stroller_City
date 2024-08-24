@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   post "reviews", to: "favorites#create"
   resources :favorites do
     resources :reviews, only: [:index, :new, :create]
+    member do
+      post 'like'
+    end
   end
 
   devise_for :users

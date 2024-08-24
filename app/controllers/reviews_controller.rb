@@ -20,6 +20,16 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def like
+    @review = Review.find(params[:id])
+    @review.increment!(:likes_count)
+
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_path) }
+      format.json { render json: { likes_count: @review.likes_count } }
+    end
+  end
+
   private
 
   def review_params
