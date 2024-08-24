@@ -1,7 +1,7 @@
 <div id="recommended-p-container" class="w-100">
   <div class="ikumi-place-container d-flex flex-row w-100">
     <% @places.each do |place| %>
-      <div class="card-category me-3" style="width: 180px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= url_for(place.photos.first)%>)">
+      <div class="card-category me-3" id="<%= place.google_id %>" data-action="click->home-map#javi" style="width: 180px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= url_for(place.photos.first)%>)">
         <%= place.name %>
       </div>
     <% end %>
