@@ -80,11 +80,14 @@
               <span style="background-color:<%= section['transport']['color'] %>; color: #fff; padding: 2px 4px; border-radius: 3px;">
                 <%= section['transport']['name'] %>
               </span>
-              <span>
-                <% @stops.each do |stop| %>
-                  <%= stop %> stop(s)
-                <% end %>
-              </span>
+              <div>
+                <span class="route-stops" style="background-color:<%= section['transport']['color'] %>">
+                  <% @stops.each do |stop| %>
+                    <%= stop %>
+                  <% end %>
+                </span>
+                Stop(s)
+              </div>
               <!--from <strong><%= section['transport']['links'][0]['from']['name'] %></strong> to <strong><%= section['transport']['links'][0]['to']['name'] %></strong>.-->
             </div>
           </div>

@@ -60,6 +60,7 @@
     display: flex;
     flex-direction: column;
     font-size: 20px;
+    padding: 10px;
   }
 }
 
@@ -152,4 +153,13 @@
   height: 100px;
   width: 85px;
   border-radius: 15px;
+  }
+
+  .route-stops {
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 19px;
+    margin-right: 2px;
   }
