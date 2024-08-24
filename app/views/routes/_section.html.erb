@@ -75,13 +75,18 @@
           <div class="card instruction-card card-transport" data-action="click->routes-map#handleCardClick"
             data-move="transport"
             data-index="<%= transport_card_index %>"> <!-- Use transport_card_index here -->
-            <p class="card-transport-text">
+            <div class="card-transport-text">
               <i class="fa-solid fa-train-subway " style="color:<%= section['transport']['color'] %>"></i> Take
               <span style="background-color:<%= section['transport']['color'] %>; color: #fff; padding: 2px 4px; border-radius: 3px;">
                 <%= section['transport']['name'] %>
               </span>
+              <span>
+                <% @stops.each do |stop| %>
+                  <%= stop %> stop(s)
+                <% end %>
+              </span>
               <!--from <strong><%= section['transport']['links'][0]['from']['name'] %></strong> to <strong><%= section['transport']['links'][0]['to']['name'] %></strong>.-->
-            </p>
+            </div>
           </div>
           <% transport_card_index += 1 %> <!-- Increment transport index for each transport section -->
         <% else %>

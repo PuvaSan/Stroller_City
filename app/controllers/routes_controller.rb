@@ -51,6 +51,30 @@ class RoutesController < ApplicationController
     else
       @sections = @route['sections']
     end
+
+    # number of transport stops array
+    # Assuming @route is already set and contains the necessary data
+    @stops = []
+    last_departure_number = nil
+
+    @route['sections'].each do |section|
+      if section['numbering'].present?
+        if section['numbering']['departure'].present?
+          # Store the departure number in a temp variable
+          last_departure_number = section['numbering']['departure'][0]['number'].to_i
+        elsif section['numbering']['arrival'].present? && last_departure_number
+          # If we have a last departure number, calculate the difference with arrival
+          arrival_number = section['numbering']['arrival'][0]['number'].to_i
+          difference = (last_departure_number - arrival_number).abs
+          @stops << difference
+
+          # Reset the last_departure_number after the calculation
+          last_departure_number = nil
+        end
+      end
+    end
+
+
   end
 
   private
