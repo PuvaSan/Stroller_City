@@ -17,11 +17,12 @@
         </div>
         <div class="d-flex w-100 justify-content-between mt-2">
           <div class="star-rating">
-            <%= review.rating %>
+            <% review.rating %>
             <% r_rating = review.rating %>
             <% r_rating.times do %>
               <i class="fa-solid fa-star text-warning"></i>
             <% end %>
+            <strong> <%= review.place.name %></strong>
           </div>
         </div>
 

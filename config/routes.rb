@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post "reviews", to: "favorites#create"
   resources :reviews do
     member do
-      post 'like', only: [:create, :destroy]
+      post 'toggle'
     end
   end
 
