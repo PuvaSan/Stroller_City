@@ -13,6 +13,11 @@ export default class extends Controller {
     document.getElementById("current-location").innerText = this.getCurrentPosition();
     this.initMap();
     document.getElementById('tags-container').innerHTML = '';
+    let modalInputs = document.querySelectorAll('.modal-body input');
+    modalInputs.forEach(input => {
+      input.checked = false;
+    });
+    document.getElementById('hiddenPlaceId').value = "";
   }
 
   apiKey = "AIzaSyCWOSZTJ-G738Y4qoVuyVHh1YYjtWUSlao";
@@ -66,7 +71,7 @@ export default class extends Controller {
       let place = this.destinationAutocomplete.getPlace();
       // recenters map when input is changed to a google place
       if (place.geometry && place.geometry.location) {
-        this.map.setCenter( { lat: place.geometry.location.lat() - 0.005, lng: place.geometry.location.lng() });
+        this.map.setCenter( place.geometry.location );
         this.map.setZoom(15);
         // Add marker to the selected place
         const marker = new google.maps.Marker({
@@ -134,10 +139,20 @@ export default class extends Controller {
                 .then(response => response.text())
                   .then(html => {
                     document.getElementById('tags-container').insertAdjacentHTML("afterbegin", html);
+                    let modalInputs = document.querySelectorAll('.modal-body input');
+                    let placeTags = [...document.querySelectorAll('.aya-tags')].map(tag => tag.innerText);
+                    modalInputs.forEach(input => {
+                      if (placeTags.includes(input.name)) {
+                        input.checked = true;
+                      }
+                    });
+                    document.getElementById("placeTagsForm").action = `/places/${data.id}`;
+                    document.getElementById('hiddenPlaceId').value = data.id;
                   });
-
             } else {
               console.error("Error:", data.message);
+              document.getElementById("placeTagsForm").action = `/places`;
+              document.getElementById('hiddenPlaceId').value = place.place_id;
             }
           })
           .catch(error => {
@@ -176,6 +191,11 @@ export default class extends Controller {
     document.getElementById("destination").parentElement.classList.toggle("d-none")
     this.destinationAutocomplete = new google.maps.places.Autocomplete(document.getElementById('destination'))
     document.getElementById('tags-container').innerHTML = '';
+    let modalInputs = document.querySelectorAll('.modal-body input');
+    modalInputs.forEach(input => {
+      input.checked = false;
+    });
+    document.getElementById('hiddenPlaceId').value = "";
   }
 
   direct(event) {
@@ -233,7 +253,7 @@ export default class extends Controller {
 
         // recenters map when input is changed to a google place
         if (place.location) {
-          this.map.setCenter( { lat: place.location.latitude - 0.005, lng: place.location.longitude });
+          this.map.setCenter( { lat: place.location.latitude, lng: place.location.longitude });
           this.map.setZoom(15);
           // Add marker to the selected place
           const marker = new google.maps.Marker({
@@ -265,8 +285,6 @@ export default class extends Controller {
           document.getElementById("go-button").dataset.value = buttonId;
           document.getElementById('destination').value = "";
           this.destinationAutocomplete = new google.maps.places.Autocomplete(document.getElementById('destination'))
-
-          //new changes for inputs
           this.originInputTarget.classList.toggle("d-none")
           document.getElementById("destination").parentElement.classList.add("d-none")
 
@@ -293,11 +311,21 @@ export default class extends Controller {
                 fetch(`/pages/render_tags?id=${data.id}`)
                   .then(response => response.text())
                   .then(html => {
-
                     document.getElementById('tags-container').insertAdjacentHTML("afterbegin", html);
+                    let modalInputs = document.querySelectorAll('.modal-body input');
+                    let placeTags = [...document.querySelectorAll('.aya-tags')].map(tag => tag.innerText);
+                    modalInputs.forEach(input => {
+                      if (placeTags.includes(input.name)) {
+                        input.checked = true;
+                      }
+                    });
+                    document.getElementById("placeTagsForm").action = `/places/${data.id}`;
+                    document.getElementById('hiddenPlaceId').value = data.id;
                   });
               } else {
                 console.error("Error:", data.message);
+                document.getElementById("placeTagsForm").action = `/places`;
+                document.getElementById('hiddenPlaceId').value = buttonId;
               }
             })
             .catch(error => {

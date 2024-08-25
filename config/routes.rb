@@ -27,4 +27,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  patch "places/:id", to: "places#update"
 end
