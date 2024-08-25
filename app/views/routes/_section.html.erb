@@ -44,7 +44,7 @@
             <div class="elevator-image-container">
               <img src="http://res.cloudinary.com/dckq0zged/image/upload/v1724434212/dnilq9ncpkzidf3ttuyc.png" alt="elevator">
               <div class="exit">
-                <span class="badge bg-warning"><%= section['gateway'] %></span><span class="material-symbols-outlined">elevator</span>
+                <span class="exit-text"><%= section['gateway'] %></span><i class="fa-solid fa-elevator"></i>
               </div>
             </div>
           <% end %>
@@ -75,13 +75,21 @@
           <div class="card instruction-card card-transport" data-action="click->routes-map#handleCardClick"
             data-move="transport"
             data-index="<%= transport_card_index %>"> <!-- Use transport_card_index here -->
-            <p class="card-transport-text">
+            <div class="card-transport-text">
               <i class="fa-solid fa-train-subway " style="color:<%= section['transport']['color'] %>"></i> Take
               <span style="background-color:<%= section['transport']['color'] %>; color: #fff; padding: 2px 4px; border-radius: 3px;">
                 <%= section['transport']['name'] %>
               </span>
+              <div>
+                <span class="route-stops" style="background-color:<%= section['transport']['color'] %>">
+                  <% @stops.each do |stop| %>
+                    <%= stop %>
+                  <% end %>
+                </span>
+                Stop(s)
+              </div>
               <!--from <strong><%= section['transport']['links'][0]['from']['name'] %></strong> to <strong><%= section['transport']['links'][0]['to']['name'] %></strong>.-->
-            </p>
+            </div>
           </div>
           <% transport_card_index += 1 %> <!-- Increment transport index for each transport section -->
         <% else %>
@@ -93,13 +101,3 @@
     <% end %>
   </div>
 <% end %>
-<!-- JavaScript to handle image click and show the modal -->
-<script>
-  $(document).ready(function(){
-    $('img').on('click', function(){
-      const imgSrc = $(this).attr('src');
-      $('#modalImage').attr('src', imgSrc);
-      $('#imageModal').modal('show');
-    });
-  });
-</script>
