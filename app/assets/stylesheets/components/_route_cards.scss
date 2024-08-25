@@ -163,3 +163,11 @@
     font-size: 19px;
     margin-right: 2px;
   }
+
+  .modal-backdrop {
+    z-index: 1040 !important;
+  }
+
+  .modal-content {
+    z-index: 1050 !important;
+  }

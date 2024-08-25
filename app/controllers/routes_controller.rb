@@ -57,22 +57,33 @@ class RoutesController < ApplicationController
     @stops = []
     last_departure_number = nil
 
-    @route['sections'].each do |section|
-      if section['numbering'].present?
-        if section['numbering']['departure'].present?
-          # Store the departure number in a temp variable
-          last_departure_number = section['numbering']['departure'][0]['number'].to_i
-        elsif section['numbering']['arrival'].present? && last_departure_number
-          # If we have a last departure number, calculate the difference with arrival
-          arrival_number = section['numbering']['arrival'][0]['number'].to_i
-          difference = (last_departure_number - arrival_number).abs
+    @stops = []
+numbering_pairs = {}
+
+@route['sections'].each do |section|
+  if section['numbering'].present?
+    section['numbering'].each do |key, value|
+      value.each do |numbering|
+        symbol = numbering['symbol']
+        number = numbering['number'].to_i
+
+        # If we already have a stored number for this symbol, calculate the difference
+        if numbering_pairs[symbol]
+          difference = (numbering_pairs[symbol] - number).abs
           @stops << difference
 
-          # Reset the last_departure_number after the calculation
-          last_departure_number = nil
+          # After using the pair, reset the stored value to the current number
+          numbering_pairs[symbol] = number
+        else
+          # Otherwise, store this number for future comparison
+          numbering_pairs[symbol] = number
         end
       end
     end
+  end
+end
+
+puts "stops: #{@stops}"
 
 
   end
