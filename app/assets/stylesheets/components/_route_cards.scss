@@ -23,7 +23,7 @@
 
 
   .route-summary-trip-text {
-    font-size: 12px;
+    font-size: 0px;
   }
 }
 
@@ -32,12 +32,12 @@
   .card-point-text {
     display: flex;
     flex-direction: column;
-    font-size: 15px;
+    font-size: 20px;
   }
 
   .point-title {
-    margin-top: 10px;
-    color: blue;
+    margin-top: 8px;
+    color: #396DA6;
   }
 }
 
@@ -47,7 +47,7 @@
     display: flex;
     flex-direction: column;
     font-size: 26px;
-    color: blue
+    color: #396DA6
   }
 }
 
@@ -59,6 +59,7 @@
     flex-direction: column;
     font-size: 20px;
     padding: 10px;
+    text-wrap: wrap;
   }
 }
 
@@ -66,8 +67,13 @@
   height: 22vh;
   width: 15vh;
   .card-point-text {
-    font-size: 20px;
+    font-size: 17px;
     text-align: center;
+  }
+
+  i {
+    font-size: 25px;
+    margin-bottom: 5px;
   }
 
   a {
@@ -98,7 +104,6 @@
 
 .walk-stats-container {
   margin-bottom: 10px;
-  padding: 5px;
 
   .walk-stats-list {
     display: flex;
@@ -110,13 +115,13 @@
 
   li {
     color: gray;
-    font-size: 12px;
+    font-size: 14px;
   }
 
 }
 
 .arrow {
-  color: blue;
+  color: #396DA6;
   font-size: 34px;
   text-align: end;
 }
@@ -127,8 +132,8 @@
   margin: 10px;
 
   img {
-    height: 100px;
-    width: 85px;
+    height: 90px;
+    width: 80px;
     border-radius: 15px;
   };
 
@@ -136,21 +141,23 @@
     display: flex;
     align-items: last baseline;
     .exit-text {
-      font-size: 8px;
+      font-size: 10px;
       background-color: yellow;
-      color: blue;
+      color: #396DA6;
       border-radius: 20px;
-      padding: 2px;
+      padding: 4px;
       margin-right: 1px;
+      font-weight: bold;
     }
 
   }
 }
 
 .transfer-card-img {
-  height: 100px;
-  width: 85px;
+  height: 90px;
+  width: 80px;
   border-radius: 15px;
+  border: lightgray 1px solid;
   }
 
   .route-stops {
@@ -161,6 +168,12 @@
     font-size: 19px;
     margin-right: 2px;
     padding-left: 5px;
+  }
+
+  .route-stop-container
+  {
+    text-align: right;
+    font-size: 13px;
   }
 
   .modal-backdrop {

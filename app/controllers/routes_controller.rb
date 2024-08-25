@@ -1,6 +1,30 @@
+require "google/cloud/translate"
+
 class RoutesController < ApplicationController
   before_action :set_route_params, only: [:index]
   before_action :set_origin_destination, only: [:index, :show]
+
+  # share translate method with the view
+  helper_method :translate
+
+  def translate(text)
+    api_key = ENV['GOOGLE_MAPS_API_KEY']
+    translate_url = "https://translation.googleapis.com/language/translate/v2"
+
+    response = Faraday.get(translate_url, {
+      q: text,
+      source: 'ja',
+      target: 'en',
+      key: api_key
+    })
+
+    json_response = JSON.parse(response.body)
+    translated_text = json_response['data']['translations'].first['translatedText']
+    translated_text
+  rescue StandardError => e
+    Rails.logger.error("Translation API error: #{e.message}")
+    text # Return the original text if there's an error
+  end
 
   def index
     @navitime_routes = fetch_navitime_routes(session[:start_lat], session[:start_long], session[:end_lat], session[:end_long])
@@ -27,7 +51,6 @@ class RoutesController < ApplicationController
         # Find the cheapest route
         cheapest_route = route if cheapest_route.nil? || route_fare < cheapest_route['summary']['move']['fare']['unit_0']
       end
-
       # Set instance variables for use in the view
       @quickest_route = quickest_route
       @shortest_route = shortest_route
@@ -58,32 +81,32 @@ class RoutesController < ApplicationController
     last_departure_number = nil
 
     @stops = []
-numbering_pairs = {}
+    numbering_pairs = {}
 
-@route['sections'].each do |section|
-  if section['numbering'].present?
-    section['numbering'].each do |key, value|
-      value.each do |numbering|
-        symbol = numbering['symbol']
-        number = numbering['number'].to_i
+    @route['sections'].each do |section|
+      if section['numbering'].present?
+        section['numbering'].each do |key, value|
+          value.each do |numbering|
+            symbol = numbering['symbol']
+            number = numbering['number'].to_i
 
-        # If we already have a stored number for this symbol, calculate the difference
-        if numbering_pairs[symbol]
-          difference = (numbering_pairs[symbol] - number).abs
-          @stops << difference
+            # If we already have a stored number for this symbol, calculate the difference
+            if numbering_pairs[symbol]
+              difference = (numbering_pairs[symbol] - number).abs
+              @stops << difference
 
-          # After using the pair, reset the stored value to the current number
-          numbering_pairs[symbol] = number
-        else
-          # Otherwise, store this number for future comparison
-          numbering_pairs[symbol] = number
+              # After using the pair, reset the stored value to the current number
+              numbering_pairs[symbol] = number
+            else
+              # Otherwise, store this number for future comparison
+              numbering_pairs[symbol] = number
+            end
+          end
         end
       end
     end
-  end
-end
 
-puts "stops: #{@stops}"
+    puts "stops: #{@stops}"
 
 
   end

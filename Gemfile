@@ -58,6 +58,8 @@ gem 'acts-as-taggable-on', '~> 10.0'
 gem 'acts_as_favoritor'
 # Gemfile
 gem 'rest-client'
+gem 'google-cloud-translate'
+gem 'faraday'
 
 
 group :development, :test do
