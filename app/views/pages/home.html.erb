@@ -3,7 +3,7 @@
   <%= render 'top_part' %>
 
   <!-- map -->
-  <div id="map" style="z-index: 0; height: 100vh;" data-action="load@window->home-map#initMap"></div>
+  <div id="map" style="z-index: 0; height: 80vh;" data-action="load@window->home-map#initMap"></div>
 
   <!-- draggable-panel -->
   <div id="draggable-panel" class="bg-white w-100 px-3" data-controller="panel-resizer" style="z-index: 0;">
@@ -39,6 +39,50 @@
           <%= render 'javier/mylist_content' %>
           <%= render 'javier/create_content' %>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for tags -->
+<div class="modal fade p-0 m-0" id="addTagsModal" tabindex="-1" role="dialog" aria-labelledby="addTagsModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add tags</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body px-3 mx-3" style="font-size: 20px;">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="place-tag-1">
+          <label class="custom-control-label" for="place-tag-1">stroller rentals</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="place-tag-2">
+          <label class="custom-control-label" for="place-tag-2">nursing rooms</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="place-tag-3">
+          <label class="custom-control-label" for="place-tag-3">diaper changing station</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="place-tag-4">
+          <label class="custom-control-label" for="place-tag-4">stroller-friendly entrance</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="place-tag-5">
+          <label class="custom-control-label" for="place-tag-5">elevators</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="place-tag-6">
+          <label class="custom-control-label" for="place-tag-6">high chairs for babies</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

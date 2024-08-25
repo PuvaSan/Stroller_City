@@ -11,6 +11,8 @@ export default class extends Controller {
               this.recentTarget.insertAdjacentHTML("beforeend", `<div id="${place.id}" data-action="click->home-map#javi" class="card-category me-3" style="width: 180px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${place.photo.trim()})">${place.name}</div>`);
             });
     document.getElementById("current-location").innerText = this.getCurrentPosition();
+    this.initMap();
+    document.getElementById('tags-container').innerHTML = '';
   }
 
   apiKey = "AIzaSyCWOSZTJ-G738Y4qoVuyVHh1YYjtWUSlao";
@@ -35,7 +37,7 @@ export default class extends Controller {
 
   map = null;
 
-  async initMap() {
+  initMap() {
     this.map = new google.maps.Map(document.getElementById('map'),{
       center:{lat:35.652832,lng:139.839478},
       zoom:13,
@@ -131,7 +133,7 @@ export default class extends Controller {
               fetch(`/pages/render_tags?id=${data.id}`)
                 .then(response => response.text())
                   .then(html => {
-                    document.getElementById('tags-container').innerHTML = html;
+                    document.getElementById('tags-container').insertAdjacentHTML("afterbegin", html);
                   });
 
             } else {
@@ -173,6 +175,7 @@ export default class extends Controller {
     this.originInputTarget.classList.toggle("d-none")
     document.getElementById("destination").parentElement.classList.toggle("d-none")
     this.destinationAutocomplete = new google.maps.places.Autocomplete(document.getElementById('destination'))
+    document.getElementById('tags-container').innerHTML = '';
   }
 
   direct(event) {
@@ -290,7 +293,8 @@ export default class extends Controller {
                 fetch(`/pages/render_tags?id=${data.id}`)
                   .then(response => response.text())
                   .then(html => {
-                    document.getElementById('tags-container').innerHTML = html;
+
+                    document.getElementById('tags-container').insertAdjacentHTML("afterbegin", html);
                   });
               } else {
                 console.error("Error:", data.message);
