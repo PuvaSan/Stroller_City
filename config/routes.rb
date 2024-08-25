@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   #this sends the api placename to the controller
   get 'pages/render_reviews', to: 'pages#render_reviews'
+  get 'pages/render_tags', to: 'pages#render_tags'
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

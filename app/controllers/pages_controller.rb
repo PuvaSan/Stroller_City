@@ -9,11 +9,11 @@ class PagesController < ApplicationController
     @review = Review.new
     # Handle the initial page load
     @top_places = Place
-        .select('places.address, COALESCE(AVG(reviews.rating), 0) AS average_rating')
-        .left_joins(:reviews) # This performs a LEFT JOIN with the reviews table
-        .group('places.id, places.name') # Group by place id and name
-        .order('average_rating DESC') # Order by average rating in descending order
-        .limit(5) # Limit the results to 5 places
+      .joins(:reviews)
+      .select('places.*, AVG(reviews.rating) AS average_rating')
+      .group('places.id')
+      .order('average_rating DESC')
+      .limit(5)
     render :home
   end
 
@@ -35,6 +35,16 @@ class PagesController < ApplicationController
       render partial: 'shared/review_card', locals: { place: @place }
     else
       render plain: "No reviews found", status: :not_found
+    end
+  end
+
+  def render_tags
+    @place = Place.find(params[:id])
+
+    if @place
+      render partial: 'shared/tag_card', locals: { place: @place }
+    else
+      render plain: "No tags found", status: :not_found
     end
   end
 
