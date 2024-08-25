@@ -21,7 +21,7 @@ class ReviewsController < ApplicationController
   end
 
   def end_reviews
-    @places = params[:place_ids].split(',')
+    @places = params[:place_ids].split(',').select { |s| s != '' }.reverse!
   end
 
   private

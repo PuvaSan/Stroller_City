@@ -27,5 +27,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  get "end_reviews/:place_ids", to: "reviews#end_reviews", as: :end_review
+  get "end_reviews/:place_ids", to: "reviews#end_reviews", as: :end_reviews
 end

@@ -6,6 +6,7 @@
 <% transport_card_index = 0 %> <!-- Initialize transport index once, outside of the loop -->
 <% first_point_section = route['sections'].find { |s| s['type'] == 'point' && s['name'] == 'start' } %>
 <% last_point_section = route['sections'].reverse.find { |s| s['type'] == 'point' && s['name'] == 'goal' } %>
+<% place_ids = "" %> <!-- Initialize place_ids variable -->
 <% route['sections'].each_with_index do |section, index| %> <!-- Loop over each section -->
   <div class="section mb-4">
     <% if section['type'] == 'point' %>
@@ -17,11 +18,14 @@
           <% if section == first_point_section %>
             <i class="text-center fa-solid fa-location-dot text-success"></i> <span>Start Trip</span> <%#= @origin %>
           <% elsif section == last_point_section %>
+            <% place_ids += ",#{@destination}" %>
             <span><%= @destination %></span><%= link_to("End Trip", end_reviews_path(place_ids), class: "end-trip-btn") %>
           <% elsif section['node_id'].present? && section['gateway'].nil? %> <!-- condition: no gateway but has a node -->
+            <% place_ids += ",#{translate(section['name'])} Station" %>
             <i class="fa-solid fa-right-left"></i><%= translate(section['name']) %> Sta.
             <img class="transfer-card-img" src="http://res.cloudinary.com/dckq0zged/image/upload/v1724436396/xqfdy2ahqffnbxooxkug.jpg" alt="elevator" data-action="click->routes-map#openImageModal">
           <% else %>
+            <% place_ids += ",#{translate(section['name'])} Station" %>
             <span class="point-title"><%= translate(section['name']) %> Sta.</span>
           <% end %>
           <% if section['gateway'].present? %>
