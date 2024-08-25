@@ -270,6 +270,19 @@ export default class extends Controller {
     const moveType = event.currentTarget.dataset.move; // Get the move type (walk, transport, point, etc.)
     const cardIndex = event.currentTarget.dataset.index; // Get the index of the card
 
+    //modal target
+    if (moveType === "point" && event.currentTarget.dataset.coordinates) {
+      const coordinates = event.currentTarget.dataset.coordinates.split(',').map(parseFloat);
+      if (coordinates.length === 2) {
+        console.log(`[handleCardClick] Point location found. Zooming into: lat=${coordinates[0]}, lng=${coordinates[1]}`);
+        this.zoomTo({ lat: coordinates[0], lng: coordinates[1] });
+      } else {
+        console.error(`[handleCardClick] Invalid coordinates format for point: ${coordinates}`);
+      }
+    } else {
+      console.error(`[handleCardClick] No matching section found for ID: ${cardIndex}`);
+    }
+
     console.log(`[handleCardClick] Move type: ${moveType}`);
     console.log(`[handleCardClick] Index: ${cardIndex}`);
 
@@ -306,6 +319,14 @@ export default class extends Controller {
     } else {
       console.error(`[handleCardClick] No matching section found for ID: ${cardIndex}`);
     }
+  }
+
+  // Function to handle image clicks and open the modal
+  openImageModal(event) {
+    const imgSrc = event.currentTarget.getAttribute("src");
+    const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+    document.getElementById('modalImage').setAttribute('src', imgSrc);
+    modal.show();
   }
 
 

@@ -1,22 +1,6 @@
 <!-- Include jQuery before Bootstrap -->
 <%= javascript_include_tag 'https://code.jquery.com/jquery-3.5.1.min.js' %>
-<%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js' %>
 <!-- Modal structure for image preview -->
-<div id="imageModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-center">
-        <img id="modalImage" src="" alt="Image preview" style="max-width: 100%; height: auto;">
-      </div>
-    </div>
-  </div>
-</div>
 <!-- Your existing content -->
 <% walk_card_index = 0 %> <!-- Initialize walk index once, outside of the loop -->
 <% transport_card_index = 0 %> <!-- Initialize transport index once, outside of the loop -->
@@ -25,8 +9,9 @@
 <% route['sections'].each_with_index do |section, index| %> <!-- Loop over each section -->
   <div class="section mb-4">
     <% if section['type'] == 'point' %>
-      <div class="card instruction-card card-point <%= if section == first_point_section || section == last_point_section then "start-goal-card" end %>"
-          data-action="click->routes-map#handleCardClick"
+      <div class="card instruction-card card-point <%= "start-goal-card" if section == first_point_section || section == last_point_section %>"
+           data-action="click->routes-map#handleCardClick"
+
         data-coordinates="<%= section['coord'].present? ? "#{section['coord']['lat']},#{section['coord']['lon']}" : '' %>"
         data-move="point">
         <p class="card-point-text">
@@ -36,13 +21,13 @@
             <span><%= @destination %></span><%= link_to("End Trip", class: "end-trip-btn") %>
           <% elsif section['node_id'].present? && section['gateway'].nil? %> <!-- condition: no gateway but has a node -->
             <i class="fa-solid fa-right-left"></i> at <%= section['name'] %> Sta.
-            <img class="transfer-card-img" src="http://res.cloudinary.com/dckq0zged/image/upload/v1724436396/xqfdy2ahqffnbxooxkug.jpg" alt="elevator">
+            <img class="transfer-card-img" src="http://res.cloudinary.com/dckq0zged/image/upload/v1724436396/xqfdy2ahqffnbxooxkug.jpg" alt="elevator" data-action="click->routes-map#openImageModal">
           <% else %>
             <span class="point-title"><%= section['name'] %> Station</span>
           <% end %>
           <% if section['gateway'].present? %>
             <div class="elevator-image-container">
-              <img src="http://res.cloudinary.com/dckq0zged/image/upload/v1724434212/dnilq9ncpkzidf3ttuyc.png" alt="elevator">
+              <img src="http://res.cloudinary.com/dckq0zged/image/upload/v1724434212/dnilq9ncpkzidf3ttuyc.png" alt="elevator" data-action="click->routes-map#openImageModal">
               <div class="exit">
                 <span class="exit-text"><%= section['gateway'] %></span><i class="fa-solid fa-elevator"></i>
               </div>
@@ -60,7 +45,6 @@
           data-index="<%= walk_card_index %>"> <!-- Use walk_card_index here -->
           <div class="walk-stats-container">
             <ul class="walk-stats-list">
-              <%#= Time.at(section['from_time']).strftime('%H:%M %z') %>
               <li><%= section['distance'] %>m</li>
               <li><%= section['time'] %> mins</li>
             </ul>
@@ -82,13 +66,11 @@
               </span>
               <div>
                 <span class="route-stops" style="background-color:<%= section['transport']['color'] %>">
-                  <% @stops.each do |stop| %>
-                    <%= stop %>
-                  <% end %>
+                  <%= @stops[transport_card_index] %>
+                  <!-- Display stop number -->
                 </span>
                 Stop(s)
               </div>
-              <!--from <strong><%= section['transport']['links'][0]['from']['name'] %></strong> to <strong><%= section['transport']['links'][0]['to']['name'] %></strong>.-->
             </div>
           </div>
           <% transport_card_index += 1 %> <!-- Increment transport index for each transport section -->
