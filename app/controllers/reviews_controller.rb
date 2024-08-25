@@ -20,6 +20,10 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def end_reviews
+    @places = params[:place_ids].split(',')
+  end
+
   private
 
   def review_params
