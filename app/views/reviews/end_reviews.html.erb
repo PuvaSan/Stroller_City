@@ -22,12 +22,10 @@
             </div>
           </div>
           <div class="form-group">
-            <textarea class="form-control" id="<%= index%>-comment" rows="2" placeholder="Type in your review"></textarea>
+            <textarea class="form-control" id="<%= index%>-comment" name="<%= index%>-comment" rows="2" placeholder="Type in your review"></textarea>
           </div>
       </div>
     <% end %>
-    <%= link_to root_path do %>
-      <button class="btn btn-primary text-white br-30" type="submit"><strong>Submit</strong></button>
-    <% end %>
+    <button class="btn btn-primary text-white br-30 mb-4 px-3" type="submit" style="font-size: 20px;"><strong>Submit</strong></button>
   </form>
 </div>

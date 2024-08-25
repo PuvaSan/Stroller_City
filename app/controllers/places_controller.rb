@@ -36,6 +36,26 @@ class PlacesController < ApplicationController
   def destroy
   end
 
+  def end_reviews
+    begin
+      place_ids = params.each_key.select { |key| key.include? "placeId" }.map { |key| params[key] }
+      place_ids.each_with_index do |place_id, index|
+        place = Place.find_or_initialize_by(google_id: place_id)
+        place = place_instantiator(place_id) if place.new_record?
+
+        comment = params.dig("#{index}-comment").presence
+        rating = params.dig("#{index}-rating").presence
+
+        Review.create!(place: place, user: current_user, rating: params["#{index}-rating"].to_i, comment: comment) if rating || comment
+      end
+      redirect_to root_path
+    rescue => e
+      # Log the error and show a user-friendly message or redirect
+      logger.error "Failed to process end_reviews: #{e.message}"
+      redirect_to root_path, alert: "There was an issue processing your reviews."
+    end
+  end
+
   private
 
   def place_instantiator(place_id)
