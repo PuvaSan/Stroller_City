@@ -40,7 +40,6 @@ class PagesController < ApplicationController
 
   def render_tags
     @place = Place.find(params[:id])
-
     if @place
       render partial: 'shared/tag_card', locals: { place: @place }
     else

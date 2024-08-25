@@ -121,22 +121,17 @@ end
 puts "Photos attached to aya places!"
 puts "creating aya reviews..."
 Place.find_by(google_id: "ChIJ2y91MQGLGGARQKyRvVnpKRM").reviews.create!(user: User.all.sample, rating: 5, comment: "It was a very sunny day so I went for a walk 🌸
-
-I was surprised to find such a quiet and beautiful place in Tokyo.
-
-Since it was April, there were many families taking pictures of first-grade children carrying school bags on their backs, and as I walked along, I thought, ``It's so peaceful.'' ")
+\n\nI was surprised to find such a quiet and beautiful place in Tokyo.
+\n\nSince it was April, there were many families taking pictures of first-grade children carrying school bags on their backs, and as I walked along, I thought, ``It's so peaceful.'' ")
 Review.last.photos.attach(io: URI.open("https://www.thetokyochapter.com/wp-content/uploads/2017/04/happoen-10-1440x1103.jpg"), filename: "happoen.jpg")
 Place.find_by(google_id: "ChIJ2y91MQGLGGARQKyRvVnpKRM").reviews.create!(user: User.all.sample, rating: 5, comment: "It’s small enough to have a lovely walk with a baby in a carrier and there are gorgeous colours, lots of fish to look at and great photo opportunities.  It really doesn’t feel like you’re in the middle of the city anymore.
-
-If you come with a stroller I recommend leaving it in the venue hall as, like almost all Japanese gardens, there are lots of large stepping stones and stairs.  Keep an eye on children as there is a pond with fish.  Keep an eye out for the bonsai display at the top of the hill (on display year round) and the teahouse down the bottom (reservations required.)
-It’s a fantastic place for an early morning stroll and a cup of tea or coffee. There is a bakery/cafe and if you’re lucky enough to grab a balcony seat , you can look over the garden while you have a cuppa.")
+\n\nIf you come with a stroller I recommend leaving it in the venue hall as, like almost all Japanese gardens, there are lots of large stepping stones and stairs.  Keep an eye on children as there is a pond with fish.  Keep an eye out for the bonsai display at the top of the hill (on display year round) and the teahouse down the bottom (reservations required.)
+\n\nIt’s a fantastic place for an early morning stroll and a cup of tea or coffee. There is a bakery/cafe and if you’re lucky enough to grab a balcony seat , you can look over the garden while you have a cuppa.")
 Review.last.photos.attach(io: URI.open("https://www.thetokyochapter.com/wp-content/uploads/2017/04/happoen-2-1440x1440.jpg"), filename: "happoen2.jpg")
 Place.find_by(google_id: "ChIJJ2le0qqMGGARNa7U3TaIGsY").reviews.create!(user: User.all.sample, rating: 5, comment: "I went to the play center in Shibuya with my 2 year old son. It was a great place to play with a lot of toys and a slide. The staff was very friendly and helpful. I would definitely recommend this place to other parents with young children.")
 Place.find_by(google_id: "ChIJJ2le0qqMGGARNa7U3TaIGsY").reviews.create!(user: User.all.sample, rating: 5, comment: "This was amazing! Just what I needed with my little one. It was boiling hot outside and we couldn't walk anymore. I needed a nice place for my little one to burn off energy and this was the perfect spot!
-
-My little one loved the sand and they had a convient sand blower for when switching between play areas. She also loves the foam slides.
-
-The lady working there was also very helpful despite not understanding English, she went above and beyond to assist us even called us a taxi..")
+\n\nMy little one loved the sand and they had a convient sand blower for when switching between play areas. She also loves the foam slides.
+\n\nThe lady working there was also very helpful despite not understanding English, she went above and beyond to assist us even called us a taxi..")
 Review.last.photos.attach(io: URI.open("https://lh5.googleusercontent.com/p/AF1QipOADiG7Q-KO5_rsqPzy-l_TD17KEh-zGY_RxkZe=w400-h400-k-no-p"), filename: "happoen2.jpg")
 puts "created 4 aya reviews!"
 Place.find_by(google_id: "ChIJHeBCIOyMGGAR7BktETlUP_w").reviews.create!(user: User.all.sample, rating: 5)
@@ -145,5 +140,5 @@ Place.find_by(google_id: "ChIJy1fvK2FVGGARCUQ1y2UMUiM").reviews.create!(user: Us
 Place.find_by(google_id: "ChIJy1fvK2FVGGARCUQ1y2UMUiM").reviews.create!(user: User.all.sample, rating: 5)
 
 hapo = Place.find_by(google_id: "ChIJ2y91MQGLGGARQKyRvVnpKRM")
-hapo.sc_facility_list.add("nursing room", "diaper changing station", "stroller-friendly*")
+hapo.sc_facility_list.add("nursing room", "diaper changing station", "stroller-friendly entrance")
 hapo.save
