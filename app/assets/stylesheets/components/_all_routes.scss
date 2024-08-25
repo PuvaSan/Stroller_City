@@ -12,6 +12,7 @@
     justify-content: center;
     height: 40px;
     width: 80px;
+    border-radius: 10px;
   }
 
   .stats-list {
@@ -22,7 +23,7 @@
 
     li {
       margin-right: 10px;
-      font-size: 17px;
+      font-size: 12px;
       font-weight: 100;
     }
   }
@@ -31,7 +32,7 @@
 .route-badges {
   .badge-pill {
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 12px;
   }
   .short-color {
     background-color: #3954ed;
@@ -54,11 +55,13 @@
   }
 
   .start {
-    text-align: center;
+    text-align: left;
+    font-size: 16px;
   }
 
   .stop {
-    text-align: center;
+    text-align: left;
+    font-size: 16px;
   }
 }
 
@@ -67,4 +70,20 @@
   background-position: center;
   padding: 1px 6px;
   background-repeat: no-repeat;
+}
+
+.station-group {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  padding-left: 0;
+  flex-wrap: wrap;
+  .station-icon {
+    margin: 0 5px;
+    color: gray;
+  }
+
+  .station-list {
+    margin: 0 5px;
+  }
 }
