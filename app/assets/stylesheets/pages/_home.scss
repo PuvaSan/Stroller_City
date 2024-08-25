@@ -15,10 +15,10 @@
 #resizer {
   height: 36px;
   width: 100%;
-  position: absolute;
-  top: 0;
+  background-color: white;
   left: 0;
   cursor: ns-resize;
+  z-index: 1;
 }
 
 #panel-top-line {
@@ -69,4 +69,8 @@
   height: fit-content;
   border: none;
   padding: 8px 16px;
+}
+
+body {
+  color: rgb(0, 22, 58)
 }
