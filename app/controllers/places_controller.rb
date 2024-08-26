@@ -40,13 +40,15 @@ class PlacesController < ApplicationController
     begin
       place_ids = params.each_key.select { |key| key.include? "placeId" }.map { |key| params[key] }
       place_ids.each_with_index do |place_id, index|
-        place = Place.find_or_initialize_by(google_id: place_id)
-        place = place_instantiator(place_id) if place.new_record?
-
         comment = params.dig("#{index}-comment").presence
-        rating = params.dig("#{index}-rating").presence
+        rating = params.dig("#{index}-rating").presence.to_i
 
-        Review.create!(place: place, user: current_user, rating: params["#{index}-rating"].to_i, comment: comment) if rating || comment
+        if rating && rating.between?(1, 5)
+          place = Place.find_or_initialize_by(google_id: place_id)
+          place_instantiator(place_id) if place.new_record?
+          place = Place.last
+          Review.create!(place: place, user: current_user, rating: params["#{index}-rating"].to_i, comment: comment)
+        end
       end
       redirect_to root_path
     rescue => e
