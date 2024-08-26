@@ -6,22 +6,26 @@
 <% transport_card_index = 0 %> <!-- Initialize transport index once, outside of the loop -->
 <% first_point_section = route['sections'].find { |s| s['type'] == 'point' && s['name'] == 'start' } %>
 <% last_point_section = route['sections'].reverse.find { |s| s['type'] == 'point' && s['name'] == 'goal' } %>
+<% place_ids = "" %> <!-- Initialize place_ids variable -->
 <% route['sections'].each_with_index do |section, index| %> <!-- Loop over each section -->
   <div class="section mb-4">
     <% if section['type'] == 'point' %>
       <div class="card instruction-card card-point <%= "start-goal-card" if section == first_point_section || section == last_point_section %>"
-           data-action="click->routes-map#handleCardClick"
+          data-action="click->routes-map#handleCardClick"
         data-coordinates="<%= section['coord'].present? ? "#{section['coord']['lat']},#{section['coord']['lon']}" : '' %>"
         data-move="point">
         <p class="card-point-text">
           <% if section == first_point_section %>
             <i class="text-center fa-solid fa-location-dot text-success"></i> <span>Start Trip</span> <%#= @origin %>
           <% elsif section == last_point_section %>
-            <span><%= @destination %></span><%= link_to("End Trip", class: "end-trip-btn") %>
+            <% place_ids += ",#{@destination}" %>
+            <span><%= @destination %></span><%= link_to("End Trip", end_reviews_path(place_ids), class: "end-trip-btn") %>
           <% elsif section['node_id'].present? && section['gateway'].nil? %> <!-- condition: no gateway but has a node -->
+            <% place_ids += ",#{translate(section['name'])} Station" %>
             <i class="fa-solid fa-right-left"></i><%= translate(section['name']) %> Sta.
             <img class="transfer-card-img" src="http://res.cloudinary.com/dckq0zged/image/upload/v1724436396/xqfdy2ahqffnbxooxkug.jpg" alt="elevator" data-action="click->routes-map#openImageModal">
           <% else %>
+            <% place_ids += ",#{translate(section['name'])} Station" %>
             <span class="point-title"><%= translate(section['name']) %> Sta.</span>
           <% end %>
           <% if section['gateway'].present? %>
@@ -36,49 +40,51 @@
       </div>
     <% elsif section['type'] == 'move' %>
       <% if section['move'] == 'walk' %>
+        <div class="card instruction-card card-walk"
         <% if section['distance'].to_i == 0 %>
-          <% next %> <!-- Skip this iteration if distance is 0m -->
+        data-action=""
+        <% else %>
+          data-action="click->routes-map#handleCardClick"
         <% end %>
-        <div class="card instruction-card card-walk" data-action="click->routes-map#handleCardClick"
-          data-move="walk"
-          data-index="<%= walk_card_index %>"> <!-- Use walk_card_index here -->
-          <div class="walk-stats-container">
-            <ul class="walk-stats-list">
-              <li><%= section['distance'] %>m</li>
-              <li><%= section['time'] %> mins</li>
-            </ul>
-          </div>
-          <div class="card-walk-text">
-            <i class="fa-solid fa-person-walking"></i> <span>Walk to</span> <i class="arrow fa-solid fa-arrow-right"></i>
-          </div>
+        data-move="walk"
+        data-index="<%= walk_card_index %>"> <!-- Use walk_card_index here -->
+        <div class="walk-stats-container">
+          <ul class="walk-stats-list">
+            <li><%= section['distance'] %>m</li>
+            <li><%= section['time'] %> mins</li>
+          </ul>
         </div>
-        <% walk_card_index += 1 %> <!-- Increment walk index for each walk section -->
-      <% else %>
-        <% if section['transport'].present? %>
-          <div class="card instruction-card card-transport" data-action="click->routes-map#handleCardClick"
-            data-move="transport"
-            data-index="<%= transport_card_index %>"> <!-- Use transport_card_index here -->
-            <div class="card-transport-text">
-              <i class="fa-solid fa-train-subway " style="color:<%= section['transport']['color'] %>"></i> Take
-              <span style="background-color:<%= section['transport']['color'] %>; color: #fff; padding: 0px 2px; border-radius: 3px;">
-                <%= translate(section['transport']['name']) %>
+        <div class="card-walk-text">
+          <i class="fa-solid fa-person-walking"></i> <span>Walk to</span> <i class="arrow fa-solid fa-arrow-right"></i>
+        </div>
+      </div>
+      <% walk_card_index += 1 %> <!-- Increment walk index for each walk section -->
+    <% else %>
+      <% if section['transport'].present? %>
+        <div class="card instruction-card card-transport" data-action="click->routes-map#handleCardClick"
+          data-move="transport"
+          data-index="<%= transport_card_index %>"> <!-- Use transport_card_index here -->
+          <div class="card-transport-text">
+            <i class="fa-solid fa-train-subway " style="color:<%= section['transport']['color'] %>"></i> Take
+            <span style="background-color:<%= section['transport']['color'] %>; color: #fff; padding: 0px 2px; border-radius: 3px;">
+              <%= translate(section['transport']['name']) %>
+            </span>
+            <div class="route-stop-container">
+              <span class="route-stops" style="background-color:<%= section['transport']['color'] %>">
+                <%= @stops[transport_card_index] %>
+                <!-- Display stop number -->
               </span>
-              <div class="route-stop-container">
-                <span class="route-stops" style="background-color:<%= section['transport']['color'] %>">
-                  <%= @stops[transport_card_index] %>
-                  <!-- Display stop number -->
-                </span>
-                Stop(s)
-              </div>
+              Stop(s)
             </div>
           </div>
-          <% transport_card_index += 1 %> <!-- Increment transport index for each transport section -->
-        <% else %>
-          <p>Transport details not available for this step.</p>
-        <% end %>
+        </div>
+        <% transport_card_index += 1 %> <!-- Increment transport index for each transport section -->
+      <% else %>
+        <p>Transport details not available for this step.</p>
       <% end %>
-    <% else %>
-      <p>Unknown step in the journey. Please check the details.</p>
     <% end %>
-  </div>
+  <% else %>
+    <p>Unknown step in the journey. Please check the details.</p>
+  <% end %>
+</div>
 <% end %>

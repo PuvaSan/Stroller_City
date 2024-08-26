@@ -32,7 +32,7 @@
   .card-point-text {
     display: flex;
     flex-direction: column;
-    font-size: 20px;
+    font-size: 12px;
   }
 
   .point-title {
@@ -46,7 +46,7 @@
   .card-walk-text {
     display: flex;
     flex-direction: column;
-    font-size: 26px;
+    font-size: 20px;
     color: #396DA6
   }
 }
@@ -57,7 +57,7 @@
   .card-transport-text {
     display: flex;
     flex-direction: column;
-    font-size: 20px;
+    font-size: 15px;
     padding: 10px;
     text-wrap: wrap;
   }
@@ -67,7 +67,7 @@
   height: 22vh;
   width: 15vh;
   .card-point-text {
-    font-size: 17px;
+    font-size: 14px;
     text-align: center;
   }
 
@@ -103,7 +103,7 @@
 }
 
 .walk-stats-container {
-  margin-bottom: 10px;
+  margin: 5px 0px;
 
   .walk-stats-list {
     display: flex;
@@ -129,11 +129,11 @@
 .elevator-image-container {
   display: flex;
   justify-content: space-between;
-  margin: 10px;
+  margin: 5px;
 
   img {
-    height: 90px;
-    width: 80px;
+    height: 75px;
+    width: 70px;
     border-radius: 15px;
   };
 
@@ -141,11 +141,11 @@
     display: flex;
     align-items: last baseline;
     .exit-text {
-      font-size: 10px;
+      font-size: 8px;
       background-color: yellow;
       color: #396DA6;
       border-radius: 20px;
-      padding: 4px;
+      padding: 2px;
       margin-right: 1px;
       font-weight: bold;
     }
@@ -154,8 +154,8 @@
 }
 
 .transfer-card-img {
-  height: 90px;
-  width: 80px;
+  height: 75px;
+  width: 70px;
   border-radius: 15px;
   border: lightgray 1px solid;
   }
