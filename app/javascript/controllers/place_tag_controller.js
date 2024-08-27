@@ -3,17 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="place-tag"
 export default class extends Controller {
   connect() {
-    console.log('place tag controller connected')
   }
-
-  // editTags() {
-  //   const checkboxes = document.querySelectorAll('.modal-body input')
-  //   for (const p of document.querySelectorAll("#tags-container p")) {
-  //     if (p.textContent.includes("stroller rentals")) {
-  //       console.log(p)
-  //     }
-  //   }
-  // }
 
   sendStuff(event) {
     event.preventDefault()

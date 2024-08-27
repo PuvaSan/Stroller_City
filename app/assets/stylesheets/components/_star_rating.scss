@@ -1,5 +1,4 @@
 .full-stars-example {
-
   /* use display:inline-flex to prevent whitespace issues. alternatively, you can put all the children of .rating-group on a single line */
   .rating-group {
     display: inline-flex;
@@ -14,7 +13,7 @@
   /* set icon padding and size */
   .rating__label {
     cursor: pointer;
-    padding: 0 0.1em;
+    padding: 0 0.2em;
     font-size: 1.25rem;
   }
 
