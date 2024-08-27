@@ -20,7 +20,7 @@ export default class extends Controller {
     document.getElementById('hiddenPlaceId').value = "";
   }
 
-  apiKey = "AIzaSyCWOSZTJ-G738Y4qoVuyVHh1YYjtWUSlao";
+  apiKey = "AIzaSyA4qrApURx9lwvAae-pPmNbV07vPqlbHxo";
 
   //Switches the Ikumi container based on the button clicked
   ikumibutton(event) {
