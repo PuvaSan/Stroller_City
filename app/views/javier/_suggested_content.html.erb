@@ -22,6 +22,7 @@
             </div>
           </div>
         </div>
+
         <% if review.photos.any? %>
           <%= cl_image_tag review.photos[0].key, class: "place-image mt-3 mb-3 w-100 rounded" %>
         <% end %> <!-- Only show image if there are photos -->
