@@ -32,7 +32,7 @@
   .card-point-text {
     display: flex;
     flex-direction: column;
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .point-title {
@@ -57,7 +57,7 @@
   .card-transport-text {
     display: flex;
     flex-direction: column;
-    font-size: 15px;
+    font-size: 14px;
     padding: 10px;
     text-wrap: wrap;
   }
@@ -141,9 +141,9 @@
     display: flex;
     align-items: last baseline;
     .exit-text {
-      font-size: 8px;
+      font-size: 5px;
       background-color: yellow;
-      color: #396DA6;
+      color: black;
       border-radius: 20px;
       padding: 2px;
       margin-right: 1px;
