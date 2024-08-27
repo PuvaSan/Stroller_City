@@ -383,23 +383,45 @@ export default class extends Controller {
         repeat: '20px'
       }];
     } else {
-      polylineOptions.strokeColor = "#2364AA"; //GreenBlue Set the color for transport lines
+      polylineOptions.strokeColor = "#2364AA"; // GreenBlue Set the color for transport lines
     }
 
     const polyline = new google.maps.Polyline(polylineOptions);
     polyline.setMap(this.map);
 
     if (!isWalking) {
+      // Custom icon for the start marker
+      const startIcon = {
+        path: google.maps.SymbolPath.CIRCLE, // Simple circle icon
+        fillColor: '#a4af76', // Green color for start
+        fillOpacity: 1,
+        scale: 4,
+        strokeColor: '#a4af76',
+        strokeWeight: 2,
+      };
+
       new google.maps.Marker({
         position: pathCoordinates[0],
         map: this.map,
         title: "Start of Transport",
+        icon: startIcon, // Use the custom start icon
       });
+
+      // Custom icon for the end marker
+      const endIcon = {
+        path: google.maps.SymbolPath.CIRCLE, // Arrow icon
+        fillColor: '#e98d58', // Red color for end
+        fillOpacity: 1,
+        scale: 4,
+        strokeColor: '#e98d58',
+        strokeWeight: 2,
+      };
 
       new google.maps.Marker({
         position: pathCoordinates[pathCoordinates.length - 1],
         map: this.map,
         title: "End of Transport",
+        icon: endIcon, // Use the custom end icon
       });
     }
   }
@@ -413,9 +435,21 @@ export default class extends Controller {
     this.map.setCenter(coordinates);
     this.map.setZoom(18);
 
+    const zoomIcon = {
+      path: google.maps.SymbolPath.BACKWARD_OPEN_ARROW, // Arrow icon
+        fillColor: '#272727', // Red color for end
+        fillOpacity: .5,
+        scale: 2,
+        strokeColor: '#272727',
+        strokeWeight: 1,
+    };
+
+
     new google.maps.Marker({
       position: coordinates,
       map: this.map,
+      icon: zoomIcon, // Use the custom end icon
+      title: "Zoomed Location",
     });
   }
 
