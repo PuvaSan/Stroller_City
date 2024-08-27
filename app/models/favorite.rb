@@ -8,4 +8,6 @@ class Favorite < ApplicationRecord
   def block!
     update!(blocked: true)
   end
+
+  ActionController::Parameters.permit_all_parameters = true
 end

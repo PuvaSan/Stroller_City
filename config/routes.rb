@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   #this sends the api placename to the controller
   get 'pages/render_reviews', to: 'pages#render_reviews'
+  get 'pages/render_tags', to: 'pages#render_tags'
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -26,4 +27,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  get "end_reviews/:place_ids", to: "reviews#end_reviews", as: :end_reviews
+
+  patch "places/:id", to: "places#update"
+
+  post "/places/end_reviews", to: "places#end_reviews"
 end
