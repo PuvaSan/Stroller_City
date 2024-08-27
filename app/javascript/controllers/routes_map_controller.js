@@ -393,10 +393,10 @@ export default class extends Controller {
       // Custom icon for the start marker
       const startIcon = {
         path: google.maps.SymbolPath.CIRCLE, // Simple circle icon
-        fillColor: '#a4af76', // Green color for start
+        fillColor: '#7d83ff', // Green color for start
         fillOpacity: 1,
         scale: 4,
-        strokeColor: '#a4af76',
+        strokeColor: '#7d83ff',
         strokeWeight: 2,
       };
 
