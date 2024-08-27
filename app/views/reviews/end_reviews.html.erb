@@ -1,30 +1,31 @@
-<div class="pt-4 px-3 mx-2 w-100">
+<div class="pt-4 px-3 mx-2 w-100" data-controller="end-reviews">
   <h1 class="mb-3"><strong>What did you think of your stops?</strong></h1>
-  <% @places.each_with_index do |place, index| %>
-    <div class="w-100 mb-3">
-      <h4><%= place %></h6>
-      <div class="full-stars-example mb-2">
-        <div class="rating-group">
-          <input class="rating__input rating__input--none" name="<%= index%>-rating" id="<%= index%>-rating-none" value="0" type="radio">
-          <label aria-label="No rating" class="rating__label" for="<%= index%>-rating-none"><i class="rating__icon rating__icon--none fa fa-ban"></i></label>
-          <label aria-label="1 star" class="rating__label" for="<%= index%>-rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-          <input class="rating__input" name="<%= index%>-rating" id="<%= index%>-rating-1" value="1" type="radio">
-          <label aria-label="2 stars" class="rating__label" for="<%= index%>-rating-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-          <input class="rating__input" name="<%= index%>-rating" id="<%= index%>-rating-2" value="2" type="radio">
-          <label aria-label="3 stars" class="rating__label" for="<%= index%>-rating-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-          <input class="rating__input" name="<%= index%>-rating" id="<%= index%>-rating-3" value="3" type="radio" checked>
-          <label aria-label="4 stars" class="rating__label" for="<%= index%>-rating-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-          <input class="rating__input" name="<%= index%>-rating" id="<%= index%>-rating-4" value="4" type="radio">
-          <label aria-label="5 stars" class="rating__label" for="<%= index%>-rating-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-          <input class="rating__input" name="<%= index%>-rating" id="<%= index%>-rating-5" value="5" type="radio">
-        </div>
+  <form action="/places/end_reviews" method="post">
+    <% @places.each_with_index do |place, index| %>
+      <div class="w-100 mb-3">
+        <h4><%= place %></h4>
+        <input type="hidden" name="<%= index%>-placeId" value="">
+          <div class="full-stars-example mb-2">
+            <div class="rating-group">
+              <input class="rating__input rating__input--none" name="<%= index%>-rating" id="<%= index%>-rating-none" value="0" type="radio">
+              <label aria-label="No rating" class="rating__label" for="<%= index%>-rating-none"><i class="rating__icon rating__icon--none fa fa-ban"></i></label>
+              <label aria-label="1 star" class="rating__label" for="<%= index%>-rating-1"><i class="rating__icon rating__icon--star fa fa-baby-carriage"></i></label>
+              <input class="rating__input" name="<%= index%>-rating" id="<%= index%>-rating-1" value="1" type="radio">
+              <label aria-label="2 stars" class="rating__label" for="<%= index%>-rating-2"><i class="rating__icon rating__icon--star fa fa-baby-carriage"></i></label>
+              <input class="rating__input" name="<%= index%>-rating" id="<%= index%>-rating-2" value="2" type="radio">
+              <label aria-label="3 stars" class="rating__label" for="<%= index%>-rating-3"><i class="rating__icon rating__icon--star fa fa-baby-carriage"></i></label>
+              <input class="rating__input" name="<%= index%>-rating" id="<%= index%>-rating-3" value="3" type="radio" checked>
+              <label aria-label="4 stars" class="rating__label" for="<%= index%>-rating-4"><i class="rating__icon rating__icon--star fa fa-baby-carriage"></i></label>
+              <input class="rating__input" name="<%= index%>-rating" id="<%= index%>-rating-4" value="4" type="radio">
+              <label aria-label="5 stars" class="rating__label" for="<%= index%>-rating-5"><i class="rating__icon rating__icon--star fa fa-baby-carriage"></i></label>
+              <input class="rating__input" name="<%= index%>-rating" id="<%= index%>-rating-5" value="5" type="radio">
+            </div>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" id="<%= index%>-comment" name="<%= index%>-comment" rows="2" placeholder="Type in your review"></textarea>
+          </div>
       </div>
-      <div class="form-group">
-        <textarea class="form-control" id="<%= index%>-comment" rows="2" placeholder="Type in your review"></textarea>
-      </div>
-    </div>
-  <% end %>
-  <%= link_to root_path do %>
-    <button class="btn btn-primary text-white br-30"><strong>Submit</strong></button>
-  <% end %>
+    <% end %>
+    <button class="btn btn-primary text-white br-30 mb-4 px-3" type="submit" style="font-size: 20px;"><strong>Submit</strong></button>
+  </form>
 </div>

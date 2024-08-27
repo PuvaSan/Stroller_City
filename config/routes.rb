@@ -30,4 +30,6 @@ Rails.application.routes.draw do
   get "end_reviews/:place_ids", to: "reviews#end_reviews", as: :end_reviews
 
   patch "places/:id", to: "places#update"
+
+  post "/places/end_reviews", to: "places#end_reviews"
 end
