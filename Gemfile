@@ -59,6 +59,9 @@ gem 'acts_as_favoritor'
 # Gemfile
 gem 'rest-client'
 
+gem 'google-cloud-translate', '~> 3.0'
+
+
 
 group :development, :test do
   gem "dotenv-rails"
