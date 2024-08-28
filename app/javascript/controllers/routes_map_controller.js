@@ -21,6 +21,8 @@ export default class extends Controller {
       streetViewControl: true,
     };
 
+
+
     this.map = new google.maps.Map(this.mapTarget, mapOptions);
     console.log("[initMap] Map initialized with center:", mapOptions.center);
 
@@ -145,6 +147,58 @@ export default class extends Controller {
       },
     ] });
 
+    // Add markers for all facilities
+    this.addFacilityMarkers();
+
+  }
+
+  addFacilityMarkers() {
+    // Example JSON data
+    const facilities = [
+      {
+        "Name": { "Description": "Adachi Ward Labor Welfare Hall" },
+        "geographic coordinates": {
+          "Longitude": "139.821582",
+          "Latitude": "35.761076"
+        }
+      },
+      {
+        "Name": { "Description": "Ninoe Community Hall" },
+        "geographic coordinates": {
+          "Longitude": "139.880804",
+          "Latitude": "35.676988"
+        }
+      },
+      {
+        "Name": { "Description": "Akishima City Health and Welfare Center" },
+        "geographic coordinates": {
+          "Longitude": "139.364108",
+          "Latitude": "35.710679"
+        }
+      }
+      // Add more facilities as needed
+    ];
+
+    facilities.forEach(facility => {
+      const lat = parseFloat(facility['geographic coordinates']['Latitude']);
+      const lng = parseFloat(facility['geographic coordinates']['Longitude']);
+
+      const WashroomIcon = {
+        url: 'http://res.cloudinary.com/dckq0zged/image/upload/v1724848852/taf1k3frhuuelqqxmniw.png', // Replace with the actual path to your PNG file
+        scaledSize: new google.maps.Size(20, 20), // Adjust the size of the icon
+        origin: new google.maps.Point(0, 0), // The origin point of the icon (optional)
+        anchor: new google.maps.Point(15, 15) // The anchor point of the icon (optional, usually the center)
+      };
+
+      new google.maps.Marker({
+        position: { lat: lat, lng: lng },
+        map: this.map,
+        title: facility.Name.Description,
+        icon: WashroomIcon, // Use the custom end icon
+      });
+
+      console.log(`[addFacilityMarkers] Added marker for ${facility.Name.Description} at lat: ${lat}, lng: ${lng}`);
+    });
   }
 
 
@@ -437,7 +491,7 @@ export default class extends Controller {
 
     const zoomIcon = {
       path: google.maps.SymbolPath.BACKWARD_OPEN_ARROW, // Arrow icon
-        fillColor: '#272727', // Red color for end
+        fillColor: 'white', // Red color for end
         fillOpacity: .5,
         scale: 2,
         strokeColor: '#272727',
