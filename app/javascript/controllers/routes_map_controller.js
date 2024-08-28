@@ -372,8 +372,8 @@ export default class extends Controller {
     if (isWalking) {
       const lineSymbol = {
         path: 'M 0,-1 0,1',
-        scale: 4,
-        strokeColor: '#D81E5B', // Raspberry Set the color for walking lines
+        scale: 3,
+        strokeColor: '#2d7dd2', // Set the color for walking lines
         strokeOpacity: 0.7,
       };
 
@@ -383,7 +383,7 @@ export default class extends Controller {
         repeat: '20px'
       }];
     } else {
-      polylineOptions.strokeColor = "#2364AA"; // GreenBlue Set the color for transport lines
+      polylineOptions.strokeColor = "#2364AA"; // Set the color for transport lines
     }
 
     const polyline = new google.maps.Polyline(polylineOptions);
@@ -393,10 +393,10 @@ export default class extends Controller {
       // Custom icon for the start marker
       const startIcon = {
         path: google.maps.SymbolPath.CIRCLE, // Simple circle icon
-        fillColor: '#7d83ff', // Green color for start
+        fillColor: 'yellow', // Green color for start
         fillOpacity: 1,
         scale: 4,
-        strokeColor: '#7d83ff',
+        strokeColor: 'yellow',
         strokeWeight: 2,
       };
 
@@ -410,10 +410,10 @@ export default class extends Controller {
       // Custom icon for the end marker
       const endIcon = {
         path: google.maps.SymbolPath.CIRCLE, // Arrow icon
-        fillColor: '#e98d58', // Red color for end
+        fillColor: 'red', // Red color for end
         fillOpacity: 1,
         scale: 4,
-        strokeColor: '#e98d58',
+        strokeColor: 'red',
         strokeWeight: 2,
       };
 
