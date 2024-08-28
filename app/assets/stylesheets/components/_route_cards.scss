@@ -6,12 +6,10 @@
 
 .instruction-card {
   display: flex;
-  justify-content: center;
   width: 18rem;
   height: 20vh;
   width: 20vh;
-  margin-right: 10px;
-
+  margin-right: 5px;
   p {
     white-space: normal; /* Allow the text to wrap within the card */
     margin: 10px; /* Add some padding inside the card */
@@ -20,6 +18,7 @@
 }
 
 .route-summary-trip {
+  opacity: .6;
 
 
   .route-summary-trip-text {
@@ -28,46 +27,105 @@
 }
 
 .card-point {
+  display: flex;
+  justify-content: center;
 
-  .card-point-text {
+  .card-point-text{
     display: flex;
     flex-direction: column;
     font-size: 12px;
+    flex-wrap: wrap;
+    margin: 0px 5px;
+    margin-top: 18px;
+
   }
 
-  .point-title {
-    margin-top: 8px;
+  .point-title, .transfer-station-text {
+    background-color: #d3d3d357;
+    border-radius: 3px;
+    padding: 0 2px;
     color: #396DA6;
+    font-weight: bold;
+    text-align: center;
   }
+
+  .transfer-title-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    flex-wrap: wrap;
+    margin: 0px 5px;
+  }
+  .transfer-station-text {
+    margin-bottom: 0px;
+  }
+
+  .transfer-card-img-icon-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: first baseline;
+    .baby-changer-icon{
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+    }
+  }
+
+
 }
 
 .card-walk {
-  padding: 10px 15px;
+  padding: 0px 10px;
+  display: flex;
+  justify-content: space-evenly;
   .card-walk-text {
     display: flex;
     flex-direction: column;
-    font-size: 20px;
-    color: #396DA6
+    font-size: 12px;
+    color: #2d7dd2;
+  }
+  .walk-icon {
+    font-size: 27px;
+    text-align: center;
+    color: #2d7dd2;
+
+  }
+
+  span {
+    text-align: center;
   }
 }
 
 .card-transport {
+  i {
+    margin-bottom: 5px;
+  }
 
+  span {
+    margin: 8px 0;
+  }
 
   .card-transport-text {
+    margin: 8px 0;
     display: flex;
     flex-direction: column;
-    font-size: 15px;
+    font-size: 12px;
     padding: 10px;
     text-wrap: wrap;
+    justify-content: space-evenly;
   }
+
+
+
+
+
 }
 
 .start-goal-card {
   height: 22vh;
   width: 15vh;
   .card-point-text {
-    font-size: 14px;
+    font-size: 12px;
     text-align: center;
   }
 
@@ -79,15 +137,15 @@
   a {
     height: 40px;
     width: 80px;
-    background-color: red;
+    background-color: #d81159;
     color: white;
     text-decoration: none;
     display: flex;
     align-items: center;
     border-radius: 10px;
     transition: 0.3s;
-    font-size: 16px;
-    padding: 10px;
+    font-size: 12px;
+    padding: 17px;
     margin: 5px auto;
 
     &:hover {
@@ -115,14 +173,14 @@
 
   li {
     color: gray;
-    font-size: 14px;
+    font-size: 12px;
   }
 
 }
 
 .arrow {
   color: #396DA6;
-  font-size: 34px;
+  font-size: 12px;
   text-align: end;
 }
 
@@ -132,18 +190,22 @@
   margin: 5px;
 
   img {
-    height: 75px;
-    width: 70px;
+    height: 74px;
+    width: 65px;
     border-radius: 15px;
   };
 
   .exit {
     display: flex;
-    align-items: last baseline;
+    align-items: flex-end;
+    justify-content: right;
+    padding-top: 30px;
+    flex-wrap: wrap;
     .exit-text {
+      flex-wrap: wrap;
       font-size: 8px;
       background-color: yellow;
-      color: #396DA6;
+      color: black;
       border-radius: 20px;
       padding: 2px;
       margin-right: 1px;
@@ -154,10 +216,11 @@
 }
 
 .transfer-card-img {
-  height: 75px;
-  width: 70px;
+  height: 74px;
+  width: 65px;
   border-radius: 15px;
   border: lightgray 1px solid;
+  margin-top: 5px;
   }
 
   .route-stops {
@@ -165,7 +228,7 @@
     color: white;
     text-align: center;
     margin-top: 5px;
-    font-size: 19px;
+    font-size: 15px;
     margin-right: 2px;
     padding-left: 5px;
   }
