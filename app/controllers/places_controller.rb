@@ -10,6 +10,7 @@ class PlacesController < ApplicationController
   end
 
   def create
+    debugger
     place_instantiator(params[:placeId])
     # tags = params.each_key.select { |key| params[key] == "on"}
     tags = params[:tags] || []
@@ -45,8 +46,10 @@ class PlacesController < ApplicationController
 
         if rating && rating.between?(1, 5)
           place = Place.find_or_initialize_by(google_id: place_id)
-          place_instantiator(place_id) if place.new_record?
-          place = Place.last
+          if place.new_record?
+            place_instantiator(place_id)
+            place = Place.last
+          end
           Review.create!(place: place, user: current_user, rating: params["#{index}-rating"].to_i, comment: comment)
         end
       end

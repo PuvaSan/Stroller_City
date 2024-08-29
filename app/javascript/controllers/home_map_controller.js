@@ -18,6 +18,7 @@ export default class extends Controller {
       input.checked = false;
     });
     document.getElementById('hiddenPlaceId').value = "";
+    document.getElementById("review_place_id").value = "";
   }
 
   apiKey = "AIzaSyCWOSZTJ-G738Y4qoVuyVHh1YYjtWUSlao";
@@ -147,12 +148,16 @@ export default class extends Controller {
                       }
                     });
                     document.getElementById("placeTagsForm").action = `/places/${data.id}`;
+                    document.getElementById("placeReviewsForm").action = `/places/${data.id}`;
                     document.getElementById('hiddenPlaceId').value = data.id;
+                    document.getElementById("review_place_id").value = data.id;
                   });
             } else {
               console.error("Error:", data.message);
               document.getElementById("placeTagsForm").action = `/places`;
+              document.getElementById("placeReviewsForm").action = `/places`;
               document.getElementById('hiddenPlaceId').value = place.place_id;
+              document.getElementById("review_place_id").value = place.place_id;
             }
           })
           .catch(error => {
@@ -196,6 +201,7 @@ export default class extends Controller {
       input.checked = false;
     });
     document.getElementById('hiddenPlaceId').value = "";
+    document.getElementById("review_place_id").value = "";
   }
 
   direct(event) {
@@ -320,12 +326,16 @@ export default class extends Controller {
                       }
                     });
                     document.getElementById("placeTagsForm").action = `/places/${data.id}`;
+                    document.getElementById("placeReviewsForm").action = `/places/${data.id}`;
                     document.getElementById('hiddenPlaceId').value = data.id;
+                    document.getElementById("review_place_id").value = data.id;
                   });
               } else {
                 console.error("Error:", data.message);
                 document.getElementById("placeTagsForm").action = `/places`;
+                document.getElementById("placeReviewsForm").action = `/places`;
                 document.getElementById('hiddenPlaceId').value = buttonId;
+                document.getElementById("review_place_id").value = buttonId;
               }
             })
             .catch(error => {

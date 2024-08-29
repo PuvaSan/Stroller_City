@@ -5,4 +5,6 @@ class Review < ApplicationRecord
 
   validates :rating, presence: true, inclusion: { in: 1..5 }
   has_many_attached :photos
+
+  ActionController::Parameters.permit_all_parameters = true
 end
