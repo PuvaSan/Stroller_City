@@ -7,6 +7,7 @@ export default class extends Controller {
 
   sendStuff(event) {
     event.preventDefault()
+    
     if (document.getElementById("placeTagsForm").action.endsWith('/places')) {
       const checkboxes = document.querySelectorAll('.modal-body input')
       let tags = []
@@ -16,8 +17,6 @@ export default class extends Controller {
         }
       }
       const placeId = document.getElementById('hiddenPlaceId').value;
-      console.log(`placeid:${placeId}`)
-      console.log(`tags:${tags}`)
       fetch(`/places`, {
         method: 'POST',
         headers: {
@@ -28,7 +27,6 @@ export default class extends Controller {
       })
         .then(response => response.json())
         .then((data) => {
-          console.log(`first fetch data: ${data}`)
           fetch(`/pages/render_tags?id=${data.id}`)
             .then(response => response.text())
             .then(html => {

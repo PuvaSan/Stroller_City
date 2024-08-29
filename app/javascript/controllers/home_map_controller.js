@@ -13,11 +13,13 @@ export default class extends Controller {
     document.getElementById("current-location").innerText = this.getCurrentPosition();
     this.initMap();
     document.getElementById('tags-container').innerHTML = '';
+    document.getElementById('place-ratings').innerHTML = '';
     let modalInputs = document.querySelectorAll('.modal-body input');
     modalInputs.forEach(input => {
       input.checked = false;
     });
     document.getElementById('hiddenPlaceId').value = "";
+    document.getElementById("review_place_id").value = "";
   }
 
   apiKey = "AIzaSyCWOSZTJ-G738Y4qoVuyVHh1YYjtWUSlao";
@@ -128,6 +130,12 @@ export default class extends Controller {
           .then(data => {
             console.log("Place name sent successfully", data);
             if (data.status === "success") {
+              const times = parseInt(data.place_ratings);
+                if (times > 0) {
+                  for(let i = 0; i < times; i++){
+                    document.getElementById('place-ratings').insertAdjacentHTML("beforeend", `<i class="fas fa-baby-carriage me-1 text-warning"></i>`);
+                  }
+                }
               // Fetch the reviews partial and insert it into the reviews section
               fetch(`/pages/render_reviews?id=${data.id}`)
                 .then(response => response.text())
@@ -147,12 +155,16 @@ export default class extends Controller {
                       }
                     });
                     document.getElementById("placeTagsForm").action = `/places/${data.id}`;
+                    document.getElementById("placeReviewsForm").action = `/places/${data.id}`;
                     document.getElementById('hiddenPlaceId').value = data.id;
+                    document.getElementById("review_place_id").value = data.id;
                   });
             } else {
               console.error("Error:", data.message);
               document.getElementById("placeTagsForm").action = `/places`;
+              document.getElementById("placeReviewsForm").action = `/places`;
               document.getElementById('hiddenPlaceId').value = place.place_id;
+              document.getElementById("review_place_id").value = place.place_id;
             }
           })
           .catch(error => {
@@ -191,11 +203,13 @@ export default class extends Controller {
     document.getElementById("destination").parentElement.classList.toggle("d-none")
     this.destinationAutocomplete = new google.maps.places.Autocomplete(document.getElementById('destination'))
     document.getElementById('tags-container').innerHTML = '';
+    document.getElementById('place-ratings').innerHTML = '';
     let modalInputs = document.querySelectorAll('.modal-body input');
     modalInputs.forEach(input => {
       input.checked = false;
     });
     document.getElementById('hiddenPlaceId').value = "";
+    document.getElementById("review_place_id").value = "";
   }
 
   direct(event) {
@@ -302,6 +316,12 @@ export default class extends Controller {
             .then(data => {
               console.log("Place name sent successfully", data);
               if (data.status === "success") {
+                const times = parseInt(data.place_ratings);
+                if (times > 0) {
+                  for(let i = 0; i < times; i++){
+                    document.getElementById('place-ratings').insertAdjacentHTML("beforeend", `<i class="fas fa-baby-carriage me-1 text-warning"></i>`);
+                  }
+                }
                 // Fetch the reviews partial and insert it into the reviews section
                 fetch(`/pages/render_reviews?id=${data.id}`)
                   .then(response => response.text())
@@ -320,12 +340,16 @@ export default class extends Controller {
                       }
                     });
                     document.getElementById("placeTagsForm").action = `/places/${data.id}`;
+                    document.getElementById("placeReviewsForm").action = `/places/${data.id}`;
                     document.getElementById('hiddenPlaceId').value = data.id;
+                    document.getElementById("review_place_id").value = data.id;
                   });
               } else {
                 console.error("Error:", data.message);
                 document.getElementById("placeTagsForm").action = `/places`;
+                document.getElementById("placeReviewsForm").action = `/places`;
                 document.getElementById('hiddenPlaceId').value = buttonId;
+                document.getElementById("review_place_id").value = buttonId;
               }
             })
             .catch(error => {
