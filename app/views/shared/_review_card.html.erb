@@ -1,20 +1,4 @@
 <%# make review cards that populate from place id review %>
-<div class="">
-  <%# #font-awesome star rating %>
-  <!--
-  <div class="d-inline text-center">
-    <% @place.reviews.each do |review| %>
-      <% review.rating.times do %>
-        <i class="fa fa-star" aria-hidden="true"></i>
-      <% end %>
-    </div>
-    <p class="mt-2">"<%= review.comment %>"</p>
-    <p class="text-end border-bottom my-3">- <%= review.user.email %></p>
-  <% end %>
-  </div>
-</div>
-  -->
-
 <div id="review-places-list" class="list-group">
   <% @place.reviews.each do |review| %>
     <div class="review-place list-group-item p-3 border-0 shadow-sm mb-3" style="border-radius: 10px; background-color: #fff;">
@@ -29,10 +13,9 @@
       </div>
       <div class="d-flex w-100 justify-content-between mt-2">
         <div class="star-rating">
-          <%= review.rating %>
           <% r_rating = review.rating %>
           <% r_rating.times do %>
-            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-baby-carriage text-warning"></i>
           <% end %>
         </div>
       </div>

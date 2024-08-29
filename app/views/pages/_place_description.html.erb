@@ -1,20 +1,23 @@
 <div id="place-description" class="container d-none w-100">
   <div class="d-flex align-items-center justify-content-between">
-    <div class="d-flex align-items-center">
-      <div class="p-0 align-items-start" style="max-width: 16vh">
-        <h2 class="my-2 font-weight-bold" data-home-map-target="name"></h2>
-      </div>
-      <div>
-        <p class="aya-tags-special ms-3 mb-0"><i class="fa-solid fa-plus me-2"></i>Review</p>
-      </div>
-    </div>
-
+    <h2 class="my-2 font-weight-bold" data-home-map-target="name"></h2>
     <button class="btn btn-primary br-30 text-white ms-3 px-3" id="go-button" data-action="click->home-map#direct" style="width: 60px; height: 60px; border-radius: 100%;">Go</button>
+  </div>
+
+  <div class= "d-flex align-items-center mb-2">
+    <div id="place-ratings"></div>
+    <% if user_signed_in? %>
+      <p class="aya-tags-special ms-3 mb-0"
+        data-bs-toggle="modal" data-bs-target="#addReviewsModal">
+        <i class="fa-solid fa-plus me-2"></i>
+        Review
+      </p>
+    <% end %>
   </div>
 
   <div id="tags-container" class="d-flex flex-wrap"></div>
   <p class="aya-tags-special me-3 mb-0 mt-2"
-    style="width: fit-content;"data-bs-toggle="modal" data-bs-target="#addTagsModal">
+    style="width: fit-content;" data-bs-toggle="modal" data-bs-target="#addTagsModal">
     <i class="fa-solid fa-plus me-2"></i>
     Tag
   </p>

@@ -3,10 +3,7 @@ Rails.application.routes.draw do
   resources :places do
     resources :reviews, only: [:new, :create]
   end
-  post "reviews", to: "favorites#create"
-  resources :favorites do
-    resources :reviews, only: [:index, :new, :create]
-  end
+  post "reviews", to: "reviews#create"
 
   devise_for :users
   root to: "pages#home"
