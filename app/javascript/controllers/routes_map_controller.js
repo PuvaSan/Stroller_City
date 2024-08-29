@@ -185,7 +185,12 @@ export default class extends Controller {
           };
 
           this.map.setCenter(pos);
-          this.map.setZoom(14); // Adjust zoom level as needed
+          this.map.setZoom(16); // Adjust zoom level as needed
+
+          // Remove the old marker if it exists
+          if (this.currentLocationMarker) {
+            this.currentLocationMarker.setMap(null);
+          }
 
           // Optionally, add a marker at the user's current location
           new google.maps.Marker({

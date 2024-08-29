@@ -26,17 +26,15 @@
             </div>
           </div>
         </div>
-
         <% if review.photos.any? %>
           <%= cl_image_tag review.photos[0].key, class: "place-image mt-3 mb-3 w-100 rounded" %>
         <% end %> <!-- Only show image if there are photos -->
-
         <p class="mb-1"><%= review.comment %></p>
         <div class="d-flex justify-content-around mt-2 border-top pt-2">
           <button class="btn btn-light btn-lg btn-block"><i class="fas fa-thumbs-up"></i> </button>
-          <button class="btn btn-light btn-lg btn-block"><i class="fas fa-comment"></i> </button>
-          <button class="btn btn-light btn-lg btn-block"><i class="fas fa-share"></i> </button>
-          <button class="btn btn-primary btn-lg btn-block" style="border-radius: 20px;">Directions</button>
+          <%# <button class="btn btn-light btn-lg btn-block"><i class="fas fa-comment"></i> </button> %>
+          <%# <button class="btn btn-light btn-lg btn-block"><i class="fas fa-share"></i> </button> %>
+          <button class="btn btn-primary btn-lg btn-block" style="border-radius: 20px;"><i class="fa-solid fa-arrow-right-long"></i></button>
         </div>
       </div>
     <% end %>
