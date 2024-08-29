@@ -1,6 +1,7 @@
 require "google/cloud/translate"
 require 'open-uri'
 require 'nokogiri'
+require 'erb'
 
 class RoutesController < ApplicationController
   before_action :set_route_params, only: [:index]
