@@ -1,4 +1,6 @@
 require "google/cloud/translate"
+require 'open-uri'
+require 'nokogiri'
 
 class RoutesController < ApplicationController
   before_action :set_route_params, only: [:index]
@@ -106,9 +108,24 @@ class RoutesController < ApplicationController
       end
     end
 
-    puts "stops: #{@stops}"
+    puts "!!stops: #{@stops}"
 
-
+    @station_images = []
+    @route['sections'].each_with_index do |section, index|
+      if section['node_id'].present? && section['gateway'].nil?
+        url = "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_#{translate(section['name']).downcase}_all.jpg"
+        document = Nokogiri::HTML.parse(URI.open(url).read)
+        unless document.search("h1").present?
+          @station_images << {index: index, url: url}
+        end
+      end
+      if section['gateway'].present?
+        place = Place.where("name ILIKE ?", "%#{translate(section['name'])} Station%").first
+        if place
+          @station_images << {index: index, place: place}
+        end
+      end
+    end
   end
 
   private

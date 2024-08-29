@@ -446,8 +446,10 @@ export default class extends Controller {
   // Function to handle image clicks and open the modal
   openImageModal(event) {
     const imgSrc = event.currentTarget.getAttribute("src");
+    const index = event.currentTarget.id.split('-')[1];
     const modal = new bootstrap.Modal(document.getElementById('imageModal'));
     document.getElementById('modalImage').setAttribute('src', imgSrc);
+    document.getElementById('imageModalLabel').innerText = document.getElementById(`imageComment${index}`).innerText
     modal.show();
   }
 
