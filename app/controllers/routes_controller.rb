@@ -1,6 +1,7 @@
 require "google/cloud/translate"
 require 'open-uri'
 require 'nokogiri'
+require 'erb'
 
 class RoutesController < ApplicationController
   before_action :set_route_params, only: [:index]
@@ -112,15 +113,25 @@ class RoutesController < ApplicationController
 
     @station_images = []
     @route['sections'].each_with_index do |section, index|
+      station_name = translate(section['name'])
+      if station_name.include?("3-chome")
+        station_name.gsub!("3-chome", "sanchome")
+      end
+      station_name.gsub!(" ", "-")
       if section['node_id'].present? && section['gateway'].nil?
-        url = "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_#{translate(section['name']).downcase}_all.jpg"
+        url = "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_#{station_name.downcase}_all.jpg"
+
+        begin
         document = Nokogiri::HTML.parse(URI.open(url).read)
         unless document.search("h1").present?
           @station_images << {index: index, url: url}
         end
+        rescue OpenURI::HTTPError => e
+          Rails.logger.error("Error fetching station image: #{e.message}")
+        end
       end
       if section['gateway'].present?
-        place = Place.where("name ILIKE ?", "%#{translate(section['name'])} Station%").first
+        place = Place.where("name ILIKE ?", "%#{station_name} Station%").first
         if place
           @station_images << {index: index, place: place}
         end

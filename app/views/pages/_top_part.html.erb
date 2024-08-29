@@ -10,7 +10,7 @@
         <div class="dropdown">
           <div class="d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
             <p class="m-0" style="z-index: 1;"><strong><%= current_user.username %></strong></p>
-            <%= cl_image_tag current_user.photo.key, class: "avatar mx-3", style: "z-index: 1;" %>
+            <%= cl_image_tag current_user.photo.key, class: "avatar ms-2 me-3", style: "z-index: 1;" %>
           </div>
           <div class="dropdown-menu">
             <%= link_to "Edit", edit_user_registration_path(current_user), class: "dropdown-item" %>
@@ -21,7 +21,7 @@
         <div class="dropdown">
           <div class="d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
             <p class="m-0" style="z-index: 1;"><strong><%= current_user.username %></strong></p>
-            <%= image_tag "guest.png", class: "avatar mx-3", style: "z-index: 1;" %>
+            <%= image_tag "guest.png", class: "avatar ms-2 me-3", style: "z-index: 1;" %>
           </div>
           <div class="dropdown-menu">
             <%= link_to "Edit", edit_user_registration_path(current_user), class: "dropdown-item" %>
@@ -32,7 +32,7 @@
       <div class="dropdown">
         <div class="d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
           <p class="m-0" style="z-index: 1;"><strong>Guest</strong></p>
-          <%= image_tag "guest.png", class: "avatar mx-3", style: "z-index: 1;" %>
+          <%= image_tag "guest.png", class: "avatar ms-2 me-3", style: "z-index: 1;" %>
         </div>
         <div class="dropdown-menu">
           <%= link_to "Log in", new_user_session_path, class: "dropdown-item" %>
