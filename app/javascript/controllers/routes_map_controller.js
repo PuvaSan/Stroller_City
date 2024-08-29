@@ -6,6 +6,7 @@ export default class extends Controller {
   connect() {
     console.log("[RoutesMapController] Connected successfully.");
     this.initMap();
+    this.addMyLocationButton();
   }
 
   initMap() {
@@ -21,136 +22,198 @@ export default class extends Controller {
       streetViewControl: true,
     };
 
-
-
     this.map = new google.maps.Map(this.mapTarget, mapOptions);
     console.log("[initMap] Map initialized with center:", mapOptions.center);
 
-    // Get the coordinates for walk sections and draws the full polyline route
+    // Add a custom My Location button to the map
+    const locationButton = document.createElement("button");
+    //locationButton.textContent = "My Location";
+    locationButton.classList.add("custom-map-control-button");
+    locationButton.classList.add("fa-solid");
+    locationButton.classList.add("fa-location-crosshairs");
+    this.map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(locationButton);
+
+    // Add event listener to the button to zoom to the current location
+    locationButton.addEventListener("click", () => {
+      this.zoomToCurrentLocation();
+    });
+
+    // Get the coordinates for walk sections and draw the full polyline route
     this.walkSections = this.getCoordinatesForWalkSections();
     this.transportSections = this.getCoordinatesForTransportSections();
     this.drawFullPolylineRoute();
 
     // adds transit layer over our map
     const transitLayer = new google.maps.TransitLayer();
-    transitLayer.setMap(map);
+    transitLayer.setMap(this.map);
 
     // adds retro style to our map
-    this.map.setOptions({ styles: [
-      { elementType: "geometry", stylers: [{ color: "#ebe3cd" }] },
-      { elementType: "labels.text.fill", stylers: [{ color: "#523735" }] },
-      { elementType: "labels.text.stroke", stylers: [{ color: "#f5f1e6" }] },
-      {
-        featureType: "administrative",
-        elementType: "geometry.stroke",
-        stylers: [{ color: "#c9b2a6" }],
-      },
-      {
-        featureType: "administrative.land_parcel",
-        elementType: "geometry.stroke",
-        stylers: [{ color: "#dcd2be" }],
-      },
-      {
-        featureType: "administrative.land_parcel",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#ae9e90" }],
-      },
-      {
-        featureType: "landscape.natural",
-        elementType: "geometry",
-        stylers: [{ color: "#dfd2ae" }],
-      },
-      {
-        featureType: "poi",
-        elementType: "geometry",
-        stylers: [{ color: "#dfd2ae" }],
-      },
-      {
-        featureType: "poi",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#93817c" }],
-      },
-      {
-        featureType: "poi.park",
-        elementType: "geometry.fill",
-        stylers: [{ color: "#a5b076" }],
-      },
-      {
-        featureType: "poi.park",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#447530" }],
-      },
-      {
-        featureType: "road",
-        elementType: "geometry",
-        stylers: [{ color: "#f5f1e6" }],
-      },
-      {
-        featureType: "road.arterial",
-        elementType: "geometry",
-        stylers: [{ color: "#fdfcf8" }],
-      },
-      {
-        featureType: "road.highway",
-        elementType: "geometry",
-        stylers: [{ color: "#f8c967" }],
-      },
-      {
-        featureType: "road.highway",
-        elementType: "geometry.stroke",
-        stylers: [{ color: "#e9bc62" }],
-      },
-      {
-        featureType: "road.highway.controlled_access",
-        elementType: "geometry",
-        stylers: [{ color: "#e98d58" }],
-      },
-      {
-        featureType: "road.highway.controlled_access",
-        elementType: "geometry.stroke",
-        stylers: [{ color: "#db8555" }],
-      },
-      {
-        featureType: "road.local",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#806b63" }],
-      },
-      {
-        featureType: "transit.line",
-        elementType: "geometry",
-        stylers: [{ color: "#dfd2ae" }],
-      },
-      {
-        featureType: "transit.line",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#8f7d77" }],
-      },
-      {
-        featureType: "transit.line",
-        elementType: "labels.text.stroke",
-        stylers: [{ color: "#ebe3cd" }],
-      },
-      {
-        featureType: "transit.station",
-        elementType: "geometry",
-        stylers: [{ color: "#dfd2ae" }],
-      },
-      {
-        featureType: "water",
-        elementType: "geometry.fill",
-        stylers: [{ color: "#b9d3c2" }],
-      },
-      {
-        featureType: "water",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#92998d" }],
-      },
-    ] });
+    this.map.setOptions({
+      styles: [
+        { elementType: "geometry", stylers: [{ color: "#ebe3cd" }] },
+        { elementType: "labels.text.fill", stylers: [{ color: "#523735" }] },
+        { elementType: "labels.text.stroke", stylers: [{ color: "#f5f1e6" }] },
+        {
+          featureType: "administrative",
+          elementType: "geometry.stroke",
+          stylers: [{ color: "#c9b2a6" }],
+        },
+        {
+          featureType: "administrative.land_parcel",
+          elementType: "geometry.stroke",
+          stylers: [{ color: "#dcd2be" }],
+        },
+        {
+          featureType: "administrative.land_parcel",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#ae9e90" }],
+        },
+        {
+          featureType: "landscape.natural",
+          elementType: "geometry",
+          stylers: [{ color: "#dfd2ae" }],
+        },
+        {
+          featureType: "poi",
+          elementType: "geometry",
+          stylers: [{ color: "#dfd2ae" }],
+        },
+        {
+          featureType: "poi",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#93817c" }],
+        },
+        {
+          featureType: "poi.park",
+          elementType: "geometry.fill",
+          stylers: [{ color: "#a5b076" }],
+        },
+        {
+          featureType: "poi.park",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#447530" }],
+        },
+        {
+          featureType: "road",
+          elementType: "geometry",
+          stylers: [{ color: "#f5f1e6" }],
+        },
+        {
+          featureType: "road.arterial",
+          elementType: "geometry",
+          stylers: [{ color: "#fdfcf8" }],
+        },
+        {
+          featureType: "road.highway",
+          elementType: "geometry",
+          stylers: [{ color: "#f8c967" }],
+        },
+        {
+          featureType: "road.highway",
+          elementType: "geometry.stroke",
+          stylers: [{ color: "#e9bc62" }],
+        },
+        {
+          featureType: "road.highway.controlled_access",
+          elementType: "geometry",
+          stylers: [{ color: "#e98d58" }],
+        },
+        {
+          featureType: "road.highway.controlled_access",
+          elementType: "geometry.stroke",
+          stylers: [{ color: "#db8555" }],
+        },
+        {
+          featureType: "road.local",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#806b63" }],
+        },
+        {
+          featureType: "transit.line",
+          elementType: "geometry",
+          stylers: [{ color: "#dfd2ae" }],
+        },
+        {
+          featureType: "transit.line",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#8f7d77" }],
+        },
+        {
+          featureType: "transit.line",
+          elementType: "labels.text.stroke",
+          stylers: [{ color: "#ebe3cd" }],
+        },
+        {
+          featureType: "transit.station",
+          elementType: "geometry",
+          stylers: [{ color: "#dfd2ae" }],
+        },
+        {
+          featureType: "water",
+          elementType: "geometry.fill",
+          stylers: [{ color: "#b9d3c2" }],
+        },
+        {
+          featureType: "water",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#92998d" }],
+        },
+      ],
+    });
 
-    // Add markers for all facilities
-    this.addFacilityMarkers();
+
+
+
 
   }
+
+  addMyLocationButton() {
+    const myLocationButton = document.getElementById("myLocationButton");
+
+    myLocationButton.addEventListener("click", () => {
+      this.zoomToCurrentLocation();
+    });
+  }
+
+  zoomToCurrentLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+
+          this.map.setCenter(pos);
+          this.map.setZoom(14); // Adjust zoom level as needed
+
+          // Optionally, add a marker at the user's current location
+          new google.maps.Marker({
+            position: pos,
+            map: this.map,
+            title: "Your current location",
+            icon: {
+              path: google.maps.SymbolPath.CIRCLE,
+              fillColor: "#4A7DE8", // blue color for the current location
+              fillOpacity: 1,
+              scale: 6,
+              strokeColor: "#FFFFFF",
+              strokeWeight: 2,
+            },
+          });
+
+          console.log("[zoomToCurrentLocation] Zoomed to current location:", pos);
+        },
+        () => {
+          console.error("[zoomToCurrentLocation] Error: The Geolocation service failed.");
+        }
+      );
+    } else {
+      console.error("[zoomToCurrentLocation] Error: Your browser doesn't support geolocation.");
+    }
+  }
+
+
 
   addFacilityMarkers() {
     // Example JSON data
@@ -464,8 +527,8 @@ export default class extends Controller {
       // Custom icon for the end marker
       const endIcon = {
         path: google.maps.SymbolPath.CIRCLE, // Arrow icon
-        fillColor: 'red', // Red color for end
-        fillOpacity: 1,
+        // fillColor: 'red', // Red color for end
+        fillOpacity: 0,
         scale: 4,
         strokeColor: 'red',
         strokeWeight: 2,
@@ -490,11 +553,11 @@ export default class extends Controller {
     this.map.setZoom(18);
 
     const zoomIcon = {
-      path: google.maps.SymbolPath.BACKWARD_OPEN_ARROW, // Arrow icon
-        fillColor: 'white', // Red color for end
-        fillOpacity: .5,
-        scale: 2,
-        strokeColor: '#272727',
+      path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW, // Arrow icon
+        // fillColor: 'white', // Red color for end
+        fillOpacity: 0,
+        scale: 4,
+        strokeColor: '#6C9DD1',
         strokeWeight: 1,
     };
 

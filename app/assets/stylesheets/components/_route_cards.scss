@@ -1,3 +1,7 @@
+#route-panel-content {
+  margin-left: 6px;
+}
+
 .instructions-container {
   display: flex;
   overflow-x: scroll;
@@ -10,10 +14,17 @@
   height: 20vh;
   width: 20vh;
   margin-right: 5px;
+  transition: 0.3s;
   p {
     white-space: normal; /* Allow the text to wrap within the card */
     margin: 10px; /* Add some padding inside the card */
     font-size: 18px;
+  }
+
+  &:hover {
+    border: 1px solid #e6780a;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
   }
 }
 
@@ -129,6 +140,7 @@
   .card-point-text {
     font-size: 12px;
     text-align: center;
+    margin-bottom: 13px;
   }
 
   i {
@@ -247,4 +259,22 @@
 
   .modal-content {
     z-index: 1050 !important;
+  }
+
+  .custom-map-control-button {
+    background-color: #ffffff45;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    margin: 9px;
+    padding: 0px 7px;
+    text-align: center;
+    font-size: 26px;
+    line-height: 30px;
+    color: #333333cc;
+  }
+
+  .custom-map-control-button:hover {
+    background-color: #e6e6e6;
   }
