@@ -1,24 +1,19 @@
 <!-- frame -->
 <div style="height:100vh;width:100vw;" data-controller="home-map">
   <%= render 'top_part' %>
-
   <!-- map -->
   <div id="map" style="z-index: 0; height: 80vh;" data-action="load@window->home-map#initMap"></div>
-
   <!-- draggable-panel -->
   <div id="draggable-panel" class="bg-white w-100 px-3" data-controller="panel-resizer" style="z-index: 0;">
     <!-- draggable thingy -->
     <div id="resizer" class="w-100 d-flex align-items-center bg-white" style="position: sticky; top: 0;" data-action="mousedown->panel-resizer#grab touchstart->panel-resizer#grab">
       <hr id="panel-top-line">
     </div>
-
     <div id="panel-content" class="w-100">
       <!-- Place description -->
       <%= render partial: 'place_description' %>
-
       <!-- home -->
       <div id="initial-content" class="w-100">
-
         <div class="container w-100">
           <h3 class="mt-4"><strong>Places</strong></h3>
           <%= render 'ikumi_buttons' %>
@@ -27,13 +22,10 @@
             <%= render 'recommended' %>
           </div>
         </div>
-
         <div class="container" id="javier-container">
-          <h3><strong>Reviews</strong></h3>
-
+          <h3 class="mt-5"><strong>Reviews</strong></h3>
           <!-- Buttons -->
           <%= render 'javier/buttons' %>
-          <br>
           <!-- Content Sections -->
           <%= render 'javier/suggested_content' %>
           <%= render 'javier/mylist_content' %>
@@ -43,7 +35,6 @@
     </div>
   </div>
 </div>
-
 <!-- Modal for tags -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script> -->

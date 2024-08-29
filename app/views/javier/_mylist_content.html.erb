@@ -1,43 +1,30 @@
-<div id="mylist-content" class="content-section d-none">
+<div id="mylist-content" class="content-section d-none mt-3">
   <div id="review-places-list" class="list-group">
     <% @reviews.where(user: current_user).order(created_at: :desc).each do |review| %>
       <div class="review-place list-group-item p-3 border-0 shadow-sm mb-3" style="border-radius: 10px; background-color: #fff;">
-        <div class="d-flex w-100 justify-content-between">
+        <div class="d-flex w-100 align-items-center justify-content-between">
           <div class="d-flex align-items-center">
-            <% if review.user.photo.attached? %>
-              <%= cl_image_tag review.user.photo.key, class: "avatar-large me-3 rounded-circle" %>
-            <% else %>
-              <%= image_tag "default_avatar.png", class: "avatar-large me-3 rounded-circle" %>
-            <% end %>
-            <h5 class="mb-1 ml-3"><strong><%= review.user.username %></strong></h5>
+            <%= cl_image_tag review.user.photo.key, class: "avatar me-2 rounded-circle" %>
+            <h6 class="m-0"><strong><%= review.user.username %></strong></h6>
           </div>
-          <div class="top-right-date">
-            <p class="text-muted" style="font-size: 12px;"><%= review.created_at.strftime("%H:%M %B %d, %Y") %></p>
-          </div>
+          <button class="btn btn-light btn-md btn-block"><i class="fas fa-thumbs-up"></i></button>
         </div>
-        <div class="d-flex w-100 justify-content-between mt-2">
-          <div class="d-flex justify-content-between w-100 star-rating">
-            <strong><%= review.place.name %></strong>
-            <div>
+        <div class="d-flex w-100 justify-content-between my-3">
+          <div class="w-100 star-rating" style="font-size: 20px;">
+            <strong id="<%= review.place.google_id %>" data-action="click->home-map#javi"><%= review.place.name %></strong>
+            <div style="min-width: fit-content; max-width: 100px;">
               <% r_rating = review.rating %>
               <% r_rating.times do %>
-                <i class="fa-solid fa-star text-warning"></i>
+                <i class="fa-solid fa-baby-carriage text-warning"></i>
               <% end %>
             </div>
           </div>
         </div>
-
         <% if review.photos.any? %>
-          <%= cl_image_tag review.photos[0].key, class: "place-image mt-3 mb-3 w-100 rounded" %>
+          <%= cl_image_tag review.photos[0].key, class: "place-image mb-3 w-100 rounded" %>
         <% end %> <!-- Only show image if there are photos -->
-
-        <p class="mb-1"><%= review.comment %></p>
-        <div class="d-flex justify-content-around mt-2 border-top pt-2">
-          <button class="btn btn-light btn-lg btn-block"><i class="fas fa-thumbs-up"></i> </button>
-          <button class="btn btn-light btn-lg btn-block"><i class="fas fa-comment"></i> </button>
-          <button class="btn btn-light btn-lg btn-block"><i class="fas fa-share"></i> </button>
-          <button class="btn btn-primary btn-lg btn-block" style="border-radius: 20px;">Directions</button>
-        </div>
+        <p class="mb-1 text-muted"><%= review.comment %></p>
+        <p class="text-muted mt-3" style="font-size: 12px;"><%= review.created_at.strftime("%H:%M %B %d, %Y") %></p>
       </div>
     <% end %>
   </div>
