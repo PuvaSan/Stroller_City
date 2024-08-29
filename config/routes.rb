@@ -29,4 +29,6 @@ Rails.application.routes.draw do
   patch "places/:id", to: "places#update"
 
   post "/places/end_reviews", to: "places#end_reviews"
+
+  delete "reviews/:id", to: "reviews#destroy", as: :delete_review
 end

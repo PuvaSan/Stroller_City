@@ -45,6 +45,12 @@ class ReviewsController < ApplicationController
     @places = params[:place_ids].split(',').select { |s| s != '' }.reverse!
   end
 
+  def destroy
+    review = Review.find(params[:id])
+    review.destroy
+    redirect_to root_path
+  end
+
   private
 
   def place_instantiator(place_id)
