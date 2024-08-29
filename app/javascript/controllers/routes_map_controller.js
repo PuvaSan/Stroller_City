@@ -6,6 +6,7 @@ export default class extends Controller {
   connect() {
     console.log("[RoutesMapController] Connected successfully.");
     this.initMap();
+    this.addMyLocationButton();
   }
 
   initMap() {
@@ -24,127 +25,248 @@ export default class extends Controller {
     this.map = new google.maps.Map(this.mapTarget, mapOptions);
     console.log("[initMap] Map initialized with center:", mapOptions.center);
 
-    // Get the coordinates for walk sections and draws the full polyline route
+    // Add a custom My Location button to the map
+    const locationButton = document.createElement("button");
+    //locationButton.textContent = "My Location";
+    locationButton.classList.add("custom-map-control-button");
+    locationButton.classList.add("fa-solid");
+    locationButton.classList.add("fa-location-crosshairs");
+    this.map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(locationButton);
+
+    // Add event listener to the button to zoom to the current location
+    locationButton.addEventListener("click", () => {
+      this.zoomToCurrentLocation();
+    });
+
+    // Get the coordinates for walk sections and draw the full polyline route
     this.walkSections = this.getCoordinatesForWalkSections();
     this.transportSections = this.getCoordinatesForTransportSections();
     this.drawFullPolylineRoute();
 
     // adds transit layer over our map
     const transitLayer = new google.maps.TransitLayer();
-    transitLayer.setMap(map);
+    transitLayer.setMap(this.map);
 
     // adds retro style to our map
-    this.map.setOptions({ styles: [
-      { elementType: "geometry", stylers: [{ color: "#ebe3cd" }] },
-      { elementType: "labels.text.fill", stylers: [{ color: "#523735" }] },
-      { elementType: "labels.text.stroke", stylers: [{ color: "#f5f1e6" }] },
-      {
-        featureType: "administrative",
-        elementType: "geometry.stroke",
-        stylers: [{ color: "#c9b2a6" }],
-      },
-      {
-        featureType: "administrative.land_parcel",
-        elementType: "geometry.stroke",
-        stylers: [{ color: "#dcd2be" }],
-      },
-      {
-        featureType: "administrative.land_parcel",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#ae9e90" }],
-      },
-      {
-        featureType: "landscape.natural",
-        elementType: "geometry",
-        stylers: [{ color: "#dfd2ae" }],
-      },
-      {
-        featureType: "poi",
-        elementType: "geometry",
-        stylers: [{ color: "#dfd2ae" }],
-      },
-      {
-        featureType: "poi",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#93817c" }],
-      },
-      {
-        featureType: "poi.park",
-        elementType: "geometry.fill",
-        stylers: [{ color: "#a5b076" }],
-      },
-      {
-        featureType: "poi.park",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#447530" }],
-      },
-      {
-        featureType: "road",
-        elementType: "geometry",
-        stylers: [{ color: "#f5f1e6" }],
-      },
-      {
-        featureType: "road.arterial",
-        elementType: "geometry",
-        stylers: [{ color: "#fdfcf8" }],
-      },
-      {
-        featureType: "road.highway",
-        elementType: "geometry",
-        stylers: [{ color: "#f8c967" }],
-      },
-      {
-        featureType: "road.highway",
-        elementType: "geometry.stroke",
-        stylers: [{ color: "#e9bc62" }],
-      },
-      {
-        featureType: "road.highway.controlled_access",
-        elementType: "geometry",
-        stylers: [{ color: "#e98d58" }],
-      },
-      {
-        featureType: "road.highway.controlled_access",
-        elementType: "geometry.stroke",
-        stylers: [{ color: "#db8555" }],
-      },
-      {
-        featureType: "road.local",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#806b63" }],
-      },
-      {
-        featureType: "transit.line",
-        elementType: "geometry",
-        stylers: [{ color: "#dfd2ae" }],
-      },
-      {
-        featureType: "transit.line",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#8f7d77" }],
-      },
-      {
-        featureType: "transit.line",
-        elementType: "labels.text.stroke",
-        stylers: [{ color: "#ebe3cd" }],
-      },
-      {
-        featureType: "transit.station",
-        elementType: "geometry",
-        stylers: [{ color: "#dfd2ae" }],
-      },
-      {
-        featureType: "water",
-        elementType: "geometry.fill",
-        stylers: [{ color: "#b9d3c2" }],
-      },
-      {
-        featureType: "water",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#92998d" }],
-      },
-    ] });
+    this.map.setOptions({
+      styles: [
+        { elementType: "geometry", stylers: [{ color: "#ebe3cd" }] },
+        { elementType: "labels.text.fill", stylers: [{ color: "#523735" }] },
+        { elementType: "labels.text.stroke", stylers: [{ color: "#f5f1e6" }] },
+        {
+          featureType: "administrative",
+          elementType: "geometry.stroke",
+          stylers: [{ color: "#c9b2a6" }],
+        },
+        {
+          featureType: "administrative.land_parcel",
+          elementType: "geometry.stroke",
+          stylers: [{ color: "#dcd2be" }],
+        },
+        {
+          featureType: "administrative.land_parcel",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#ae9e90" }],
+        },
+        {
+          featureType: "landscape.natural",
+          elementType: "geometry",
+          stylers: [{ color: "#dfd2ae" }],
+        },
+        {
+          featureType: "poi",
+          elementType: "geometry",
+          stylers: [{ color: "#dfd2ae" }],
+        },
+        {
+          featureType: "poi",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#93817c" }],
+        },
+        {
+          featureType: "poi.park",
+          elementType: "geometry.fill",
+          stylers: [{ color: "#a5b076" }],
+        },
+        {
+          featureType: "poi.park",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#447530" }],
+        },
+        {
+          featureType: "road",
+          elementType: "geometry",
+          stylers: [{ color: "#f5f1e6" }],
+        },
+        {
+          featureType: "road.arterial",
+          elementType: "geometry",
+          stylers: [{ color: "#fdfcf8" }],
+        },
+        {
+          featureType: "road.highway",
+          elementType: "geometry",
+          stylers: [{ color: "#f8c967" }],
+        },
+        {
+          featureType: "road.highway",
+          elementType: "geometry.stroke",
+          stylers: [{ color: "#e9bc62" }],
+        },
+        {
+          featureType: "road.highway.controlled_access",
+          elementType: "geometry",
+          stylers: [{ color: "#e98d58" }],
+        },
+        {
+          featureType: "road.highway.controlled_access",
+          elementType: "geometry.stroke",
+          stylers: [{ color: "#db8555" }],
+        },
+        {
+          featureType: "road.local",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#806b63" }],
+        },
+        {
+          featureType: "transit.line",
+          elementType: "geometry",
+          stylers: [{ color: "#dfd2ae" }],
+        },
+        {
+          featureType: "transit.line",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#8f7d77" }],
+        },
+        {
+          featureType: "transit.line",
+          elementType: "labels.text.stroke",
+          stylers: [{ color: "#ebe3cd" }],
+        },
+        {
+          featureType: "transit.station",
+          elementType: "geometry",
+          stylers: [{ color: "#dfd2ae" }],
+        },
+        {
+          featureType: "water",
+          elementType: "geometry.fill",
+          stylers: [{ color: "#b9d3c2" }],
+        },
+        {
+          featureType: "water",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#92998d" }],
+        },
+      ],
+    });
 
+
+
+
+
+  }
+
+  addMyLocationButton() {
+    const myLocationButton = document.getElementById("myLocationButton");
+
+    myLocationButton.addEventListener("click", () => {
+      this.zoomToCurrentLocation();
+    });
+  }
+
+  zoomToCurrentLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+
+          this.map.setCenter(pos);
+          this.map.setZoom(16); // Adjust zoom level as needed
+
+          // Remove the old marker if it exists
+          if (this.currentLocationMarker) {
+            this.currentLocationMarker.setMap(null);
+          }
+
+          // Optionally, add a marker at the user's current location
+          new google.maps.Marker({
+            position: pos,
+            map: this.map,
+            title: "Your current location",
+            icon: {
+              path: google.maps.SymbolPath.CIRCLE,
+              fillColor: "#4A7DE8", // blue color for the current location
+              fillOpacity: 1,
+              scale: 6,
+              strokeColor: "#FFFFFF",
+              strokeWeight: 2,
+            },
+          });
+
+          console.log("[zoomToCurrentLocation] Zoomed to current location:", pos);
+        },
+        () => {
+          console.error("[zoomToCurrentLocation] Error: The Geolocation service failed.");
+        }
+      );
+    } else {
+      console.error("[zoomToCurrentLocation] Error: Your browser doesn't support geolocation.");
+    }
+  }
+
+
+
+  addFacilityMarkers() {
+    // Example JSON data
+    const facilities = [
+      {
+        "Name": { "Description": "Adachi Ward Labor Welfare Hall" },
+        "geographic coordinates": {
+          "Longitude": "139.821582",
+          "Latitude": "35.761076"
+        }
+      },
+      {
+        "Name": { "Description": "Ninoe Community Hall" },
+        "geographic coordinates": {
+          "Longitude": "139.880804",
+          "Latitude": "35.676988"
+        }
+      },
+      {
+        "Name": { "Description": "Akishima City Health and Welfare Center" },
+        "geographic coordinates": {
+          "Longitude": "139.364108",
+          "Latitude": "35.710679"
+        }
+      }
+      // Add more facilities as needed
+    ];
+
+    facilities.forEach(facility => {
+      const lat = parseFloat(facility['geographic coordinates']['Latitude']);
+      const lng = parseFloat(facility['geographic coordinates']['Longitude']);
+
+      const WashroomIcon = {
+        url: 'http://res.cloudinary.com/dckq0zged/image/upload/v1724848852/taf1k3frhuuelqqxmniw.png', // Replace with the actual path to your PNG file
+        scaledSize: new google.maps.Size(20, 20), // Adjust the size of the icon
+        origin: new google.maps.Point(0, 0), // The origin point of the icon (optional)
+        anchor: new google.maps.Point(15, 15) // The anchor point of the icon (optional, usually the center)
+      };
+
+      new google.maps.Marker({
+        position: { lat: lat, lng: lng },
+        map: this.map,
+        title: facility.Name.Description,
+        icon: WashroomIcon, // Use the custom end icon
+      });
+
+      console.log(`[addFacilityMarkers] Added marker for ${facility.Name.Description} at lat: ${lat}, lng: ${lng}`);
+    });
   }
 
 
@@ -372,8 +494,8 @@ export default class extends Controller {
     if (isWalking) {
       const lineSymbol = {
         path: 'M 0,-1 0,1',
-        scale: 4,
-        strokeColor: '#D81E5B', // Raspberry Set the color for walking lines
+        scale: 3,
+        strokeColor: '#2d7dd2', // Set the color for walking lines
         strokeOpacity: 0.7,
       };
 
@@ -383,23 +505,45 @@ export default class extends Controller {
         repeat: '20px'
       }];
     } else {
-      polylineOptions.strokeColor = "#2364AA"; //GreenBlue Set the color for transport lines
+      polylineOptions.strokeColor = "#2364AA"; // Set the color for transport lines
     }
 
     const polyline = new google.maps.Polyline(polylineOptions);
     polyline.setMap(this.map);
 
     if (!isWalking) {
+      // Custom icon for the start marker
+      const startIcon = {
+        path: google.maps.SymbolPath.CIRCLE, // Simple circle icon
+        fillColor: 'yellow', // Green color for start
+        fillOpacity: 1,
+        scale: 4,
+        strokeColor: 'yellow',
+        strokeWeight: 2,
+      };
+
       new google.maps.Marker({
         position: pathCoordinates[0],
         map: this.map,
         title: "Start of Transport",
+        icon: startIcon, // Use the custom start icon
       });
+
+      // Custom icon for the end marker
+      const endIcon = {
+        path: google.maps.SymbolPath.CIRCLE, // Arrow icon
+        // fillColor: 'red', // Red color for end
+        fillOpacity: 0,
+        scale: 4,
+        strokeColor: 'red',
+        strokeWeight: 2,
+      };
 
       new google.maps.Marker({
         position: pathCoordinates[pathCoordinates.length - 1],
         map: this.map,
         title: "End of Transport",
+        icon: endIcon, // Use the custom end icon
       });
     }
   }
@@ -413,9 +557,21 @@ export default class extends Controller {
     this.map.setCenter(coordinates);
     this.map.setZoom(18);
 
+    const zoomIcon = {
+      path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW, // Arrow icon
+        // fillColor: 'white', // Red color for end
+        fillOpacity: 0,
+        scale: 4,
+        strokeColor: '#6C9DD1',
+        strokeWeight: 1,
+    };
+
+
     new google.maps.Marker({
       position: coordinates,
       map: this.map,
+      icon: zoomIcon, // Use the custom end icon
+      title: "Zoomed Location",
     });
   }
 
