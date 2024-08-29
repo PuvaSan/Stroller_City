@@ -33,6 +33,18 @@ export default class extends Controller {
     locationButton.classList.add("fa-location-crosshairs");
     this.map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(locationButton);
 
+    // Add a custom Back button to the map
+    const backButton = document.createElement("button");
+    backButton.classList.add("simple-back-button");
+    backButton.classList.add("shadow-sm");
+    backButton.classList.add("text-primary");
+    backButton.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+    this.map.controls[google.maps.ControlPosition.LEFT_TOP].push(backButton);
+    //backbutton performs window.history.back() when clicked
+    backButton.addEventListener("click", () => {
+      window.history.back();
+    });
+
     // Add event listener to the button to zoom to the current location
     locationButton.addEventListener("click", () => {
       this.zoomToCurrentLocation();

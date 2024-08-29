@@ -55,8 +55,9 @@
   }
 
   .start {
-    text-align: left;
     font-size: 16px;
+    margin-left: 40px;
+
   }
 
   .stop {
@@ -85,5 +86,23 @@
 
   .station-list {
     margin: 0 5px;
+  }
+}
+
+.simple-back-button{
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 27px;
+  margin-right: 20px;
+  background: transparent;
+  border: 0px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.586);
+  margin: 9px;
+  &:hover {
+    color: rgb(188, 50, 0);
   }
 }
