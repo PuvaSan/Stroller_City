@@ -66,21 +66,25 @@
     font-size: 12px;
     flex-wrap: wrap;
     margin: 0px 5px;
+    align-items: center;
+
   }
   .transfer-station-text {
     margin-bottom: 0px;
   }
 
-  .transfer-card-img-icon-container {
+  .bottom-icons {
     display: flex;
-    justify-content: space-between;
-    align-items: first baseline;
-    .baby-changer-icon{
-      height: 20px;
-      width: 20px;
-      border-radius: 50%;
-    }
+    justify-content: center;
+    margin-top: 3px;
   }
+  .baby-changer-icon{
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    margin-right: 3px;
+  }
+
 
 
 }
@@ -96,10 +100,10 @@
     color: #2d7dd2;
   }
   .walk-icon {
-    font-size: 27px;
+    font-size: 50px;
     text-align: center;
     color: #2d7dd2;
-
+    margin-bottom: 5px;
   }
 
   span {
@@ -117,19 +121,25 @@
   }
 
   .card-transport-text {
-    margin: 8px 0;
+    margin: 5px 0;
     display: flex;
     flex-direction: column;
     font-size: 12px;
-    padding: 10px;
     text-wrap: wrap;
     justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    padding: 3px;
   }
 
+  p {
+    font-size: 12px;
+    margin: -2px;
+  };
 
-
-
-
+  i {
+    font-size: 37px;
+  }
 }
 
 .start-goal-card {
@@ -144,7 +154,7 @@
   }
 
   i {
-    font-size: 25px;
+    font-size: 36px;
     margin-bottom: 5px;
   }
 
@@ -156,7 +166,7 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 3px;
     transition: 0.3s;
     font-size: 9px;
     padding: 10px;
@@ -175,7 +185,7 @@
 }
 
 .walk-stats-container {
-  margin: 5px 0px;
+  margin: -5px 0px;
 
   .walk-stats-list {
     display: flex;
@@ -200,29 +210,29 @@
 
 .elevator-image-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
   margin: 5px;
 
   img {
-    height: 74px;
-    width: 65px;
+    height: 55px;
+    width: 50px;
     border-radius: 15px;
   };
 
   .exit {
     display: flex;
-    align-items: flex-end;
-    justify-content: right;
-    padding-top: 30px;
+    align-items: center;
     flex-wrap: wrap;
+    margin-top: 5px;
     .exit-text {
       flex-wrap: wrap;
-      font-size: 8px;
-      background-color: yellow;
+      font-size: 10px;
       color: black;
       border-radius: 20px;
       padding: 2px;
-      margin-right: 1px;
+      margin-left: 2px;
       font-weight: bold;
     }
 
@@ -230,8 +240,8 @@
 }
 
 .transfer-card-img {
-  height: 74px;
-  width: 65px;
+  height: 55px;
+  width: 50px;
   border-radius: 15px;
   border: lightgray 1px solid;
   margin-top: 5px;
@@ -241,16 +251,24 @@
     border-radius: 50%;
     color: white;
     text-align: center;
-    margin-top: 5px;
-    font-size: 15px;
-    margin-right: 2px;
-    padding-left: 5px;
+    font-size: 12px;
+    padding: 0 6px;
+
+
   }
 
   .route-stop-container
   {
-    text-align: right;
-    font-size: 13px;
+    font-weight: bold;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      margin-left: 2px;
+      font-size: 10px;
+    }
+
   }
 
   .modal-backdrop {

@@ -16,7 +16,7 @@
         data-move="point">
         <p class="card-point-text">
           <% if section == first_point_section %>
-            <i class="text-center fa-solid fa-location-dot text-success"></i> <span>Start Trip</span> <%#= @origin %>
+            <i class="text-center fa-solid fa-location-dot text-success"></i> <span>Start</span> <%#= @origin %>
           <% elsif section == last_point_section %>
             <% place_ids += ",#{@destination}" %>
             <% if user_signed_in? %>
@@ -37,7 +37,9 @@
                   <% url = "http://res.cloudinary.com/dckq0zged/image/upload/v1724436396/xqfdy2ahqffnbxooxkug.jpg" %>
                 <% end %>
                 <img class="transfer-card-img" src="<%= url %>" alt="elevator" data-action="click->routes-map#openImageModal">
+              <div class="bottom-icons">
                 <img class="baby-changer-icon" src="http://res.cloudinary.com/dckq0zged/image/upload/v1724831678/z1gbt97pjssf2x5xcc40.png" alt="">
+                <img class="baby-changer-icon" src="http://res.cloudinary.com/dckq0zged/image/upload/v1724848852/taf1k3frhuuelqqxmniw.png" alt="">
               </div>
             </div>
           <% else %>
@@ -95,16 +97,16 @@
             data-move="transport"
             data-index="<%= transport_card_index %>"> <!-- Use transport_card_index here -->
             <div class="card-transport-text">
-              <i class="fa-solid fa-train-subway " style="color:<%= section['transport']['color'] %>"></i> Take
               <span style="background-color:<%= section['transport']['color'] %>; color: #fff; padding: 0px 2px; border-radius: 3px;">
                 <%= translate(section['transport']['name']) %>
               </span>
+              <i class="fa-solid fa-train-subway " style="color:<%= section['transport']['color'] %>"></i>
               <div class="route-stop-container">
                 <span class="route-stops" style="background-color:<%= section['transport']['color'] %> ">
                   <%= @stops[transport_card_index] %>
                   <!-- Display stop number -->
                 </span>
-                Stops
+                <p>Stops</p>
               </div>
             </div>
           </div>

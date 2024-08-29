@@ -252,7 +252,7 @@ export default class extends Controller {
       const lng = parseFloat(facility['geographic coordinates']['Longitude']);
 
       const WashroomIcon = {
-        url: 'http://res.cloudinary.com/dckq0zged/image/upload/v1724848852/taf1k3frhuuelqqxmniw.png', // Replace with the actual path to your PNG file
+        url: 'http://res.cloudinary.com/dckq0zged/image/upload/v1724848852/taf1k3frhuuelqqxmniw.png', // washroom icon img
         scaledSize: new google.maps.Size(20, 20), // Adjust the size of the icon
         origin: new google.maps.Point(0, 0), // The origin point of the icon (optional)
         anchor: new google.maps.Point(15, 15) // The anchor point of the icon (optional, usually the center)
