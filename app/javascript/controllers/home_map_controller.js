@@ -13,6 +13,7 @@ export default class extends Controller {
     document.getElementById("current-location").innerText = this.getCurrentPosition();
     this.initMap();
     document.getElementById('tags-container').innerHTML = '';
+    document.getElementById('place-ratings').innerHTML = '';
     let modalInputs = document.querySelectorAll('.modal-body input');
     modalInputs.forEach(input => {
       input.checked = false;
@@ -129,6 +130,12 @@ export default class extends Controller {
           .then(data => {
             console.log("Place name sent successfully", data);
             if (data.status === "success") {
+              const times = parseInt(data.place_ratings);
+                if (times > 0) {
+                  for(let i = 0; i < times; i++){
+                    document.getElementById('place-ratings').insertAdjacentHTML("beforeend", `<i class="fas fa-baby-carriage me-1 text-warning"></i>`);
+                  }
+                }
               // Fetch the reviews partial and insert it into the reviews section
               fetch(`/pages/render_reviews?id=${data.id}`)
                 .then(response => response.text())
@@ -196,6 +203,7 @@ export default class extends Controller {
     document.getElementById("destination").parentElement.classList.toggle("d-none")
     this.destinationAutocomplete = new google.maps.places.Autocomplete(document.getElementById('destination'))
     document.getElementById('tags-container').innerHTML = '';
+    document.getElementById('place-ratings').innerHTML = '';
     let modalInputs = document.querySelectorAll('.modal-body input');
     modalInputs.forEach(input => {
       input.checked = false;
@@ -308,6 +316,12 @@ export default class extends Controller {
             .then(data => {
               console.log("Place name sent successfully", data);
               if (data.status === "success") {
+                const times = parseInt(data.place_ratings);
+                if (times > 0) {
+                  for(let i = 0; i < times; i++){
+                    document.getElementById('place-ratings').insertAdjacentHTML("beforeend", `<i class="fas fa-baby-carriage me-1 text-warning"></i>`);
+                  }
+                }
                 // Fetch the reviews partial and insert it into the reviews section
                 fetch(`/pages/render_reviews?id=${data.id}`)
                   .then(response => response.text())

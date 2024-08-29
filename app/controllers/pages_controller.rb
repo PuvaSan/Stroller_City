@@ -21,8 +21,14 @@ class PagesController < ApplicationController
     place_name = params[:place_name]
     @place = Place.where("name ILIKE ?", "%#{place_name}%").first
 
+    if @place && @place.reviews.any?
+      place_ratings = @place.reviews.average(:rating).to_f
+    else
+      place_ratings = 0
+    end
+
     if @place
-      render json: { status: "success", id: @place.id, place_name: @place.name }
+      render json: { status: "success", id: @place.id, place_ratings: place_ratings, place_name: @place.name }
     else
       render json: { status: "error", message: "Place not found in DB" }, status: :not_found
     end

@@ -30,7 +30,7 @@ class ReviewsController < ApplicationController
         end
         render json: { status: "success", id: place.id }
       else
-        render json: { status: "error", message: review.errors.full_messages.join(", ") }, status: :unprocessable_entity
+        render json: { status: "error", message: review.errors.full_messages.join(", ") }, status: review.errors.full_messages.join(", ")
       end
     else
       render json: { status: "error", message: "You must be signed in to leave a review." }, status: :unauthorized
