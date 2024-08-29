@@ -113,7 +113,11 @@ class RoutesController < ApplicationController
 
     @station_images = []
     @route['sections'].each_with_index do |section, index|
-      station_name = translate(section['name']).gsub(" ", "-")
+      station_name = translate(section['name'])
+      if station_name.include?("3-chome")
+        station_name.gsub!("3-chome", "sanchome")
+      end
+      station_name.gsub!(" ", "-")
       if section['node_id'].present? && section['gateway'].nil?
         url = "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_#{station_name.downcase}_all.jpg"
 
@@ -127,7 +131,7 @@ class RoutesController < ApplicationController
         end
       end
       if section['gateway'].present?
-        place = Place.where("name ILIKE ?", "%#{translate(section['name'])} Station%").first
+        place = Place.where("name ILIKE ?", "%#{station_name} Station%").first
         if place
           @station_images << {index: index, place: place}
         end
