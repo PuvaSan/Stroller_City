@@ -12,13 +12,17 @@
           </div>
         </div>
         <div class="d-flex w-100 justify-content-between mt-2">
-          <div class="star-rating">
-            <% r_rating = review.rating %>
-            <% r_rating.times do %>
-              <i class="fa-solid fa-baby-carriage text-warning"></i>
-            <% end %>
+          <div class="d-flex justify-content-between w-100 star-rating">
+            <strong><%= review.place.name %></strong>
+            <div>
+              <% r_rating = review.rating %>
+              <% r_rating.times do %>
+                <i class="fa-solid fa-baby-carriage text-warning"></i>
+              <% end %>
+            </div>
           </div>
         </div>
+
         <% if review.photos.any? %>
           <%= cl_image_tag review.photos[0].key, class: "place-image mt-3 mb-3 w-100 rounded" %>
         <% end %> <!-- Only show image if there are photos -->
