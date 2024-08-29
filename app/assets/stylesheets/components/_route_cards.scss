@@ -1,3 +1,7 @@
+#route-panel-content {
+  margin-left: 6px;
+}
+
 .instructions-container {
   display: flex;
   overflow-x: scroll;
@@ -10,10 +14,17 @@
   height: 20vh;
   width: 20vh;
   margin-right: 5px;
+  transition: 0.3s;
   p {
     white-space: normal; /* Allow the text to wrap within the card */
     margin: 10px; /* Add some padding inside the card */
     font-size: 18px;
+  }
+
+  &:hover {
+    border: 1px solid #e6780a;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
   }
 }
 
@@ -122,11 +133,14 @@
 }
 
 .start-goal-card {
-  height: 22vh;
+  height: 15vh;
   width: 15vh;
+  border-radius: 50%;
+  margin-top: 16px;
   .card-point-text {
     font-size: 12px;
     text-align: center;
+    margin-bottom: 13px;
   }
 
   i {
@@ -135,8 +149,8 @@
   }
 
   a {
-    height: 40px;
-    width: 80px;
+    height: 10px;
+    width: 54px;
     background-color: #d81159;
     color: white;
     text-decoration: none;
@@ -144,8 +158,8 @@
     align-items: center;
     border-radius: 10px;
     transition: 0.3s;
-    font-size: 12px;
-    padding: 17px;
+    font-size: 9px;
+    padding: 10px;
     margin: 5px auto;
 
     &:hover {
@@ -245,4 +259,22 @@
 
   .modal-content {
     z-index: 1050 !important;
+  }
+
+  .custom-map-control-button {
+    background-color: #ffffff45;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    margin: 9px;
+    padding: 0px 7px;
+    text-align: center;
+    font-size: 26px;
+    line-height: 30px;
+    color: #333333cc;
+  }
+
+  .custom-map-control-button:hover {
+    background-color: #e6e6e6;
   }

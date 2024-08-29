@@ -43,7 +43,8 @@
             <div class="elevator-image-container">
               <img src="http://res.cloudinary.com/dckq0zged/image/upload/v1724434212/dnilq9ncpkzidf3ttuyc.png" alt="elevator" data-action="click->routes-map#openImageModal">
               <div class="exit">
-                <span class="exit-text"><%= translate(section['gateway']) %></span><i class="fa-solid fa-elevator"></i>
+                <i class="fa-solid fa-elevator"></i>
+                <span class="exit-text"><%= translate(section['gateway']) %></span>
               </div>
             </div>
           <% end %>
@@ -82,11 +83,11 @@
                 <%= translate(section['transport']['name']) %>
               </span>
               <div class="route-stop-container">
-                <span class="route-stops" style="background-color:<%= section['transport']['color'] %>">
+                <span class="route-stops" style="background-color:<%= section['transport']['color'] %> ">
                   <%= @stops[transport_card_index] %>
                   <!-- Display stop number -->
                 </span>
-                Stop(s)
+                Stops
               </div>
             </div>
           </div>
