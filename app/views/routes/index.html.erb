@@ -2,6 +2,11 @@
 <div class="route-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(http://res.cloudinary.com/dckq0zged/image/upload/v1724468241/pnatl16tdbxjr9glkyr1.png);">
   <div class="container">
     <div class="route-start-stop">
+      <div style="width: 73px">
+        <button class="mx-2 bg-white br-30" id="first-back-button" data-controller="panel-resizer" data-action="click->home-map#firstBack click->panel-resizer#heightMaxer">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+      </div>
       <h3 class="start"><i class="fa-solid fa-location-dot text-success"></i> <%= @origin %> </h3>
       <h3 class="stop"><i class="fa-solid fa-location-pin text-danger"></i> <%= @destination %></h3>
     </div>

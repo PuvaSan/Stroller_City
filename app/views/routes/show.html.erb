@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="imageModalLabel">Image Title Here</h5>
+        <h5 class="modal-title" id="imageModalLabel">Elevator</h5>
       </div>
       <div class="modal-body text-center">
         <img id="modalImage" src="" alt="Image preview" style="max-width: 100%; height: auto;">
@@ -45,7 +45,7 @@
               </span>
             <% elsif section['type'] == 'move' && section['move'] == 'local_train' %>
               <span class="material-symbols-outlined"
-                    style="color:<%= section['transport']['color'] %>;">directions_subway</span><span class="material-symbols-outlined">
+                style="color:<%= section['transport']['color'] %>;">directions_subway</span><span class="material-symbols-outlined">
                 chevron_right
               </span>
             <% elsif section['type'] == 'point' && section['node_id'].present? && section['gateway'].nil? %> <!-- This is for transfer points -->

@@ -30,10 +30,17 @@
               <span class="transfer-station-text">
                 <i class="fa-solid fa-right-left"> </i> <%= translate(section['name']) %> Sta.
               </span>
-              <img class="transfer-card-img" src="http://res.cloudinary.com/dckq0zged/image/upload/v1724436396/xqfdy2ahqffnbxooxkug.jpg" alt="elevator" data-action="click->routes-map#openImageModal">
-              <div class="bottom-icons">
-                <img class="baby-changer-icon" src="http://res.cloudinary.com/dckq0zged/image/upload/v1724831678/z1gbt97pjssf2x5xcc40.png" alt="">
-                <img class="baby-changer-icon" src="http://res.cloudinary.com/dckq0zged/image/upload/v1724848852/taf1k3frhuuelqqxmniw.png" alt="">
+              <div class="transfer-card-img-icon-container">
+                <% if @station_images.any? { |e| e[:index] == index} %>
+                  <% url = @station_images.find { |e| e[:index] == index }[:url] %>
+                <% else %>
+                  <% url = "http://res.cloudinary.com/dckq0zged/image/upload/v1724436396/xqfdy2ahqffnbxooxkug.jpg" %>
+                <% end %>
+                <img class="transfer-card-img" src="<%= url %>" alt="elevator" data-action="click->routes-map#openImageModal">
+                <div class="bottom-icons">
+                  <img class="baby-changer-icon" src="http://res.cloudinary.com/dckq0zged/image/upload/v1724831678/z1gbt97pjssf2x5xcc40.png" alt="">
+                  <img class="baby-changer-icon" src="http://res.cloudinary.com/dckq0zged/image/upload/v1724848852/taf1k3frhuuelqqxmniw.png" alt="">
+                </div>
               </div>
             </div>
           <% else %>
@@ -42,7 +49,19 @@
           <% end %>
           <% if section['gateway'].present? %>
             <div class="elevator-image-container">
-              <img src="http://res.cloudinary.com/dckq0zged/image/upload/v1724434212/dnilq9ncpkzidf3ttuyc.png" alt="elevator" data-action="click->routes-map#openImageModal">
+              <% if @station_images.any? { |e| e[:index] == index} %>
+                <% place = @station_images.find { |e| e[:index] == index }[:place] %>
+                <% if place.photos.second %>
+                  <%= image_tag url_for(place.photos.second), :data => { :action => "click->routes-map#openImageModal" }, :id => "imageTag-#{index}" %>
+                  <p class="d-none" id="imageComment<%= index%>"><%= place.reviews.find { |r| r.photos.attached? }.comment %></p>
+                <% elsif place.photos.first %>
+                  <%= image_tag url_for(place.photos.first), :data => { :action => "click->routes-map#openImageModal" }, :id => "imageTag-#{index}" %>
+                  <p class="d-none" id="imageComment<%= index%>"><%= translate(section['name']) %></p>
+                <% end %>
+              <% else %>
+                <img src="http://res.cloudinary.com/dckq0zged/image/upload/v1724434212/dnilq9ncpkzidf3ttuyc.png" alt="elevator" id= "imageTag-<%= index%>" data-action="click->routes-map#openImageModal">
+                <p class="d-none" id="imageComment<%= index%>">Elevator</p>
+              <% end %>
               <div class="exit">
                 <i class="fa-solid fa-elevator"></i>
                 <span class="exit-text"><%= translate(section['gateway']) %></span>

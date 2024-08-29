@@ -3,6 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="panel-resizer"
 export default class extends Controller {
   connect() {
+    this.maxHeight = window.innerHeight - document.getElementById("stick-to-top").clientHeight;
     if (document.querySelector("#place-description").classList.contains("d-none")) {
       document.querySelector("#draggable-panel").style.height = this.maxHeight + "px";
       document.querySelector("#draggable-panel").style.borderRadius = 0;
