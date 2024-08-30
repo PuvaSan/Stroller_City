@@ -11,7 +11,6 @@ class ReviewsController < ApplicationController
   def create
     if user_signed_in?
       place = Place.find_or_initialize_by(id: params[:review][:place_id])
-      debugger
       if place.new_record?
         place_instantiator(params[:review][:place_id])
         place = Place.last

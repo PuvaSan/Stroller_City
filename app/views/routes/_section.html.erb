@@ -53,7 +53,7 @@
                 <% place = @station_images.find { |e| e[:index] == index }[:place] %>
                 <% if place.photos.second %>
                   <%= image_tag url_for(place.photos.second), :data => { :action => "click->routes-map#openImageModal" }, :id => "imageTag-#{index}" %>
-                  <p class="d-none" id="imageComment<%= index%>"><%= place.reviews.find { |r| r.photos.attached? }.comment %></p>
+                  <p class="d-none" id="imageComment<%= index%>"><%= place.reviews.find { |r| r.photos.attached? }&.comment %></p>
                 <% elsif place.photos.first %>
                   <%= image_tag url_for(place.photos.first), :data => { :action => "click->routes-map#openImageModal" }, :id => "imageTag-#{index}" %>
                   <p class="d-none" id="imageComment<%= index%>"><%= translate(section['name']) %></p>
