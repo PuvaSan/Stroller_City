@@ -9,7 +9,7 @@
           </div>
           <div class="d-flex align-items-center">
             <% if review.user == current_user %>
-              <%= link_to delete_review_path(review), data: { turbo_method: :delete }, class: "btn btn-danger btn-md btn-block me-2" do %>
+              <%= link_to delete_review_path(review), data: { turbo_method: :delete }, class: "btn btn-danger btn-aya btn-md btn-block me-2" do %>
                 <i class="fas fa-trash-alt"></i>
               <% end %>
             <% end %>
