@@ -36,7 +36,8 @@
                 <% else %>
                   <% url = "http://res.cloudinary.com/dckq0zged/image/upload/v1724436396/xqfdy2ahqffnbxooxkug.jpg" %>
                 <% end %>
-                <img class="transfer-card-img" src="<%= url %>" alt="elevator" data-action="click->routes-map#openImageModal">
+                <img class="transfer-card-img" id="imageTag-<%= index%>" src="<%= url %>" alt="elevator" data-action="click->routes-map#openImageModal">
+                <p class="d-none" id="imageComment<%= index%>"><%= translate(section['name']) %></p>
                 <div class="bottom-icons">
                   <img class="baby-changer-icon" src="http://res.cloudinary.com/dckq0zged/image/upload/v1724831678/z1gbt97pjssf2x5xcc40.png" alt="">
                   <img class="baby-changer-icon" src="http://res.cloudinary.com/dckq0zged/image/upload/v1724848852/taf1k3frhuuelqqxmniw.png" alt="">
@@ -53,7 +54,7 @@
                 <% place = @station_images.find { |e| e[:index] == index }[:place] %>
                 <% if place.photos.second %>
                   <%= image_tag url_for(place.photos.second), :data => { :action => "click->routes-map#openImageModal" }, :id => "imageTag-#{index}" %>
-                  <p class="d-none" id="imageComment<%= index%>"><%= place.reviews.find { |r| r.photos.attached? }.comment %></p>
+                  <p class="d-none" id="imageComment<%= index%>"><%= place.reviews.find { |r| r.photos.attached? }&.comment %></p>
                 <% elsif place.photos.first %>
                   <%= image_tag url_for(place.photos.first), :data => { :action => "click->routes-map#openImageModal" }, :id => "imageTag-#{index}" %>
                   <p class="d-none" id="imageComment<%= index%>"><%= translate(section['name']) %></p>

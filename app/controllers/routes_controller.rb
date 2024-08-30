@@ -117,6 +117,7 @@ class RoutesController < ApplicationController
       if station_name.include?("3-chome")
         station_name.gsub!("3-chome", "sanchome")
       end
+      station_name.gsub!(/\s*\([^)]+\)/, "")
       station_name.gsub!(" ", "-")
       if section['node_id'].present? && section['gateway'].nil?
         url = "https://www.tokyometro.jp/station/yardmap_img/figure_yardmap_#{station_name.downcase}_all.jpg"
