@@ -10,7 +10,7 @@ export default class extends Controller {
     recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
               this.recentTarget.insertAdjacentHTML("beforeend", `<div id="${place.id}" data-action="click->home-map#javi" class="card-category me-3" style="width: 180px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${place.photo.trim()})">${place.name}</div>`);
             });
-    document.getElementById("current-location").innerText = this.getCurrentPosition();
+    this.getCurrentPosition();
     this.initMap();
     document.getElementById('tags-container').innerHTML = '';
     document.getElementById('place-ratings').innerHTML = '';
