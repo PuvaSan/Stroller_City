@@ -2,12 +2,10 @@
 
 Navigate Tokyo's intense network of subway sytems via elevators only.  
 
-![IMG_6476](https://github.com/user-attachments/assets/db6f1b0b-8159-45d0-995c-2615eedf2b4a)
-![IMG_6477](https://github.com/user-attachments/assets/8798dc0d-c82e-43e2-9800-22dfb673e433)
+![video_1_bc21a8f056be473e8463c0177f43ee0c](https://github.com/user-attachments/assets/d44cd538-3463-402e-bc7f-56b98ef724a2)![video_1_a5a6043ce72e41e9952d6c0bde29b76c (1)](https://github.com/user-attachments/assets/76a77f1f-2a4e-467e-8c2f-3038e4193423)
 
 
-https://github.com/user-attachments/assets/4dca41c5-7cbd-459d-a020-faf17550c190
-
+<br>
 
 App home: https://strollercity.org
    
