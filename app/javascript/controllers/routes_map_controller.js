@@ -36,7 +36,6 @@ export default class extends Controller {
     // Add a custom Back button to the map
     const backButton = document.createElement("button");
     backButton.classList.add("simple-back-button");
-    backButton.classList.add("shadow-sm");
     backButton.classList.add("text-primary");
     backButton.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
     this.map.controls[google.maps.ControlPosition.LEFT_TOP].push(backButton);
