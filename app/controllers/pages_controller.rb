@@ -2,6 +2,10 @@ class PagesController < ApplicationController
   protect_from_forgery with: :null_session
 
   def home
+    @google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY']
+
+    puts "Debugging Google api Key: #{@google_maps_api_key}"
+
     @place = Place.find_by(params[:id]) if params[:id].present?
     @places = Place.all
     # @place = Place.find_by(name: @place_name) if @place_name.present?

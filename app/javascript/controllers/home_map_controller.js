@@ -3,8 +3,12 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="another-map"
 export default class extends Controller {
   static targets = [ "name", "address", "photo", "originInput", "phone", "info", "recent", "recommended","recent"]
+  static values = { googleApiKey: String }
+
   connect() {
     console.log("home map connected")
+    console.log("google api key from Stimulus values: ", this.googleApiKeyValue)
+
     //get recent search history from local storage
     const recent = JSON.parse(localStorage.getItem('recent'))
     recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
@@ -22,7 +26,7 @@ export default class extends Controller {
     document.getElementById("review_place_id").value = "";
   }
 
-  apiKey = "AIzaSyCWOSZTJ-G738Y4qoVuyVHh1YYjtWUSlao";
+
 
   //Switches the Ikumi container based on the button clicked
   ikumibutton(event) {
@@ -182,7 +186,7 @@ export default class extends Controller {
     navigator.geolocation.getCurrentPosition((position) => {
       this.user_lat = position.coords.latitude;
       this.user_long = position.coords.longitude;
-      fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.user_lat},${this.user_long}&key=${this.apiKey}`)
+      fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.user_lat},${this.user_long}&key=${this.googleApiKeyValue}`)
         .then(response => response.json())
         .then(data => {
           document.getElementById('origin').value = data.results[0].formatted_address
@@ -229,8 +233,7 @@ export default class extends Controller {
     let destination = this.destinationAutocomplete.getPlace();
     if (destination === undefined) {
       const buttonId = event.currentTarget.dataset.value;
-      // const url = `https://maps.googleapis.com/maps/api/place/details/json?fields=name%2Cphoto%2Cformatted_phone%2Cformatted_address%2Cgeometry%2Cphoto&place_id=${buttonId}&key=AIzaSyA4qrApURx9lwvAae-pPmNbV07vPqlbHxo`
-      const url = `https://places.googleapis.com/v1/places/${buttonId}?fields=displayName,formattedAddress,photos,location,nationalPhoneNumber,editorialSummary&key=${this.apiKey}`
+      const url = `https://places.googleapis.com/v1/places/${buttonId}?fields=displayName,formattedAddress,photos,location,nationalPhoneNumber,editorialSummary&key=${this.googleApiKeyValue}`
       fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -258,8 +261,7 @@ export default class extends Controller {
 
   javi(event) {
     const buttonId = event.currentTarget.id;
-    // const url = `https://maps.googleapis.com/maps/api/place/details/json?fields=name%2Cphoto%2Cformatted_phone%2Cformatted_address%2Cgeometry%2Cphoto&place_id=${buttonId}&key=AIzaSyA4qrApURx9lwvAae-pPmNbV07vPqlbHxo`
-    const url = `https://places.googleapis.com/v1/places/${buttonId}?fields=displayName,formattedAddress,photos,location,nationalPhoneNumber,editorialSummary&key=${this.apiKey}`
+    const url = `https://places.googleapis.com/v1/places/${buttonId}?fields=displayName,formattedAddress,photos,location,nationalPhoneNumber,editorialSummary&key=${this.googleApiKeyValue}`
     fetch(url)
       .then(response => response.json())
       .then(data => {
@@ -287,7 +289,7 @@ export default class extends Controller {
           }
           this.photoTarget.innerHTML = "";
           place.photos.slice(0, 5).forEach((photo) => {
-            const placeImage = `https://places.googleapis.com/v1/${photo.name}/media?maxHeightPx=400&maxWidthPx=400&key=${this.apiKey}`
+            const placeImage = `https://places.googleapis.com/v1/${photo.name}/media?maxHeightPx=400&maxWidthPx=400&key=${this.googleApiKeyValue}`
             const imgElement = `<img height=80 width=80 class="me-2" src="${placeImage}" />`;
             this.photoTarget.insertAdjacentHTML("beforeend", imgElement);
           });

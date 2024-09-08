@@ -30,6 +30,7 @@ class RoutesController < ApplicationController
   end
 
   def index
+    puts ENV['RAPIDAPI_KEY'] # Output the API key in the terminal
     @navitime_routes = fetch_navitime_routes(session[:start_lat], session[:start_long], session[:end_lat], session[:end_long])
 
     if @navitime_routes
