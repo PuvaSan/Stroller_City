@@ -7,7 +7,7 @@ export default class extends Controller {
 
   connect() {
     console.log("home map connected")
-    console.log("google api key from Stimulus values: ", this.googleApiKeyValue) // Correct way to access it
+    console.log("google api key from Stimulus values: ", this.googleApiKeyValue)
 
     //get recent search history from local storage
     const recent = JSON.parse(localStorage.getItem('recent'))
@@ -49,7 +49,6 @@ export default class extends Controller {
   map = null;
 
   initMap() {
-    console.log("Using API Key in initMap: ", this.googleApiKeyValue); // Still works here
     this.map = new google.maps.Map(document.getElementById('map'),{
       center:{lat:35.652832,lng:139.839478},
       zoom:13,
