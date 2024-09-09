@@ -181,22 +181,47 @@ export default class extends Controller {
 
   user_lat = null;
   user_long = null;
+
   getCurrentPosition() {
-    //sets origin to user's current location
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.user_lat = position.coords.latitude;
-      this.user_long = position.coords.longitude;
-      fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.user_lat},${this.user_long}&key=${this.googleApiKeyValue}`)
-        .then(response => response.json())
-        .then(data => {
-          document.getElementById('origin').value = data.results[0].formatted_address
-          const addressComponents = data.results[0].address_components;
-          const localityComponent = addressComponents.find(component => component.types.includes('locality'));;
-          document.getElementById("current-location").innerText = localityComponent.long_name;
-        })
-    })
-    this.origin = undefined;
-  }
+  //sets origin to user's current location
+  navigator.geolocation.getCurrentPosition((position) => {
+    this.user_lat = position.coords.latitude;
+    this.user_long = position.coords.longitude;
+
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.user_lat},${this.user_long}&key=${this.googleApiKeyValue}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.results && data.results.length > 0) {
+          const result = data.results[0];
+
+          // Check if formatted_address exists before trying to access it
+          if (result.formatted_address) {
+            document.getElementById('origin').value = result.formatted_address;
+          } else {
+            console.error("No formatted_address found for the location.");
+          }
+
+          const addressComponents = result.address_components || [];
+          const localityComponent = addressComponents.find(component => component.types.includes('locality'));
+
+          if (localityComponent) {
+            document.getElementById("current-location").innerText = localityComponent.long_name;
+          } else {
+            console.error("No locality found for the location.");
+          }
+        } else {
+          console.error("No results found for the location.");
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching geocode data:", error);
+      });
+  },
+  (error) => {
+    console.error("Geolocation error:", error);
+  });
+}
+
 
   firstBack() {
     document.querySelector("#initial-content").classList.toggle("d-none");
