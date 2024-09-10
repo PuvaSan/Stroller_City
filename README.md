@@ -75,7 +75,7 @@ rails s
 
 ## Team Members
 - [Brian Inphouva](https://www.linkedin.com/in/brian-inphouva/)
-- [Ayano Fujita] (https://www.linkedin.com/in/ayano-fujita-872a03297/)
+- [Ayano Fujita] (https://www.linkedin.com/in/ayanofujita/)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
