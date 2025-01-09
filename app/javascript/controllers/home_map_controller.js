@@ -7,7 +7,7 @@ export default class extends Controller {
 
   connect() {
     console.log("home map connected")
-    console.log("google api key from Stimulus values: ", this.googleApiKeyValue)
+    //console.log("google api key from Stimulus values: ", this.googleApiKeyValue)
 
     //get recent search history from local storage
     const recent = JSON.parse(localStorage.getItem('recent'))
