@@ -42,6 +42,7 @@ class ReviewsController < ApplicationController
 
   def end_reviews
     @places = params[:place_ids].split(',').select { |s| s != '' }.reverse!
+    @google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY']
   end
 
   def destroy

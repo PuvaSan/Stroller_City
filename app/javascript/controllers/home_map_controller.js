@@ -10,10 +10,20 @@ export default class extends Controller {
     //console.log("google api key from Stimulus values: ", this.googleApiKeyValue)
 
     //get recent search history from local storage
-    const recent = JSON.parse(localStorage.getItem('recent'))
-    recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
-              this.recentTarget.insertAdjacentHTML("beforeend", `<div id="${place.id}" data-action="click->home-map#javi" class="card-category me-3" style="width: 180px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${place.photo.trim()})">${place.name}</div>`);
-            });
+    const recent = JSON.parse(localStorage.getItem('recent')) || [];
+
+    if (recent.length > 0) {
+      recent.slice(Math.max(recent.length - 5, 0)).forEach(place => {
+        if (this.hasRecentTarget && recent.length > 0) {
+          this.recentTarget.insertAdjacentHTML("beforeend", `<div id="${place.id}" data-action="click->home-map#javi" class="card-category me-3" style="width: 180px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${place.photo.trim()})">${place.name}</div>`);
+        }
+      });
+    } else {
+      console.log("no recent places in local");
+    }
+
+
+
     this.getCurrentPosition();
     this.initMap();
     document.getElementById('tags-container').innerHTML = '';
@@ -183,44 +193,85 @@ export default class extends Controller {
   user_long = null;
 
   getCurrentPosition() {
-  //sets origin to user's current location
-  navigator.geolocation.getCurrentPosition((position) => {
-    this.user_lat = position.coords.latitude;
-    this.user_long = position.coords.longitude;
+    // Check if the Google API key is set
+    if (!this.googleApiKeyValue) {
+      console.error("Google API Key is not set.");
+      return;
+    }
 
-    fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.user_lat},${this.user_long}&key=${this.googleApiKeyValue}`)
-      .then(response => response.json())
-      .then(data => {
-        if (data.results && data.results.length > 0) {
-          const result = data.results[0];
+    // Sets origin to user's current location
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        // Save latitude and longitude
+        this.user_lat = position.coords.latitude;
+        this.user_long = position.coords.longitude;
 
-          // Check if formatted_address exists before trying to access it
-          if (result.formatted_address) {
-            document.getElementById('origin').value = result.formatted_address;
-          } else {
-            console.error("No formatted_address found for the location.");
-          }
+        // console.log(`User's coordinates: lat=${this.user_lat}, long=${this.user_long}`);
+        // console.log(`API key inside current position method: ${this.googleApiKeyValue}`);
 
-          const addressComponents = result.address_components || [];
-          const localityComponent = addressComponents.find(component => component.types.includes('locality'));
+        // Fetch geolocation data
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.user_lat},${this.user_long}&key=${this.googleApiKeyValue}`)
+          .then((response) => response.json())
+          .then((data) => {
+            // Handle API errors
+            if (data.error_message) {
+              console.error(`Geolocation API error: ${data.error_message}`);
+              return;
+            }
 
-          if (localityComponent) {
-            document.getElementById("current-location").innerText = localityComponent.long_name;
-          } else {
-            console.error("No locality found for the location.");
-          }
-        } else {
-          console.error("No results found for the location.");
+            if (data.results && data.results.length > 0) {
+              const result = data.results[0];
+
+              // Check and set formatted address
+              const originInput = document.getElementById("origin");
+              if (originInput && result.formatted_address) {
+                originInput.value = result.formatted_address;
+                console.log(`Formatted address set: ${result.formatted_address}`);
+              } else {
+                console.warn("No formatted address found for the location.");
+              }
+
+              // Extract locality and display it on the homepage
+              const addressComponents = result.address_components || [];
+              const localityComponent = addressComponents.find((component) =>
+                component.types.includes("locality")
+              );
+
+              const currentLocationElement = document.getElementById("current-location");
+              if (currentLocationElement && localityComponent) {
+                currentLocationElement.innerText = localityComponent.long_name;
+                console.log(`Locality set: ${localityComponent.long_name}`);
+              } else {
+                console.warn("No locality information found for the location.");
+              }
+              } else {
+                console.warn("No results found for the location.");
+              }
+              })
+              .catch((error) => {
+                console.error("Error fetching geocode data:", error);
+              });
+        }.bind(this),
+
+      function (error) {
+        // Handle geolocation errors
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            console.error("User denied the request for Geolocation.");
+            break;
+          case error.POSITION_UNAVAILABLE:
+            console.error("Location information is unavailable.");
+            break;
+          case error.TIMEOUT:
+            console.error("The request to get user location timed out.");
+            break;
+          default:
+            console.error("An unknown geolocation error occurred.");
         }
-      })
-      .catch(error => {
-        console.error("Error fetching geocode data:", error);
-      });
-  },
-  (error) => {
-    console.error("Geolocation error:", error);
-  });
-}
+      }
+    );
+  }
+
 
 
   firstBack() {

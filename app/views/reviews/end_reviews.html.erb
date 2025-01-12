@@ -1,4 +1,4 @@
-<div class="pt-4 px-3 mx-2 w-100" data-controller="end-reviews">
+<div class="pt-4 px-3 mx-2 w-100" data-controller="end-reviews" data-end-reviews-google-api-key-value="<%= @google_maps_api_key %>">
   <h1 class="mb-3"><strong>What did you think of your stops?</strong></h1>
   <form action="/places/end_reviews" method="post">
     <% @places.each_with_index do |place, index| %>
