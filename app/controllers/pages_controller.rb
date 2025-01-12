@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   def home
     @google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY']
 
-    puts "Debugging Google api Key: #{@google_maps_api_key}"
+    #puts "Google api Key: #{@google_maps_api_key}"
 
     @place = Place.find_by(params[:id]) if params[:id].present?
     @places = Place.all

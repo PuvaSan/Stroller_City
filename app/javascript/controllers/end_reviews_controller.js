@@ -2,14 +2,15 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="end-reviews"
 export default class extends Controller {
+  static values = { googleApiKey: String }
+
   connect() {
     let places = [...document.querySelectorAll('h4')].map(place => place.innerText)
     let idInputs = document.querySelectorAll('input[type="hidden"]')
     const url = 'https://places.googleapis.com/v1/places:searchText';
-    const apiKey = "AIzaSyCWOSZTJ-G738Y4qoVuyVHh1YYjtWUSlao";
     const headers = {
       'Content-Type': 'application/json',
-      'X-Goog-Api-Key': apiKey,
+      'X-Goog-Api-Key': this.googleApiKey,
       'X-Goog-FieldMask': 'places.id'
     };
     places.forEach((place, index) => {
